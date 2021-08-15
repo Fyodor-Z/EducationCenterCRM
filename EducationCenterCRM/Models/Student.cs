@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace EducationCenterCRM.Models
 {
-    public class Student
+    public class Student: Person
     {
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public DateTime BirthDate { get; set; }
+        public int id { get; set; }
+        [Required(ErrorMessage = "Please choose start date")]
         public DateTime StartDate { get; set; }
     }
 }
