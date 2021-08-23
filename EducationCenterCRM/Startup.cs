@@ -8,6 +8,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EducationCenterCRM.Database;
+using EducationCenterCRM.Services;
+using Microsoft.EntityFrameworkCore;
+using AutoMapper;
+using EducationCenterCRM.Models;
+using EducationCenterCRM.Repositories.Implementations;
+using EducationCenterCRM.Repositories.Interfaces;
 
 namespace EducationCenterCRM
 {
@@ -23,7 +30,17 @@ namespace EducationCenterCRM
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            string connection = Configuration.GetConnectionString("DefaultConnection");
+            services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(connection));
+            services.AddScoped<IStudentService, StudentService>();
+
             services.AddControllersWithViews();
+
+           
+
+            services.AddControllersWithViews()
+                .AddViewOptions(options => options.HtmlHelperOptions.ClientValidationEnabled = true);
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

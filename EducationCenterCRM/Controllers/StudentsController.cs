@@ -4,23 +4,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using EducationCenterCRM.Models;
+using EducationCenterCRM.Services;
 
 namespace EducationCenterCRM.Controllers
 {
-    public class  StudentsController: Controller
+    public class StudentsController : Controller
     {
+        private readonly IStudentService _studentsService;
+        public StudentsController(IStudentService studentService)
+        {
+            _studentsService = studentService;
+        }
         public IActionResult Index()
         {
-            return View(StudentList.Students);
+            var students = _studentsService.GetAll();
+            return View(students);
         }
 
-        public IActionResult Details(int id)
+        public IActionResult Details(Guid id)
         {
             Student student = StudentList.GetStudentById(id);
             return View(student);
         }
         [HttpGet]
-        public IActionResult Edit(int id)
+        public IActionResult Edit(Guid id)
         {
             ViewBag.Title = "Edit";
             ViewBag.Action = "Edit";
@@ -42,10 +49,10 @@ namespace EducationCenterCRM.Controllers
             {
                 return View(student);
             }
-           
+
         }
         [HttpGet]
-        public IActionResult Delete(int id)
+        public IActionResult Delete(Guid id)
         {
             Student student = StudentList.GetStudentById(id);
             return View(student);
@@ -53,7 +60,7 @@ namespace EducationCenterCRM.Controllers
 
         [HttpPost]
         [ActionName("Delete")]
-        public IActionResult ConfirmDelete(int id)
+        public IActionResult ConfirmDelete(Guid id)
         {
             Student student = StudentList.GetStudentById(id);
             StudentList.DeleteStudent(student);

@@ -8,7 +8,7 @@ namespace EducationCenterCRM.Models
 {
     public class Student: Person
     {
-        public int id { get; set; }
+        
         [Required(ErrorMessage = "Please choose start date")]
         public DateTime StartDate { get; set; }
     }

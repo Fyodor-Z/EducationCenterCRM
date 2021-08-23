@@ -9,8 +9,9 @@ namespace EducationCenterCRM.Models
     {
         private static List<Student> _students = new List<Student>()
         {
-            new Student(){id = 1, FirstName = "Petr", LastName = "Ivanov", BirthDate = DateTime.Today, StartDate = DateTime.Today},
-            new Student(){id = 2, FirstName = "Ivan", LastName = "Petrov", BirthDate = DateTime.Today, StartDate = DateTime.Today}
+            new Student(){Id = Guid.NewGuid(), FirstName = "Petr", LastName = "Ivanov", BirthDate = new DateTime(1989, 7, 20), StartDate = DateTime.Today, Gender = Gender.Male},
+            new Student(){Id = Guid.NewGuid(), FirstName = "Ivan", LastName = "Petrov", BirthDate = new DateTime(1994, 8, 16), StartDate = DateTime.Today, Gender = Gender.Male},
+            new Student(){Id = Guid.NewGuid(), FirstName = "Tatyana", LastName = "Usovich", BirthDate = new DateTime(1999, 1, 2), StartDate = DateTime.Today, Gender = Gender.Female}
         };
 
         public static IEnumerable<Student> Students
@@ -27,15 +28,15 @@ namespace EducationCenterCRM.Models
             
         }
 
-        public static Student GetStudentById(int id)
+        public static Student GetStudentById(Guid id)
         {
-            return _students.FirstOrDefault(s => s.id == id);
+            return _students.FirstOrDefault(s => s.Id == id);
         }
 
         public static void UpdateStudent(Student editedStudent)
         {
-            int id = editedStudent.id;
-            _students[_students.IndexOf(_students.FirstOrDefault(s => s.id == id))] = editedStudent;
+            Guid id = editedStudent.Id;
+            _students[_students.IndexOf(_students.FirstOrDefault(s => s.Id == id))] = editedStudent;
         }
 
         public static void DeleteStudent(Student deletedStudent)
@@ -46,8 +47,7 @@ namespace EducationCenterCRM.Models
 
         public static void CreateStudent(Student newStudent)
         {
-            var newId = _students.Select(s => s.id).Max() + 1;
-            newStudent.id = newId;
+           newStudent.Id = new Guid();
             _students.Add(newStudent);
         }
 

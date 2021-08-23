@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EducationCenterCRM.Models
 {
-    public abstract class Person
+    public abstract class Person: BaseModel
     {
         [Required(ErrorMessage = "Please enter name")]
         public string FirstName { get; set; }
@@ -14,6 +14,8 @@ namespace EducationCenterCRM.Models
         public string LastName { get; set; }
         [Required(ErrorMessage = "Please choose birth date")]
         public DateTime BirthDate { get; set; }
-        
+
+        [Required(ErrorMessage = "Please choose gender")]
+        public Gender Gender { get; set; }
     }
 }
