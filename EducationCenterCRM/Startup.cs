@@ -33,7 +33,7 @@ namespace EducationCenterCRM
             string connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(connection));
             services.AddScoped<IStudentService, StudentService>();
-
+            services.AddScoped<IRepository<Student>, BaseRepository<Student>>();
             services.AddControllersWithViews();
 
            

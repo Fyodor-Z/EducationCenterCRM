@@ -23,7 +23,7 @@ namespace EducationCenterCRM.Controllers
 
         public IActionResult Details(Guid id)
         {
-            Student student = StudentList.GetStudentById(id);
+            var student = _studentsService.GetById(id);
             return View(student);
         }
         [HttpGet]
@@ -31,7 +31,7 @@ namespace EducationCenterCRM.Controllers
         {
             ViewBag.Title = "Edit";
             ViewBag.Action = "Edit";
-            Student student = StudentList.GetStudentById(id);
+            var student = _studentsService.GetById(id);
             return View(student);
         }
 
@@ -42,7 +42,7 @@ namespace EducationCenterCRM.Controllers
             ViewBag.Action = "Edit";
             if (ModelState.IsValid)
             {
-                StudentList.UpdateStudent(student);
+                _studentsService.Update(student);
                 return View(student);
             }
             else
@@ -54,7 +54,7 @@ namespace EducationCenterCRM.Controllers
         [HttpGet]
         public IActionResult Delete(Guid id)
         {
-            Student student = StudentList.GetStudentById(id);
+            var student = _studentsService.GetById(id);
             return View(student);
         }
 
@@ -62,9 +62,9 @@ namespace EducationCenterCRM.Controllers
         [ActionName("Delete")]
         public IActionResult ConfirmDelete(Guid id)
         {
-            Student student = StudentList.GetStudentById(id);
-            StudentList.DeleteStudent(student);
-            return View("Index", StudentList.Students);
+            _studentsService.Delete(id);
+            var students = _studentsService.GetAll();
+            return View("Index", students);
         }
 
         [HttpGet]
@@ -82,7 +82,7 @@ namespace EducationCenterCRM.Controllers
             ViewBag.Action = "Create";
             if (ModelState.IsValid)
             {
-                StudentList.CreateStudent(student);
+                _studentsService.Create(student);
                 return View("Details", student);
             }
             else
