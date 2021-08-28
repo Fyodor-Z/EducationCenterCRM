@@ -13,6 +13,7 @@ namespace EducationCenterCRM.Models
         [Required(ErrorMessage = "Please enter last name")]
         public string LastName { get; set; }
         [Required(ErrorMessage = "Please choose birth date")]
+        [DataType(DataType.Date)]
         public DateTime BirthDate { get; set; }
 
         [Required(ErrorMessage = "Please choose gender")]
