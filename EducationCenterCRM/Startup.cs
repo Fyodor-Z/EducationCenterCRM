@@ -15,6 +15,8 @@ using AutoMapper;
 using EducationCenterCRM.Models;
 using EducationCenterCRM.Repositories.Implementations;
 using EducationCenterCRM.Repositories.Interfaces;
+using EducationCenterCRM.Services.Implementations;
+using EducationCenterCRM.Services.Interfaces;
 
 namespace EducationCenterCRM
 {
@@ -34,9 +36,10 @@ namespace EducationCenterCRM
             services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(connection));
             services.AddScoped<IStudentService, StudentService>();
             services.AddScoped<IRepository<Student>, BaseRepository<Student>>();
+            services.AddScoped<ITeacherSevice, TeacherService>();
+            services.AddScoped<IRepository<Teacher>, BaseRepository<Teacher>>();
             services.AddControllersWithViews();
 
-           
 
             services.AddControllersWithViews()
                 .AddViewOptions(options => options.HtmlHelperOptions.ClientValidationEnabled = true);

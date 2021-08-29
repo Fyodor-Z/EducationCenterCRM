@@ -36,18 +36,18 @@ namespace EducationCenterCRM.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(Student student)
+        public IActionResult Edit(Student student1)
         {
             ViewBag.Title = "Edit student";
             ViewBag.Action = "Edit";
             if (ModelState.IsValid)
             {
-                _studentsService.Update(student);
-                return View(student);
+                _studentsService.Update(student1);
+                return View(student1);
             }
             else
             {
-                return View(student);
+                return View(student1);
             }
 
         }
