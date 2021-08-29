@@ -64,8 +64,8 @@ namespace EducationCenterCRM.Controllers
         public IActionResult ConfirmDelete(Guid id)
         {
             _teacherService.Delete(id);
-            var students = _teacherService.GetAll();
-            return View("Index", students);
+            var teachers = _teacherService.GetAll();
+            return View("Index", teachers);
         }
 
         [HttpGet]

@@ -49,9 +49,9 @@
             @Html.DisplayNameFor(model => model.LinkToProfile)
         </dt>
     </dl>
-    
-    <form asp-action="View">
-        <input type="hidden" asp-for="Id" />
+
+
+    <form asp-action="Delete" asp-controller="Teachers" asp-route-id="@Model.Id">
         <input type="submit" value="Delete" class="btn btn-danger" /> |
         <a asp-action="Index">Back to List</a>
     </form>
