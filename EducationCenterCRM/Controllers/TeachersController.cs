@@ -40,14 +40,23 @@ namespace EducationCenterCRM.Controllers
         {
             ViewBag.Title = "Edit teacher";
             ViewBag.Action = "Edit";
+            var id = teacher.Id;
+            var teacherToUpdate = _teacherService.GetById(id);
             if (ModelState.IsValid)
             {
-                _teacherService.Update(teacher);
-                return View(teacher);
+                teacherToUpdate.Bio = teacher.Bio;
+                teacherToUpdate.LinkToProfile = teacher.LinkToProfile;
+                teacherToUpdate.Gender = teacher.Gender;
+                teacherToUpdate.BirthDate = teacher.BirthDate;
+                teacherToUpdate.FirstName = teacher.FirstName;
+                teacherToUpdate.LastName = teacher.LastName;
+
+                _teacherService.Update(teacherToUpdate);
+                return View(teacherToUpdate);
             }
             else
             {
-                return View(teacher);
+                return View(teacherToUpdate);
             }
 
         }

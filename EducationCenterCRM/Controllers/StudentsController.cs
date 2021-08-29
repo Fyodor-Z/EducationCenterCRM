@@ -40,10 +40,19 @@ namespace EducationCenterCRM.Controllers
         {
             ViewBag.Title = "Edit student";
             ViewBag.Action = "Edit";
+            var id = student.Id;
+            var studentToUpdate = _studentsService.GetById(id);
+
+            studentToUpdate.StartDate = student.StartDate;
+            studentToUpdate.Gender = student.Gender;
+            studentToUpdate.LastName = student.LastName;
+            studentToUpdate.FirstName = student.FirstName;
+            studentToUpdate.BirthDate = student.BirthDate;
+
             if (ModelState.IsValid)
             {
-                _studentsService.Update(student);
-                return View(student);
+                _studentsService.Update(studentToUpdate);
+                return View(studentToUpdate);
             }
             else
             {
