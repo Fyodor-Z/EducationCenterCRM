@@ -15,11 +15,18 @@ namespace EducationCenterCRM.Controllers
         {
             _teacherService = teacherService;
         }
-        public IActionResult Index()
+        //public IActionResult Index()
+        //{
+        //    var teachers = _teacherService.GetAll();
+        //    return View(teachers);
+        //}
+
+        public async Task<IActionResult> Index()
         {
-            var teachers = _teacherService.GetAll();
+            var teachers = await _teacherService.GetAllAsync();
             return View(teachers);
         }
+
         public IActionResult Details(Guid id)
         {
             var teacher = _teacherService.GetById(id);

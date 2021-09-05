@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Threading.Tasks;
 using EducationCenterCRM.DAL;
 using EducationCenterCRM.Services;
@@ -19,6 +21,13 @@ namespace EducationCenterCRM.BLL
         public IEnumerable<TEntity> GetAll()
         {
             return _repository.GetAll();
+        }
+
+        public async Task<IEnumerable<TEntity>> GetAllAsync()
+        {
+            var allEntities = await _repository.GetAllAsync();
+            return allEntities.AsEnumerable();
+
         }
 
         public TEntity GetById(Guid id)
