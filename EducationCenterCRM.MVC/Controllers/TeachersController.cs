@@ -43,7 +43,7 @@ namespace EducationCenterCRM.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(Teacher teacher)
+        public IActionResult Edit(TeacherModel teacher)
         {
             ViewBag.Title = "Edit teacher";
             ViewBag.Action = "Edit";
@@ -89,11 +89,11 @@ namespace EducationCenterCRM.Controllers
         {
             ViewBag.Action = "Create";
             ViewBag.Title = "Add new teacher";
-            return View("Edit", new Teacher());
+            return View("Edit", new TeacherModel());
         }
 
         [HttpPost]
-        public IActionResult Create(Teacher teacher)
+        public IActionResult Create(TeacherModel teacher)
         {
             ViewBag.Title = "Add new teacher";
             ViewBag.Action = "Create";

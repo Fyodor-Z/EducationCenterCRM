@@ -35,7 +35,7 @@ namespace EducationCenterCRM
             services.AddScoped<IStudentService, StudentService>();
             services.AddScoped<IRepository<Student>, BaseRepository<Student>>();
             services.AddScoped<ITeacherService, TeacherService>();
-            services.AddScoped<IRepository<Teacher>, BaseRepository<Teacher>>();
+            services.AddScoped<IRepository<TeacherModel>, BaseRepository<TeacherModel>>();
             services.AddControllersWithViews();
 
 

@@ -1,6 +1,6 @@
 using System;
 
-namespace EducationCenterCRM.BLL
+namespace EducationCenterCRM.MVC.Models
 {
     public class ErrorViewModel
     {
