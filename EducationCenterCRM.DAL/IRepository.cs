@@ -8,6 +8,7 @@ namespace EducationCenterCRM.DAL
     public interface IRepository<TDbModel> where TDbModel : BaseModel
     {
         public List<TDbModel> GetAll();
+        public Task<List<TDbModel>> GetAllAsync();
         public TDbModel Get(Guid id);
         public TDbModel Create(TDbModel model);
         public TDbModel Update(TDbModel model);

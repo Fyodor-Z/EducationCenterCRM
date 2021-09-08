@@ -8,6 +8,7 @@ namespace EducationCenterCRM.BLL
     public interface IEntityService<TEntity>
     {
         IEnumerable<TEntity> GetAll();
+        Task<IEnumerable<TEntity>> GetAllAsync();
         TEntity GetById(Guid id);
         void Create(TEntity entity);
         void Update(TEntity entity);

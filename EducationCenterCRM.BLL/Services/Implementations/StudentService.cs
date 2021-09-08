@@ -21,6 +21,11 @@ namespace EducationCenterCRM.BLL
         {
             return _repository.GetAll();
         }
+        public async Task<IEnumerable<Student>> GetAllAsync()
+        {
+            var allStudents = await _repository.GetAllAsync();
+            return allStudents.AsEnumerable();
+        }
 
         public Student GetById(Guid id)
         {

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 
 namespace EducationCenterCRM.DAL.EF
@@ -31,6 +32,11 @@ namespace EducationCenterCRM.DAL.EF
         public List<TDbModel> GetAll()
         {
             return Context.Set<TDbModel>().ToList();
+        }
+
+        public async Task<List<TDbModel>> GetAllAsync()
+        {
+            return await Context.Set<TDbModel>().ToListAsync();
         }
 
         public TDbModel Update(TDbModel model)
