@@ -14,6 +14,7 @@ using AutoMapper;
 using EducationCenterCRM.BLL;
 using EducationCenterCRM.DAL;
 using EducationCenterCRM.DAL.EF;
+using EducationCenterCRM.MVC.Mapper;
 using EducationCenterCRM.Services.Interfaces;
 
 namespace EducationCenterCRM
@@ -35,9 +36,17 @@ namespace EducationCenterCRM
             services.AddScoped<IStudentService, StudentService>();
             services.AddScoped<IRepository<Student>, BaseRepository<Student>>();
             services.AddScoped<ITeacherService, TeacherService>();
-            services.AddScoped<IRepository<TeacherModel>, BaseRepository<TeacherModel>>();
+            services.AddScoped<IRepository<Teacher>, BaseRepository<Teacher>>();
             services.AddControllersWithViews();
 
+            // Auto Mapper Configurations
+            var mapperConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new MappingProfile());
+            });
+
+            IMapper mapper = mapperConfig.CreateMapper();
+            services.AddSingleton(mapper);
 
             services.AddControllersWithViews()
                 .AddViewOptions(options => options.HtmlHelperOptions.ClientValidationEnabled = true);

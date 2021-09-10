@@ -15,11 +15,10 @@ namespace EducationCenterCRM.DAL.EF
             Context = context;
         }
 
-        public TDbModel Create(TDbModel model)
+        public void Create(TDbModel model)
         {
             Context.Set<TDbModel>().Add(model);
             Context.SaveChanges();
-            return model;
         }
 
         public void Delete(Guid id)
@@ -31,24 +30,18 @@ namespace EducationCenterCRM.DAL.EF
 
         public List<TDbModel> GetAll()
         {
-            return Context.Set<TDbModel>().ToList();
+            return Context.Set<TDbModel>().AsNoTracking().ToList();
         }
 
         public async Task<List<TDbModel>> GetAllAsync()
         {
-            return await Context.Set<TDbModel>().ToListAsync();
+            return await Context.Set<TDbModel>().AsNoTracking().ToListAsync();
         }
 
-        public TDbModel Update(TDbModel model)
+        public void Update(TDbModel model)
         {
-            var toUpdate = Context.Set<TDbModel>().FirstOrDefault(m => m.Id == model.Id);
-            if (toUpdate != null)
-            {
-                toUpdate = model;
-            }
-            Context.Update(toUpdate);
-            Context.SaveChanges();
-            return toUpdate;
+           Context.Entry(model).State = EntityState.Modified;
+           Context.SaveChanges();
         }
 
         public TDbModel Get(Guid id)
