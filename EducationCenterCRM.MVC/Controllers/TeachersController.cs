@@ -3,34 +3,34 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using EducationCenterCRM.Services.Interfaces;
 using EducationCenterCRM.BLL;
+using EducationCenterCRM.MVC.Models;
 
 namespace EducationCenterCRM.Controllers
 {
     public class TeachersController : Controller
     {
         private readonly ITeacherService _teacherService;
-        public TeachersController(ITeacherService teacherService)
+        private readonly IMapper _mapper;
+        public TeachersController(ITeacherService teacherService, IMapper mapper)
         {
             _teacherService = teacherService;
+            _mapper = mapper;
         }
-        //public IActionResult Index()
-        //{
-        //    var teachers = _teacherService.GetAll();
-        //    return View(teachers);
-        //}
+       
 
         public async Task<IActionResult> Index()
         {
             var teachers = await _teacherService.GetAllAsync();
-            return View(teachers);
+            return View(_mapper.Map<IEnumerable<TeacherModel>>(teachers));
         }
 
         public IActionResult Details(Guid id)
         {
             var teacher = _teacherService.GetById(id);
-            return View(teacher);
+            return View(_mapper.Map<TeacherModel>(teacher));
         }
 
         [HttpGet]
@@ -39,31 +39,22 @@ namespace EducationCenterCRM.Controllers
             ViewBag.Title = "Edit";
             ViewBag.Action = "Edit";
             var teacher = _teacherService.GetById(id);
-            return View(teacher);
+            return View(_mapper.Map<TeacherModel>(teacher));
         }
 
         [HttpPost]
-        public IActionResult Edit(Teacher teacher)
+        public IActionResult Edit(TeacherModel teacherModel)
         {
             ViewBag.Title = "Edit teacher";
             ViewBag.Action = "Edit";
-            var id = teacher.Id;
-            var teacherToUpdate = _teacherService.GetById(id);
             if (ModelState.IsValid)
             {
-                teacherToUpdate.Bio = teacher.Bio;
-                teacherToUpdate.LinkToProfile = teacher.LinkToProfile;
-                teacherToUpdate.Gender = teacher.Gender;
-                teacherToUpdate.BirthDate = teacher.BirthDate;
-                teacherToUpdate.FirstName = teacher.FirstName;
-                teacherToUpdate.LastName = teacher.LastName;
-
-                _teacherService.Update(teacherToUpdate);
-                return View(teacherToUpdate);
+                _teacherService.Update(_mapper.Map<Teacher>(teacherModel));
+                return View(teacherModel);
             }
             else
             {
-                return View(teacherToUpdate);
+                return View("Details", teacherModel);
             }
 
         }
@@ -72,7 +63,7 @@ namespace EducationCenterCRM.Controllers
         public IActionResult Delete(Guid id)
         {
             var teacher = _teacherService.GetById(id);
-            return View(teacher);
+            return View(_mapper.Map<TeacherModel>(teacher));
         }
 
         [HttpPost]
@@ -81,7 +72,7 @@ namespace EducationCenterCRM.Controllers
         {
             _teacherService.Delete(id);
             var teachers = _teacherService.GetAll();
-            return View("Index", teachers);
+            return View("Index", _mapper.Map<IEnumerable<TeacherModel>>(teachers));
         }
 
         [HttpGet]
@@ -89,18 +80,18 @@ namespace EducationCenterCRM.Controllers
         {
             ViewBag.Action = "Create";
             ViewBag.Title = "Add new teacher";
-            return View("Edit", new Teacher());
+            return View("Edit", new TeacherModel());
         }
 
         [HttpPost]
-        public IActionResult Create(Teacher teacher)
+        public IActionResult Create(TeacherModel teacherModel)
         {
             ViewBag.Title = "Add new teacher";
             ViewBag.Action = "Create";
             if (ModelState.IsValid)
             {
-                _teacherService.Create(teacher);
-                return View("Details", teacher);
+                var teacher = _teacherService.Create(_mapper.Map<Teacher>(teacherModel));
+                return View("Details", _mapper.Map<TeacherModel>(teacher));
             }
             else
             {

@@ -3,7 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using EducationCenterCRM.BLL;
+using EducationCenterCRM.MVC.Models;
 using EducationCenterCRM.Services;
 
 namespace EducationCenterCRM.Controllers
@@ -11,27 +13,24 @@ namespace EducationCenterCRM.Controllers
     public class StudentsController : Controller
     {
         private readonly IStudentService _studentsService;
-        public StudentsController(IStudentService studentService)
+        private readonly IMapper _mapper;
+        public StudentsController(IStudentService studentService, IMapper mapper)
         {
             _studentsService = studentService;
+            _mapper = mapper;
         }
-        //public IActionResult Index()
-        //{
-        //    var students = _studentsService.GetAll();
-        //    return View(students);
-        //}
-
+        
         public async Task<IActionResult> Index()
         {
             var students = await _studentsService.GetAllAsync();
-            return View(students);
+            return View(_mapper.Map<IEnumerable<StudentModel>>(students));
         }
 
 
         public IActionResult Details(Guid id)
         {
             var student = _studentsService.GetById(id);
-            return View(student);
+            return View(_mapper.Map<StudentModel>(student));
         }
         [HttpGet]
         public IActionResult Edit(Guid id)
@@ -39,31 +38,23 @@ namespace EducationCenterCRM.Controllers
             ViewBag.Title = "Edit";
             ViewBag.Action = "Edit";
             var student = _studentsService.GetById(id);
-            return View(student);
+            return View(_mapper.Map<StudentModel>(student));
         }
 
         [HttpPost]
-        public IActionResult Edit(Student student)
+        public IActionResult Edit(StudentModel studentModel)
         {
             ViewBag.Title = "Edit student";
             ViewBag.Action = "Edit";
-            var id = student.Id;
-            var studentToUpdate = _studentsService.GetById(id);
-
-            studentToUpdate.StartDate = student.StartDate;
-            studentToUpdate.Gender = student.Gender;
-            studentToUpdate.LastName = student.LastName;
-            studentToUpdate.FirstName = student.FirstName;
-            studentToUpdate.BirthDate = student.BirthDate;
-
+            
             if (ModelState.IsValid)
             {
-                _studentsService.Update(studentToUpdate);
-                return View(studentToUpdate);
+                _studentsService.Update(_mapper.Map<Student>(studentModel));
+                return View("Details",studentModel);
             }
             else
             {
-                return View(student);
+                return View(studentModel);
             }
 
         }
@@ -71,7 +62,7 @@ namespace EducationCenterCRM.Controllers
         public IActionResult Delete(Guid id)
         {
             var student = _studentsService.GetById(id);
-            return View(student);
+            return View(_mapper.Map<StudentModel>(student));
         }
 
         [HttpPost]
@@ -80,7 +71,7 @@ namespace EducationCenterCRM.Controllers
         {
             _studentsService.Delete(id);
             var students = _studentsService.GetAll();
-            return View("Index", students);
+            return View("Index", _mapper.Map<IEnumerable<StudentModel>>(students));
         }
 
         [HttpGet]
@@ -88,18 +79,18 @@ namespace EducationCenterCRM.Controllers
         {
             ViewBag.Action = "Create";
             ViewBag.Title = "Create new student";
-            return View("Edit", new Student());
+            return View("Edit", new StudentModel());
         }
 
         [HttpPost]
-        public IActionResult Create(Student student)
+        public IActionResult Create(StudentModel studentModel)
         {
             ViewBag.Title = "Create new student";
             ViewBag.Action = "Create";
             if (ModelState.IsValid)
             {
-                _studentsService.Create(student);
-                return View("Details", student);
+                var student =_studentsService.Create(_mapper.Map<Student>(studentModel));
+                return View("Details", _mapper.Map<StudentModel>(student));
             }
             else
             {
