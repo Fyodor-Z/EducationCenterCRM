@@ -50,7 +50,7 @@ namespace EducationCenterCRM.Controllers
             if (ModelState.IsValid)
             {
                 _studentsService.Update(_mapper.Map<Student>(studentModel));
-                return View(studentModel);
+                return View("Details",studentModel);
             }
             else
             {
@@ -89,8 +89,8 @@ namespace EducationCenterCRM.Controllers
             ViewBag.Action = "Create";
             if (ModelState.IsValid)
             {
-                _studentsService.Create(_mapper.Map<Student>(studentModel));
-                return View("Details", studentModel);
+                var student =_studentsService.Create(_mapper.Map<Student>(studentModel));
+                return View("Details", _mapper.Map<StudentModel>(student));
             }
             else
             {

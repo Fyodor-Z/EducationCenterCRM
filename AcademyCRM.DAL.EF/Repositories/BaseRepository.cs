@@ -15,17 +15,21 @@ namespace EducationCenterCRM.DAL.EF
             Context = context;
         }
 
-        public void Create(TDbModel model)
+        public TDbModel Create(TDbModel model)
         {
             Context.Set<TDbModel>().Add(model);
             Context.SaveChanges();
+            return model;
         }
 
         public void Delete(Guid id)
         {
             var toDelete = Context.Set<TDbModel>().FirstOrDefault(m => m.Id == id);
-            Context.Set<TDbModel>().Remove(toDelete);
-            Context.SaveChanges();
+            if (toDelete != null)
+            {
+                Context.Set<TDbModel>().Remove(toDelete);
+                Context.SaveChanges();
+            }
         }
 
         public List<TDbModel> GetAll()
@@ -40,8 +44,8 @@ namespace EducationCenterCRM.DAL.EF
 
         public void Update(TDbModel model)
         {
-           Context.Entry(model).State = EntityState.Modified;
-           Context.SaveChanges();
+            Context.Entry(model).State = EntityState.Modified;
+            Context.SaveChanges();
         }
 
         public TDbModel Get(Guid id)

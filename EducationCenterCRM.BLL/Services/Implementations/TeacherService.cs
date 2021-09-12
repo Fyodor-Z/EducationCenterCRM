@@ -34,9 +34,10 @@ namespace EducationCenterCRM.BLL
             return _repository.Get(id);
         }
 
-        public void Create(Teacher teacher)
+        public Teacher Create(Teacher teacher)
         {
             _repository.Create(teacher);
+            return teacher;
         }
 
         public void Update(Teacher teacher)

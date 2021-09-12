@@ -54,7 +54,7 @@ namespace EducationCenterCRM.Controllers
             }
             else
             {
-                return View(teacherModel);
+                return View("Details", teacherModel);
             }
 
         }
@@ -90,8 +90,8 @@ namespace EducationCenterCRM.Controllers
             ViewBag.Action = "Create";
             if (ModelState.IsValid)
             {
-                _teacherService.Create(_mapper.Map<Teacher>(teacherModel));
-                return View("Details", teacherModel);
+                var teacher = _teacherService.Create(_mapper.Map<Teacher>(teacherModel));
+                return View("Details", _mapper.Map<TeacherModel>(teacher));
             }
             else
             {

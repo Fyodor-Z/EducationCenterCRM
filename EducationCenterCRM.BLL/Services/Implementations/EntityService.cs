@@ -35,9 +35,10 @@ namespace EducationCenterCRM.BLL
             return _repository.Get(id);
         }
 
-        public void Create(TEntity model)
+        public TEntity Create(TEntity model)
         {
             _repository.Create(model);
+            return model;
         }
 
         public void Update(TEntity model)
