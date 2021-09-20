@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using EducationCenterCRM.BLL;
+using EducationCenterCRM.BLL.Models;
 
-namespace EducationCenterCRM.BLL
+namespace EducationCenterCRM.BLL.Services
 {
     public interface IStudentService : IEntityService<Student>
     {

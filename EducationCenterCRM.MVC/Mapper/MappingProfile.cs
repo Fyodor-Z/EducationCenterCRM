@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using EducationCenterCRM.BLL;
+using EducationCenterCRM.BLL.Models;
 using EducationCenterCRM.MVC.Models;
 
 namespace EducationCenterCRM.MVC.Mapper
@@ -18,6 +19,7 @@ namespace EducationCenterCRM.MVC.Mapper
                 .ReverseMap();
             CreateMap<Student, StudentModel>()
                 .ReverseMap();
+            CreateMap<StudentGroup, StudentGroupModel>();
         }
     }
 }

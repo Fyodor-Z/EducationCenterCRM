@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EducationCenterCRM.BLL.Models;
 using EducationCenterCRM.DAL;
-using EducationCenterCRM.Services.Interfaces;
 
-namespace EducationCenterCRM.BLL
+namespace EducationCenterCRM.BLL.Services
 {
 
     public class TeacherService : ITeacherService

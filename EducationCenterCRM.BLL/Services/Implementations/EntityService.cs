@@ -5,9 +5,9 @@ using System.Linq;
 using System.Reflection.Metadata.Ecma335;
 using System.Threading.Tasks;
 using EducationCenterCRM.DAL;
-using EducationCenterCRM.Services;
 
-namespace EducationCenterCRM.BLL
+
+namespace EducationCenterCRM.BLL.Services
 {
     public class EntityService<TEntity> : IEntityService<TEntity> where TEntity: BaseModel
     {

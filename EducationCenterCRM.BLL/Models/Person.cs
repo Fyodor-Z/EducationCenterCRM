@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using EducationCenterCRM.DAL;
 
-namespace EducationCenterCRM.BLL
+namespace EducationCenterCRM.BLL.Models
 {
     public abstract class Person: BaseModel
     {

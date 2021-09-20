@@ -2,45 +2,46 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using EducationCenterCRM.BLL;
 using EducationCenterCRM.BLL.Models;
 using EducationCenterCRM.DAL;
 
 namespace EducationCenterCRM.BLL.Services
 {
-    public class StudentService: IStudentService
+    public class StudentGroupService:IStudentGroupService
     {
-        private readonly IRepository<Student> _repository;
 
-        public StudentService(IRepository<Student> repository)
+        private readonly IRepository<StudentGroup> _repository;
+
+        public StudentGroupService(IRepository<StudentGroup> repository)
         {
             _repository = repository;
         }
 
-        public IEnumerable<Student> GetAll()
+        public IEnumerable<StudentGroup> GetAll()
         {
             return _repository.GetAll();
         }
-        public async Task<IEnumerable<Student>> GetAllAsync()
+
+        public async Task<IEnumerable<StudentGroup>> GetAllAsync()
         {
             var allStudents = await _repository.GetAllAsync();
             return allStudents.AsEnumerable();
         }
 
-        public Student GetById(Guid id)
+        public StudentGroup GetById(Guid id)
         {
             return _repository.Get(id);
         }
 
-        public Student Create(Student student)
+        public StudentGroup Create(StudentGroup group)
         {
-            _repository.Create(student);
-            return student;
+            _repository.Create(group);
+            return group;
         }
 
-        public void Update(Student student)
+        public void Update(StudentGroup group)
         {
-            _repository.Update(student);
+            _repository.Update(group);
         }
 
         public void Delete(Guid id)
@@ -48,4 +49,5 @@ namespace EducationCenterCRM.BLL.Services
             _repository.Delete(id);
         }
     }
+
 }

@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
-using EducationCenterCRM.Services.Interfaces;
 using EducationCenterCRM.BLL;
+using EducationCenterCRM.BLL.Models;
+using EducationCenterCRM.BLL.Services;
 using EducationCenterCRM.MVC.Models;
 
 namespace EducationCenterCRM.Controllers

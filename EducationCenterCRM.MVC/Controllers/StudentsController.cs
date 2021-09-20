@@ -5,8 +5,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using EducationCenterCRM.BLL;
+using EducationCenterCRM.BLL.Models;
+using EducationCenterCRM.BLL.Services;
 using EducationCenterCRM.MVC.Models;
-using EducationCenterCRM.Services;
 
 namespace EducationCenterCRM.Controllers
 {
