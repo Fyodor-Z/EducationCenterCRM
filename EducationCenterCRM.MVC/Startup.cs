@@ -8,7 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
+using AcademyCRM.DAL.EF;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper;
 using EducationCenterCRM.BLL;
@@ -37,7 +37,7 @@ namespace EducationCenterCRM
             services.AddDbContext<ApplicationContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<IStudentService, StudentService>();
-            services.AddScoped<IRepository<Student>, BaseRepository<Student>>();
+            services.AddScoped<IRepository<Student>, StudentRepository>();
             services.AddScoped<ITeacherService, TeacherService>();
             services.AddScoped<IRepository<Teacher>, BaseRepository<Teacher>>();
             services.AddScoped<IStudentGroupService, StudentGroupService>();
