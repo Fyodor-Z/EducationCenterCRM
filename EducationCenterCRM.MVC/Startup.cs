@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AcademyCRM.DAL.EF;
+using AcademyCRM.DAL.EF.Repositories;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper;
 using EducationCenterCRM.BLL;
@@ -41,7 +42,7 @@ namespace EducationCenterCRM
             services.AddScoped<ITeacherService, TeacherService>();
             services.AddScoped<IRepository<Teacher>, BaseRepository<Teacher>>();
             services.AddScoped<IStudentGroupService, StudentGroupService>();
-            services.AddScoped<IRepository<StudentGroup>, BaseRepository<StudentGroup>>();
+            services.AddScoped<IRepository<StudentGroup>, StudentGroupRepository>();
             services.AddControllersWithViews();
 
             // Auto Mapper Configurations

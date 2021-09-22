@@ -11,11 +11,11 @@ using EducationCenterCRM.MVC.Models;
 
 namespace EducationCenterCRM.MVC.Controllers
 {
-    public class StudentGroupController : Controller
+    public class StudentGroupsController : Controller
     {
         private readonly IStudentGroupService _studentGroupService;
         private readonly IMapper _mapper;
-        public StudentGroupController(IStudentGroupService studentGroupService, IMapper mapper)
+        public StudentGroupsController(IStudentGroupService studentGroupService, IMapper mapper)
         {
             _studentGroupService = studentGroupService;
             _mapper = mapper;
@@ -31,6 +31,7 @@ namespace EducationCenterCRM.MVC.Controllers
         public IActionResult Details(Guid id)
         {
             var studentGroup = _studentGroupService.GetById(id);
+            ViewBag.Students = studentGroup.Students;
             return View(_mapper.Map<StudentGroupModel>(studentGroup));
         }
         [HttpGet]
