@@ -53,7 +53,7 @@ namespace AcademyCRM.DAL.EF
 
         public Student Get(Guid id)
         {
-            return Context.Students.FirstOrDefault(m => m.Id == id);
+            return Context.Students.AsNoTracking().Include(s => s.StudentGroup).FirstOrDefault(m => m.Id == id);
         }
     }
 }

@@ -15,10 +15,12 @@ namespace EducationCenterCRM.Controllers
     {
         private readonly IStudentService _studentsService;
         private readonly IMapper _mapper;
-        public StudentsController(IStudentService studentService, IMapper mapper)
+        private readonly IStudentGroupService _studentGroupService;
+        public StudentsController(IStudentService studentService, IMapper mapper, IStudentGroupService studentGroupService)
         {
             _studentsService = studentService;
             _mapper = mapper;
+            _studentGroupService = studentGroupService;
         }
         
         public async Task<IActionResult> Index()
@@ -39,6 +41,8 @@ namespace EducationCenterCRM.Controllers
             ViewBag.Title = "Edit";
             ViewBag.Action = "Edit";
             var student = _studentsService.GetById(id);
+            var groups = _studentGroupService.GetAll().OrderBy(g => g.Title);
+            ViewBag.Groups = _mapper.Map<IEnumerable<StudentGroupModel>>(groups);
             return View(_mapper.Map<StudentModel>(student));
         }
 

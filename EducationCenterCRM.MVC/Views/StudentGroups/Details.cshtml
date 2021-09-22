@@ -38,6 +38,7 @@
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     <a asp-action="Index">Back to groups list</a>
 </div>
+
 <h4>Students list for group @Model.Title</h4>
 
 @await Html.PartialAsync("~/Views/Students/_StudentsList.cshtml", Model.Students)
