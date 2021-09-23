@@ -84,6 +84,8 @@ namespace EducationCenterCRM.Controllers
         {
             ViewBag.Action = "Create";
             ViewBag.Title = "Create new student";
+            var groups = _studentGroupService.GetAll().OrderBy(g => g.Title);
+            ViewBag.Groups = _mapper.Map<IEnumerable<StudentGroupModel>>(groups);
             return View("Edit", new StudentModel());
         }
 

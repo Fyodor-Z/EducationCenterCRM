@@ -1,0 +1,58 @@
+﻿@using EducationCenterCRM.BLL.Models
+@using EducationCenterCRM.MVC.Models
+@model EducationCenterCRM.MVC.Models.StudentGroupModel
+
+@{
+    ViewData["Title"] = ViewBag.Title;
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<h4>@Model.Title</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <label asp-for="TeacherId"></label>
+                <select class="form-control" asp-for="TeacherId">
+                    <option value="">Select teacher...</option>
+                    @if (ViewBag.Teachers != null)
+                    {
+                        foreach (var teacher in (List<TeacherModel>) ViewBag.Teachers)
+                        {
+                            if (teacher.Id == Model.TeacherId)
+                            {
+                                <option value="@teacher.Id" selected>@teacher.FullName</option>
+                            }
+                            else
+                            {
+                                <option value="@teacher.Id">@teacher.FullName</option>
+                            }
+                        }
+                    }
+                </select>
+            </div>
+            
+
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

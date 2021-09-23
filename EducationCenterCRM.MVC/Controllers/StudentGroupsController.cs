@@ -14,11 +14,13 @@ namespace EducationCenterCRM.MVC.Controllers
     public class StudentGroupsController : Controller
     {
         private readonly IStudentGroupService _studentGroupService;
+        private readonly ITeacherService _teacherService;
         private readonly IMapper _mapper;
-        public StudentGroupsController(IStudentGroupService studentGroupService, IMapper mapper)
+        public StudentGroupsController(IStudentGroupService studentGroupService, ITeacherService teacherService, IMapper mapper)
         {
             _studentGroupService = studentGroupService;
             _mapper = mapper;
+            _teacherService = teacherService;
         }
 
         public async Task<IActionResult> Index()
@@ -39,6 +41,8 @@ namespace EducationCenterCRM.MVC.Controllers
         {
             ViewBag.Title = "Edit group";
             ViewBag.Action = "Edit";
+            var teachers = _teacherService.GetAll();
+            ViewBag.Teachers = _mapper.Map<IEnumerable<TeacherModel>>(teachers);
             var studentGroup = _studentGroupService.GetById(id);
             return View(_mapper.Map<StudentGroupModel>(studentGroup));
         }
@@ -48,7 +52,7 @@ namespace EducationCenterCRM.MVC.Controllers
         {
             ViewBag.Title = "Edit group";
             ViewBag.Action = "Edit";
-
+            
             if (ModelState.IsValid)
             {
                 _studentGroupService.Update(_mapper.Map<StudentGroup>(groupModel));
@@ -81,18 +85,20 @@ namespace EducationCenterCRM.MVC.Controllers
         {
             ViewBag.Action = "Create";
             ViewBag.Title = "Create new group";
+            var teachers = _teacherService.GetAll();
+            ViewBag.Teachers = _mapper.Map<IEnumerable<TeacherModel>>(teachers);
             return View("Edit", new StudentGroupModel());
         }
 
         [HttpPost]
         public IActionResult Create(StudentGroupModel studentGroupModel)
         {
-            ViewBag.Title = "Create new student";
+            ViewBag.Title = "Create new group";
             ViewBag.Action = "Create";
             if (ModelState.IsValid)
             {
                 var group = _studentGroupService.Create(_mapper.Map<StudentGroup>(studentGroupModel));
-                return View("Details", _mapper.Map<StudentModel>(group));
+                return View("Details", _mapper.Map<StudentGroupModel>(group));
             }
             else
             {

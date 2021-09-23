@@ -3,13 +3,13 @@
 @model EducationCenterCRM.MVC.Models.StudentGroupModel
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = Model.Title + " group information";
 }
 
-<h1>Details</h1>
+<h1>@Model.Title</h1>
 
 <div>
-    <h4>StudentGroupModel</h4>
+    <h4>@ViewData["Title"]</h4>
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
@@ -35,11 +35,13 @@
 </div>
 
 <div>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Edit group", "Edit", new { id = Model.Id }) |
     <a asp-action="Index">Back to groups list</a>
 </div>
+<hr/>
+<div>
+    <h4> @Model.Title group students</h4>
 
-<h4>Students list for group @Model.Title</h4>
-
-@await Html.PartialAsync("~/Views/Students/_StudentsList.cshtml", Model.Students)
+    @await Html.PartialAsync("~/Views/Students/_StudentsList.cshtml", Model.Students)
+</div>
 

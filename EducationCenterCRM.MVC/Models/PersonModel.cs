@@ -21,5 +21,13 @@ namespace EducationCenterCRM.MVC.Models
 
         [Required(ErrorMessage = "Please choose gender")]
         public Gender Gender { get; set; }
+
+        public string FullName
+        {
+            get
+            {
+                return string.Join(" ", this.FirstName, this.LastName);
+            }
+        }
     }
 }
