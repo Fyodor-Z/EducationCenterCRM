@@ -20,11 +20,12 @@ namespace AcademyCRM.DAL.EF.Repositories
             Context = context;
         }
 
-        public StudentGroup Create(StudentGroup StudentGroup)
+        public StudentGroup Create(StudentGroup studentGroup)
         {
-            Context.StudentGroups.Add(StudentGroup);
+            Context.StudentGroups.Add(studentGroup);
             Context.SaveChanges();
-            return StudentGroup;
+            var id = studentGroup.Id;
+            return Get(id);
         }
 
         public void Delete(Guid id)

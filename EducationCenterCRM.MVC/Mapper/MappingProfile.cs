@@ -19,7 +19,8 @@ namespace EducationCenterCRM.MVC.Mapper
                 .ReverseMap();
             CreateMap<Student, StudentModel>()
                 .ReverseMap();
-            CreateMap<StudentGroup, StudentGroupModel>();
+            CreateMap<StudentGroup, StudentGroupModel>()
+                .ReverseMap();
         }
     }
 }
