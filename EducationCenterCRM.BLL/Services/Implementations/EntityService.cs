@@ -37,13 +37,12 @@ namespace EducationCenterCRM.BLL.Services
 
         public TEntity Create(TEntity model)
         {
-            _repository.Create(model);
-            return model;
+            return _repository.Create(model);
         }
 
-        public void Update(TEntity model)
+        public TEntity Update(TEntity model)
         {
-            _repository.Update(model);
+            return _repository.Update(model);
         }
 
         public void Delete(Guid id)

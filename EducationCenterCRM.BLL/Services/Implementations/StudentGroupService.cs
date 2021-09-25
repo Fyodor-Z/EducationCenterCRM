@@ -39,9 +39,10 @@ namespace EducationCenterCRM.BLL.Services
             return group;
         }
 
-        public void Update(StudentGroup group)
+        public StudentGroup Update(StudentGroup group)
         {
             _repository.Update(group);
+            return group;
         }
 
         public void Delete(Guid id)

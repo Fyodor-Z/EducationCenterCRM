@@ -55,12 +55,12 @@ namespace EducationCenterCRM.MVC.Controllers
             
             if (ModelState.IsValid)
             {
-                _studentGroupService.Update(_mapper.Map<StudentGroup>(groupModel));
-                return View("Details", groupModel);
+                var group = _studentGroupService.Update(_mapper.Map<StudentGroup>(groupModel));
+                return View("Details", _mapper.Map<StudentGroupModel>(group));
             }
             else
             {
-                return View(groupModel);
+                return View();
             }
 
         }

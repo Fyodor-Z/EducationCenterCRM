@@ -22,7 +22,8 @@ namespace AcademyCRM.DAL.EF
         {
             Context.Students.Add(student);
             Context.SaveChanges();
-            return student;
+            var id = student.Id;
+            return Get(id);
         }
 
         public void Delete(Guid id)
@@ -45,10 +46,12 @@ namespace AcademyCRM.DAL.EF
             return await Context.Students.AsNoTracking().Include(s => s.StudentGroup).ToListAsync();
         }
 
-        public void Update(Student model)
+        public Student Update(Student model)
         {
             Context.Entry(model).State = EntityState.Modified;
             Context.SaveChanges();
+            var id = model.Id;
+            return Get(id);
         }
 
         public Student Get(Guid id)

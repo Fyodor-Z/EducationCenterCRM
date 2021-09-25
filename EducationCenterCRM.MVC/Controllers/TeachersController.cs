@@ -50,12 +50,12 @@ namespace EducationCenterCRM.Controllers
             ViewBag.Action = "Edit";
             if (ModelState.IsValid)
             {
-                _teacherService.Update(_mapper.Map<Teacher>(teacherModel));
-                return View(teacherModel);
+                var teacher = _teacherService.Update(_mapper.Map<Teacher>(teacherModel));
+                return View("Details", _mapper.Map<TeacherModel>(teacher));
             }
             else
             {
-                return View("Details", teacherModel);
+                return View();
             }
 
         }

@@ -25,10 +25,19 @@
             @Html.DisplayFor(model => model.Title)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Teacher)
+            Teacher
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Teacher.FirstName) @Html.DisplayFor(model => model.Teacher.LastName)
+            <td>
+                @if (Model.TeacherId != null)
+                {
+                    <a asp-controller="Teachers" asp-action="Details" asp-route-id="@Model.TeacherId">@Model.Teacher.FullName</a>
+                }
+                else
+                {
+                    @("not defined")
+                }
+            </td>
         </dd>
 
     </dl>
@@ -36,9 +45,10 @@
 
 <div>
     @Html.ActionLink("Edit group", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Delete group", "Delete", new { id = Model.Id })|
     <a asp-action="Index">Back to groups list</a>
 </div>
-<hr/>
+<hr />
 <div>
     <h4> @Model.Title group students</h4>
 

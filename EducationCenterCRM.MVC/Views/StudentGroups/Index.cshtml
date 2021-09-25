@@ -19,7 +19,7 @@
                 @Html.DisplayNameFor(model => model.Title)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Teacher)
+                Teacher
             </th>
 
             <th></th>
@@ -36,7 +36,15 @@
                     @Html.DisplayFor(modelItem => item.Title)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Teacher.FirstName) @Html.DisplayFor(modelItem => item.Teacher.LastName)
+                    @if (item.TeacherId != null)
+                    {
+                    <a asp-controller="Teachers" asp-action="Details" asp-route-id="@item.TeacherId">@item.Teacher.FullName</a>
+                    }
+                    else
+                    {
+                        @("not defined")
+                    }
+                   
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |

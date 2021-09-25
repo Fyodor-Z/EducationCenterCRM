@@ -47,7 +47,14 @@
                 @Html.DisplayFor(modelItem => item.StartDate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.StudentGroup.Title)
+                @if (item.StudentGroup != null)
+                {
+                    <a asp-controller="StudentGroups" asp-action="Details" asp-route-id="@item.StudentGroupId">@item.StudentGroup.Title</a>
+                }
+                else
+                {
+                    @("not defined")
+                }
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |

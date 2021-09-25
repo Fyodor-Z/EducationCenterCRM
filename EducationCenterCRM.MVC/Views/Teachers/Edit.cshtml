@@ -1,9 +1,9 @@
 ﻿@model EducationCenterCRM.MVC.Models.TeacherModel
 @{
-    ViewData["Title"] = @ViewBag.Title;
+    ViewData["Title"] = ViewBag.Title + " " + Model.FullName;
 }
 
-<h1>Edit</h1>
+<h1>@ViewData["Title"]</h1>
 
 <h4>Teacher</h4>
 <hr />

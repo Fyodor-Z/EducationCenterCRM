@@ -17,7 +17,7 @@ namespace EducationCenterCRM.MVC.Models
         public string LastName { get; set; }
         [Required(ErrorMessage = "Please choose birth date")]
         [DataType(DataType.Date)]
-        public DateTime BirthDate { get; set; }
+        public DateTime BirthDate { get; set; } = new DateTime(1990, 1, 1);
 
         [Required(ErrorMessage = "Please choose gender")]
         public Gender Gender { get; set; }

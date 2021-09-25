@@ -48,10 +48,12 @@ namespace AcademyCRM.DAL.EF.Repositories
             return await Context.StudentGroups.AsNoTracking().Include(s => s.Teacher).ToListAsync();
         }
 
-        public void Update(StudentGroup model)
+        public StudentGroup Update(StudentGroup model)
         {
             Context.Entry(model).State = EntityState.Modified;
             Context.SaveChanges();
+            var id = model.Id;
+            return Get(id);
         }
 
         public StudentGroup Get(Guid id)

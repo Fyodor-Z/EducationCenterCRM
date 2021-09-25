@@ -34,13 +34,12 @@ namespace EducationCenterCRM.BLL.Services
 
         public Student Create(Student student)
         {
-            _repository.Create(student);
-            return student;
+            return _repository.Create(student);
         }
 
-        public void Update(Student student)
+        public Student Update(Student student)
         {
-            _repository.Update(student);
+            return _repository.Update(student);
         }
 
         public void Delete(Guid id)

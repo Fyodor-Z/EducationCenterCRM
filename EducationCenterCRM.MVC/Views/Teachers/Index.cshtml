@@ -25,9 +25,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.Gender)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Bio)
-            </th>
+            
             <th>
                 @Html.DisplayNameFor(model => model.LinkToProfile)
             </th>
@@ -51,11 +49,9 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Gender)
                 </td>
+               
                 <td>
-                    @Html.DisplayFor(modelItem => item.Bio)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.LinkToProfile)
+                    <a href = "@item.LinkToProfile"> @item.LinkToProfile </a>
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

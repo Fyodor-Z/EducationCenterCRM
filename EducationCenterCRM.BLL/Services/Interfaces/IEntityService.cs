@@ -11,7 +11,7 @@ namespace EducationCenterCRM.BLL.Services
         Task<IEnumerable<TEntity>> GetAllAsync();
         TEntity GetById(Guid id);
         TEntity Create(TEntity entity);
-        void Update(TEntity entity);
+        TEntity Update(TEntity entity);
         void Delete(Guid id);
     }
 }
