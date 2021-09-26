@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EducationCenterCRM.BLL.Models;
 using EducationCenterCRM.DAL;
-using EducationCenterCRM.Services.Interfaces;
 
-namespace EducationCenterCRM.BLL
+namespace EducationCenterCRM.BLL.Services
 {
 
     public class TeacherService : ITeacherService
@@ -36,13 +36,12 @@ namespace EducationCenterCRM.BLL
 
         public Teacher Create(Teacher teacher)
         {
-            _repository.Create(teacher);
-            return teacher;
+            return _repository.Create(teacher);
         }
 
-        public void Update(Teacher teacher)
+        public Teacher Update(Teacher teacher)
         {
-            _repository.Update(teacher);
+            return _repository.Update(teacher);
         }
 
         public void Delete(Guid id)

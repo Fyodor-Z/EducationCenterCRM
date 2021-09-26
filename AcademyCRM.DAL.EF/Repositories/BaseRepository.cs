@@ -19,7 +19,8 @@ namespace EducationCenterCRM.DAL.EF
         {
             Context.Set<TDbModel>().Add(model);
             Context.SaveChanges();
-            return model;
+            var id = model.Id;
+            return Get(id);
         }
 
         public void Delete(Guid id)
@@ -42,10 +43,12 @@ namespace EducationCenterCRM.DAL.EF
             return await Context.Set<TDbModel>().AsNoTracking().ToListAsync();
         }
 
-        public void Update(TDbModel model)
+        public TDbModel Update(TDbModel model)
         {
             Context.Entry(model).State = EntityState.Modified;
             Context.SaveChanges();
+            var id = model.Id;
+            return Get(id);
         }
 
         public TDbModel Get(Guid id)

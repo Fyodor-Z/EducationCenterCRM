@@ -5,9 +5,9 @@ using System.Linq;
 using System.Reflection.Metadata.Ecma335;
 using System.Threading.Tasks;
 using EducationCenterCRM.DAL;
-using EducationCenterCRM.Services;
 
-namespace EducationCenterCRM.BLL
+
+namespace EducationCenterCRM.BLL.Services
 {
     public class EntityService<TEntity> : IEntityService<TEntity> where TEntity: BaseModel
     {
@@ -37,13 +37,12 @@ namespace EducationCenterCRM.BLL
 
         public TEntity Create(TEntity model)
         {
-            _repository.Create(model);
-            return model;
+            return _repository.Create(model);
         }
 
-        public void Update(TEntity model)
+        public TEntity Update(TEntity model)
         {
-            _repository.Update(model);
+            return _repository.Update(model);
         }
 
         public void Delete(Guid id)

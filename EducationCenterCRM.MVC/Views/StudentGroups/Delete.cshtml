@@ -1,0 +1,47 @@
+﻿@model EducationCenterCRM.MVC.Models.StudentGroupModel
+@{
+    ViewData["Title"] = "Delete group " + @Model.Title;
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Group</h4>
+    <hr />
+    
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt class="col-sm-2">
+            Teacher
+        </dt>
+        <dd class="col-sm-10">
+            @if (Model.TeacherId != null)
+            {
+                <a asp-controller="Teachers" asp-action="Details" asp-route-id="@Model.TeacherId">@Model.Teacher.FullName</a>
+            }
+            else
+            {
+                @("not defined")
+            }
+        </dd>
+
+    </dl>
+
+
+    <form asp-action="Delete" asp-controller="StudentGroups" asp-route-id="@Model.Id">
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

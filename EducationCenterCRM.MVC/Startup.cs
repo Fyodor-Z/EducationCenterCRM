@@ -8,14 +8,17 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using EducationCenterCRM.Services;
+using AcademyCRM.DAL.EF;
+using AcademyCRM.DAL.EF.Repositories;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper;
 using EducationCenterCRM.BLL;
+using EducationCenterCRM.BLL.Models;
+using EducationCenterCRM.BLL.Services;
 using EducationCenterCRM.DAL;
 using EducationCenterCRM.DAL.EF;
 using EducationCenterCRM.MVC.Mapper;
-using EducationCenterCRM.Services.Interfaces;
+
 
 namespace EducationCenterCRM
 {
@@ -31,12 +34,15 @@ namespace EducationCenterCRM
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            string connection = Configuration.GetConnectionString("DefaultConnection");
-            services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(connection));
+
+            services.AddDbContext<ApplicationContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<IStudentService, StudentService>();
-            services.AddScoped<IRepository<Student>, BaseRepository<Student>>();
+            services.AddScoped<IRepository<Student>, StudentRepository>();
             services.AddScoped<ITeacherService, TeacherService>();
             services.AddScoped<IRepository<Teacher>, BaseRepository<Teacher>>();
+            services.AddScoped<IStudentGroupService, StudentGroupService>();
+            services.AddScoped<IRepository<StudentGroup>, StudentGroupRepository>();
             services.AddControllersWithViews();
 
             // Auto Mapper Configurations

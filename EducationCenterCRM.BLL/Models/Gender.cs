@@ -1,4 +1,4 @@
-﻿namespace EducationCenterCRM.BLL
+﻿namespace EducationCenterCRM.BLL.Models
 {
     public enum Gender
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace EducationCenterCRM.BLL
+namespace EducationCenterCRM.BLL.Models
 {
     public class Teacher: Person
     {

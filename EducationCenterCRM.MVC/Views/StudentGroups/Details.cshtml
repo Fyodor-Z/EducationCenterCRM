@@ -1,0 +1,57 @@
+﻿@using Microsoft.EntityFrameworkCore.Metadata.Internal
+@using EducationCenterCRM.Controllers
+@model EducationCenterCRM.MVC.Models.StudentGroupModel
+
+@{
+    ViewData["Title"] = Model.Title + " group information";
+}
+
+<h1>@Model.Title</h1>
+
+<div>
+    <h4>@ViewData["Title"]</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt class="col-sm-2">
+            Teacher
+        </dt>
+        <dd class="col-sm-10">
+            <td>
+                @if (Model.TeacherId != null)
+                {
+                    <a asp-controller="Teachers" asp-action="Details" asp-route-id="@Model.TeacherId">@Model.Teacher.FullName</a>
+                }
+                else
+                {
+                    @("not defined")
+                }
+            </td>
+        </dd>
+
+    </dl>
+</div>
+
+<div>
+    @Html.ActionLink("Edit group", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Delete group", "Delete", new { id = Model.Id })|
+    <a asp-action="Index">Back to groups list</a>
+</div>
+<hr />
+<div>
+    <h4> @Model.Title group students</h4>
+
+    @await Html.PartialAsync("~/Views/Students/_StudentsList.cshtml", Model.Students)
+</div>
+

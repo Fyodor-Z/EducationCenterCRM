@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
-using EducationCenterCRM.Services.Interfaces;
 using EducationCenterCRM.BLL;
+using EducationCenterCRM.BLL.Models;
+using EducationCenterCRM.BLL.Services;
 using EducationCenterCRM.MVC.Models;
 
 namespace EducationCenterCRM.Controllers
@@ -49,12 +50,12 @@ namespace EducationCenterCRM.Controllers
             ViewBag.Action = "Edit";
             if (ModelState.IsValid)
             {
-                _teacherService.Update(_mapper.Map<Teacher>(teacherModel));
-                return View(teacherModel);
+                var teacher = _teacherService.Update(_mapper.Map<Teacher>(teacherModel));
+                return View("Details", _mapper.Map<TeacherModel>(teacher));
             }
             else
             {
-                return View("Details", teacherModel);
+                return View();
             }
 
         }

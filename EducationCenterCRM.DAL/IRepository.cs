@@ -11,7 +11,7 @@ namespace EducationCenterCRM.DAL
         public Task<List<TDbModel>> GetAllAsync();
         public TDbModel Get(Guid id);
         public TDbModel Create(TDbModel model);
-        public void Update(TDbModel model);
+        public TDbModel Update(TDbModel model);
         public void Delete(Guid id);
     }
 }
