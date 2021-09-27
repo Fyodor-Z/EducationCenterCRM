@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using EducationCenterCRM.BLL;
 using EducationCenterCRM.BLL.Models;
+using EducationCenterCRM.BLL.Services.Interfaces;
 using EducationCenterCRM.DAL;
 
-namespace EducationCenterCRM.BLL.Services
+namespace EducationCenterCRM.BLL.Services.Impl
 {
-    public class StudentService: IStudentService
+    public class StudentService: IEntityService<Student>
     {
         private readonly IRepository<Student> _repository;
 

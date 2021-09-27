@@ -1,5 +1,4 @@
 ﻿@using Microsoft.EntityFrameworkCore.Metadata.Internal
-@using EducationCenterCRM.Controllers
 @model EducationCenterCRM.MVC.Models.StudentGroupModel
 
 @{
@@ -24,20 +23,19 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Title)
         </dd>
-        <dt class="col-sm-2">
+        <dd class="col-sm-2">
             Teacher
-        </dt>
+        </dd>
+
         <dd class="col-sm-10">
-            <td>
-                @if (Model.TeacherId != null)
-                {
-                    <a asp-controller="Teachers" asp-action="Details" asp-route-id="@Model.TeacherId">@Model.Teacher.FullName</a>
-                }
-                else
-                {
-                    @("not defined")
-                }
-            </td>
+            @if (Model.TeacherId != null)
+            {
+                <a asp-controller="Teachers" asp-action="Details" asp-route-id="@Model.TeacherId">@Model.Teacher.FullName</a>
+            }
+            else
+            {
+                @("not defined")
+            }
         </dd>
 
     </dl>

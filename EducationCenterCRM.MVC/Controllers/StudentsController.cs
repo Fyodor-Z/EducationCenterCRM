@@ -1,22 +1,23 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
-using EducationCenterCRM.BLL;
 using EducationCenterCRM.BLL.Models;
 using EducationCenterCRM.BLL.Services;
+using EducationCenterCRM.BLL.Services.Impl;
+using EducationCenterCRM.BLL.Services.Interfaces;
 using EducationCenterCRM.MVC.Models;
+using Microsoft.AspNetCore.Mvc;
 
-namespace EducationCenterCRM.Controllers
+namespace EducationCenterCRM.MVC.Controllers
 {
     public class StudentsController : Controller
     {
-        private readonly IStudentService _studentsService;
+        private readonly IEntityService<Student> _studentsService;
         private readonly IMapper _mapper;
-        private readonly IStudentGroupService _studentGroupService;
-        public StudentsController(IStudentService studentService, IMapper mapper, IStudentGroupService studentGroupService)
+        private readonly IEntityService<StudentGroup> _studentGroupService;
+        public StudentsController(IEntityService<Student> studentService, IMapper mapper, IEntityService<StudentGroup> studentGroupService)
         {
             _studentsService = studentService;
             _mapper = mapper;

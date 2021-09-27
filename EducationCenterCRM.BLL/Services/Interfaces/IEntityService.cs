@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
-namespace EducationCenterCRM.BLL.Services
+namespace EducationCenterCRM.BLL.Services.Interfaces
 {
     public interface IEntityService<TEntity>
     {
