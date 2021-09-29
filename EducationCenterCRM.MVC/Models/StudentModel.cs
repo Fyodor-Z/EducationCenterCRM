@@ -12,7 +12,9 @@ namespace EducationCenterCRM.MVC.Models
 
         [DataType(DataType.Date)]
         [Required(ErrorMessage = "Please choose start date")]
+        [Display (Name = "Start Date")]
         public DateTime StartDate { get; set; } = DateTime.Today;
+        [Display (Name = "Group")]
         public virtual StudentGroupModel? StudentGroup { get; set; }
         public Guid? StudentGroupId { get; set; }
     }

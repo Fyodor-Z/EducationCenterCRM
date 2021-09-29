@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using EducationCenterCRM.BLL.Models;
+using EducationCenterCRM.BLL.Services.Interfaces;
 using EducationCenterCRM.DAL;
 
-namespace EducationCenterCRM.BLL.Services
+namespace EducationCenterCRM.BLL.Services.Impl
 {
 
-    public class TeacherService : ITeacherService
+    public class TeacherService : IEntityService<Teacher>
     {
         private readonly IRepository<Teacher> _repository;
 

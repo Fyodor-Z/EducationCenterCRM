@@ -15,6 +15,8 @@ using AutoMapper;
 using EducationCenterCRM.BLL;
 using EducationCenterCRM.BLL.Models;
 using EducationCenterCRM.BLL.Services;
+using EducationCenterCRM.BLL.Services.Impl;
+using EducationCenterCRM.BLL.Services.Interfaces;
 using EducationCenterCRM.DAL;
 using EducationCenterCRM.DAL.EF;
 using EducationCenterCRM.MVC.Mapper;
@@ -37,11 +39,11 @@ namespace EducationCenterCRM
 
             services.AddDbContext<ApplicationContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddScoped<IStudentService, StudentService>();
+            services.AddScoped<IEntityService<Student>, StudentService>();
             services.AddScoped<IRepository<Student>, StudentRepository>();
-            services.AddScoped<ITeacherService, TeacherService>();
+            services.AddScoped<IEntityService<Teacher>, TeacherService>();
             services.AddScoped<IRepository<Teacher>, BaseRepository<Teacher>>();
-            services.AddScoped<IStudentGroupService, StudentGroupService>();
+            services.AddScoped<IEntityService<StudentGroup>, StudentGroupService>();
             services.AddScoped<IRepository<StudentGroup>, StudentGroupRepository>();
             services.AddControllersWithViews();
 
@@ -83,7 +85,7 @@ namespace EducationCenterCRM
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Students}/{action=Index}/{id?}");
             });
         }
     }

@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection.Metadata.Ecma335;
 using System.Threading.Tasks;
+using EducationCenterCRM.BLL.Services.Interfaces;
 using EducationCenterCRM.DAL;
 
-
-namespace EducationCenterCRM.BLL.Services
+namespace EducationCenterCRM.BLL.Services.Impl
 {
     public class EntityService<TEntity> : IEntityService<TEntity> where TEntity: BaseModel
     {
