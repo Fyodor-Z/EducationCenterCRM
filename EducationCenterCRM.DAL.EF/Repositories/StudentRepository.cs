@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 using EducationCenterCRM.BLL.Models;
 using EducationCenterCRM.DAL;
 using EducationCenterCRM.DAL.EF;
+using EducationCenterCRM.DAL.EF.Contexts;
 using Microsoft.EntityFrameworkCore;
 
-namespace AcademyCRM.DAL.EF
+namespace EducationCenterCRM.DAL.EF.Repositories
 {
     public class StudentRepository: IRepository<Student>
     {

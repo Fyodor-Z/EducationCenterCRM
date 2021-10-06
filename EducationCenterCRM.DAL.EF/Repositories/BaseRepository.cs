@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EducationCenterCRM.DAL.EF.Contexts;
 using Microsoft.EntityFrameworkCore;
 
 
-namespace EducationCenterCRM.DAL.EF
+namespace EducationCenterCRM.DAL.EF.Repositories
 {
     public class BaseRepository<TDbModel> : IRepository<TDbModel> where TDbModel : BaseModel
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace AcademyCRM.DAL.EF.Migrations
+namespace EducationCenterCRM.DAL.EF.Migrations
 {
     public partial class InitDB : Migration
     {

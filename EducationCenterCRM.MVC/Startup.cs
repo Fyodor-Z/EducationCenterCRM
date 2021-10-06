@@ -8,8 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AcademyCRM.DAL.EF;
-using AcademyCRM.DAL.EF.Repositories;
+using EducationCenterCRM.DAL.EF.Repositories;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper;
 using EducationCenterCRM.BLL;
@@ -19,6 +18,7 @@ using EducationCenterCRM.BLL.Services.Impl;
 using EducationCenterCRM.BLL.Services.Interfaces;
 using EducationCenterCRM.DAL;
 using EducationCenterCRM.DAL.EF;
+using EducationCenterCRM.DAL.EF.Contexts;
 using EducationCenterCRM.MVC.Mapper;
 
 

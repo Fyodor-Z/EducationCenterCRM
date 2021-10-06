@@ -7,9 +7,10 @@ using EducationCenterCRM.BLL.Models;
 using EducationCenterCRM.BLL.Services;
 using EducationCenterCRM.DAL;
 using EducationCenterCRM.DAL.EF;
+using EducationCenterCRM.DAL.EF.Contexts;
 using Microsoft.EntityFrameworkCore;
 
-namespace AcademyCRM.DAL.EF.Repositories
+namespace EducationCenterCRM.DAL.EF.Repositories
 {
     public class StudentGroupRepository: IRepository<StudentGroup>
     {
