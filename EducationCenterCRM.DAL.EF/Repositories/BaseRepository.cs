@@ -4,11 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using EducationCenterCRM.DAL.EF.Contexts;
 using Microsoft.EntityFrameworkCore;
+using EducationCenterCRM.DAL.BaseModel;
 
 
 namespace EducationCenterCRM.DAL.EF.Repositories
 {
-    public class BaseRepository<TDbModel> : IRepository<TDbModel> where TDbModel : BaseModel
+    public class BaseRepository<TDbModel> : IRepository<TDbModel> where TDbModel : BaseModel.BaseModel
     {
         private ApplicationContext Context { get; set; }
         public BaseRepository(ApplicationContext context)

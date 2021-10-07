@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using EducationCenterCRM.BLL.Services.Interfaces;
 using EducationCenterCRM.DAL;
+using EducationCenterCRM.DAL.BaseModel;
 
 namespace EducationCenterCRM.BLL.Services.Impl
 {

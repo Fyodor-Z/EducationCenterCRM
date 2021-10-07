@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using EducationCenterCRM.DAL;
+using EducationCenterCRM.DAL.BaseModel;
 
 namespace EducationCenterCRM.MVC.Models
 {
