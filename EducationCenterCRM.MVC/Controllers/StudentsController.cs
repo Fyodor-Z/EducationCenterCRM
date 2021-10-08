@@ -68,7 +68,7 @@ namespace EducationCenterCRM.MVC.Controllers
 
         }
         [HttpGet]
-        [Authorize(Roles = "admin, manager")]
+        [Authorize(Roles = "admin")]
         public IActionResult Delete(Guid id)
         {
             var student = _studentsService.GetById(id);
