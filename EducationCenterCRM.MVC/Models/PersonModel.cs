@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using EducationCenterCRM.BLL;
 using EducationCenterCRM.BLL.Models;
-using EducationCenterCRM.DAL;
+using EducationCenterCRM.DAL.BaseModel;
 
 namespace EducationCenterCRM.MVC.Models
 {

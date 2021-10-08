@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EducationCenterCRM.DAL.BaseModel;
 
 namespace EducationCenterCRM.DAL
 {
-    public interface IRepository<TDbModel> where TDbModel : BaseModel
+    public interface IRepository<TDbModel> where TDbModel : BaseModel.BaseModel
     {
         public List<TDbModel> GetAll();
         public Task<List<TDbModel>> GetAllAsync();

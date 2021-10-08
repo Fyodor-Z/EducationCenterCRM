@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EducationCenterCRM.BLL", "E
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EducationCenterCRM.DAL", "EducationCenterCRM.DAL\EducationCenterCRM.DAL.csproj", "{3D4C0F2D-A22B-43DF-8BD2-63CA088321C5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AcademyCRM.DAL.EF", "AcademyCRM.DAL.EF\AcademyCRM.DAL.EF.csproj", "{AA11AEDB-2051-4238-9CCB-C26057B8213D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EducationCenterCRM.DAL.EF", "EducationCenterCRM.DAL.EF\EducationCenterCRM.DAL.EF.csproj", "{AA11AEDB-2051-4238-9CCB-C26057B8213D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

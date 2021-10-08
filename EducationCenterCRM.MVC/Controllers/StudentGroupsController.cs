@@ -7,9 +7,11 @@ using EducationCenterCRM.BLL.Models;
 using EducationCenterCRM.BLL.Services;
 using EducationCenterCRM.BLL.Services.Interfaces;
 using EducationCenterCRM.MVC.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EducationCenterCRM.MVC.Controllers
 {
+    [Authorize]
     public class StudentGroupsController : Controller
     {
         private readonly IEntityService<StudentGroup> _studentGroupService;
@@ -36,6 +38,7 @@ namespace EducationCenterCRM.MVC.Controllers
             return View(_mapper.Map<StudentGroupModel>(studentGroup));
         }
         [HttpGet]
+        [Authorize(Roles = "admin, manager")]
         public IActionResult Edit(Guid id)
         {
             ViewBag.Title = "Edit group";
@@ -64,6 +67,7 @@ namespace EducationCenterCRM.MVC.Controllers
 
         }
         [HttpGet]
+        [Authorize(Roles = "admin")]
         public IActionResult Delete(Guid id)
         {
             var group = _studentGroupService.GetById(id);
@@ -80,6 +84,7 @@ namespace EducationCenterCRM.MVC.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "admin, manager")]
         public IActionResult Create()
         {
             ViewBag.Action = "Create";

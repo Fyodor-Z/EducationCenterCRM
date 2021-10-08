@@ -11,4 +11,9 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.10" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\EducationCenterCRM.BLL\EducationCenterCRM.BLL.csproj" />
+    <ProjectReference Include="..\EducationCenterCRM.DAL\EducationCenterCRM.DAL.csproj" />
+  </ItemGroup>
+
 </Project>

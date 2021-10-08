@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using EducationCenterCRM.DAL;
+using EducationCenterCRM.DAL.BaseModel;
 
 namespace EducationCenterCRM.BLL.Models
 {

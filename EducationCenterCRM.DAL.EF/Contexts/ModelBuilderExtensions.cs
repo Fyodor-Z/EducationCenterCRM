@@ -2,7 +2,7 @@
 using EducationCenterCRM.BLL.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace EducationCenterCRM.DAL.EF
+namespace EducationCenterCRM.DAL.EF.Contexts
 {
     public static class ModelBuilderExtensions
     {
@@ -130,8 +130,18 @@ namespace EducationCenterCRM.DAL.EF
                 StartDate = new DateTime(2021, 9, 3),
                 StudentGroupId = group3.Id
             };
-
+            
             modelBuilder.Entity<Student>().HasData(student1, student2, student3, student4, student5, student6);
+
+            //var adminRole = new Role { Id = Guid.NewGuid(), Name = "Admin" };
+            //var managerRole = new Role { Id = Guid.NewGuid(), Name = "Manager" };
+            //var studentRole = new Role { Id = Guid.NewGuid(), Name = "Student" };
+            //var teacherRole = new Role { Id = Guid.NewGuid(), Name = "Teacher" };
+
+            //modelBuilder.Entity<Role>().HasData(new Role[] { adminRole, managerRole, studentRole, teacherRole });
+            
+            //var admin = new User({Id =  new Guid(), Email = "admin@gmail.com", RoleId = adminRole.Id});
+
         }
     }
 }

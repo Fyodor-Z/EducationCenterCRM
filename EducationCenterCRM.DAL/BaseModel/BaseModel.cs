@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace EducationCenterCRM.DAL
+namespace EducationCenterCRM.DAL.BaseModel
 {
     public abstract class BaseModel
     {

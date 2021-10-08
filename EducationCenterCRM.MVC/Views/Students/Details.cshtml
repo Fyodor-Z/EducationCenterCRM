@@ -51,16 +51,14 @@
             Group
         </dt>
         <dd class="col-sm-10">
-            <td>
-                @if (Model.StudentGroup != null)
-                {
-                    <a asp-controller="StudentGroups" asp-action="Details" asp-route-id="@Model.StudentGroupId">@Model.StudentGroup.Title</a>
-                }
-                else
-                {
-                    @("not defined")
-                }
-            </td>
+            @if (Model.StudentGroup != null)
+            {
+                <a asp-controller="StudentGroups" asp-action="Details" asp-route-id="@Model.StudentGroupId">@Model.StudentGroup.Title</a>
+            }
+            else
+            {
+                @("not defined")
+            }
         </dd>
     </dl>
 </div>
