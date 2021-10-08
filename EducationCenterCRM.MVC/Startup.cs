@@ -1,8 +1,7 @@
+using System;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using EducationCenterCRM.DAL.EF.Repositories;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper;
@@ -11,9 +10,14 @@ using EducationCenterCRM.BLL.Services.Impl;
 using EducationCenterCRM.BLL.Services.Interfaces;
 using EducationCenterCRM.DAL;
 using EducationCenterCRM.DAL.EF.Contexts;
+using EducationCenterCRM.MVC.Configuration;
 using EducationCenterCRM.MVC.Mapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
+using Microsoft.Extensions.Options;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 
 namespace EducationCenterCRM.MVC
@@ -57,14 +61,17 @@ namespace EducationCenterCRM.MVC
                 .AddDefaultUI()
                 .AddEntityFrameworkStores<ApplicationContext>()
                 .AddDefaultTokenProviders();
-         
+
             services.AddMvc();
             services.AddRazorPages();
+
+            services.Configure<SecurityOptions>(
+                Configuration.GetSection(SecurityOptions.SectionTitle));
 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider serviceProvider, IOptions<SecurityOptions> securityOptions)
         {
             if (env.IsDevelopment())
             {
@@ -76,6 +83,7 @@ namespace EducationCenterCRM.MVC
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
@@ -92,6 +100,38 @@ namespace EducationCenterCRM.MVC
                     pattern: "{controller=Students}/{action=Index}/{id?}");
 
             });
+            CreateRoles(serviceProvider, securityOptions).Wait();
+        }
+
+        private async Task CreateRoles(IServiceProvider serviceProvider, IOptions<SecurityOptions> securityOptions)
+        {
+            var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+
+            var roles = new[] { "admin", "manager", "student" };
+
+
+            foreach (var roleName in roles)
+                await roleManager.CreateAsync(new IdentityRole
+                {
+                    Name = roleName,
+                    NormalizedName = roleName.ToUpper()
+                });
+
+            var userManager = serviceProvider.GetRequiredService<UserManager<IdentityUser>>();
+
+            var adminUser = await userManager.FindByEmailAsync(securityOptions.Value.AdminUserEmail);
+
+            if (adminUser != null)
+            {
+                await userManager.AddToRoleAsync(adminUser, "ADMIN");
+            }
+
+            var managerUser = await userManager.FindByEmailAsync(Configuration["Security:ManagerUserEmail"]);
+
+            if (managerUser != null)
+            {
+                await userManager.AddToRoleAsync(managerUser, "MANAGER");
+            }
         }
     }
 }
