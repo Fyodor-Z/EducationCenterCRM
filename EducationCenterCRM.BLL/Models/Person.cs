@@ -9,7 +9,6 @@ namespace EducationCenterCRM.BLL.Models
 {
     public abstract class Person: BaseModel
     {
-        
         public string FirstName { get; set; }
         
         public string LastName { get; set; }
@@ -17,5 +16,8 @@ namespace EducationCenterCRM.BLL.Models
         public DateTime BirthDate { get; set; }
 
         public Gender Gender { get; set; }
+
+        public string Email { get; set; }
+        public string Phone { get; set; }
     }
 }
