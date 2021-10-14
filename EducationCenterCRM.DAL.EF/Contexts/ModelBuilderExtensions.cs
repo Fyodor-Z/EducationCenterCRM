@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using EducationCenterCRM.BLL.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -39,6 +40,31 @@ namespace EducationCenterCRM.DAL.EF.Contexts
                 BirthDate = new DateTime(1989, 1, 23),
                 Bio = "Some other information"
             };
+
+            foreach (var teacher in new List<Teacher> { teacher1, teacher2, teacher3 })
+            {
+                teacher.Email = teacher.FirstName + "_" + teacher.LastName + "@gmail.com";
+                Random random = new Random();
+                string code = string.Empty;
+                var codeOption = random.Next(4);
+                switch (codeOption)
+                {
+                    case 0:
+                        code = "(25)";
+                        break;
+                    case 1:
+                        code = "(29)";
+                        break;
+                    case 2:
+                        code = "(33)";
+                        break;
+                    case 3:
+                        code = "(44)";
+                        break;
+                }
+
+                teacher.Phone = "+375" + code + random.Next(1000000, 9999999).ToString();
+            }
 
             modelBuilder.Entity<Teacher>().HasData(teacher1, teacher2, teacher3);
 
