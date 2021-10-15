@@ -132,6 +132,7 @@ namespace EducationCenterCRM.MVC
             {
                 await userManager.AddToRoleAsync(managerUser, "MANAGER");
             }
+            
         }
     }
 }

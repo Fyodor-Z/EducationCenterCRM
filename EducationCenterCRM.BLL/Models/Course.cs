@@ -1,4 +1,6 @@
-﻿using EducationCenterCRM.DAL.BaseModel;
+﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
+using EducationCenterCRM.DAL.BaseModel;
 
 namespace EducationCenterCRM.BLL.Models
 {
@@ -7,9 +9,11 @@ namespace EducationCenterCRM.BLL.Models
         public string Title { get; set; }
         public string Description { get; set; }
         public string Program { get; set; }
-        public int TopicId { get; set; }
+        public Guid TopicId { get; set; }
         public Topic Topic { get; set; }
-
+        
+        [Column(TypeName = "decimal(18,2)")]
         public decimal? Price { get; set; }
+        public int DurationWeeks { get; set; }
     }
 }
