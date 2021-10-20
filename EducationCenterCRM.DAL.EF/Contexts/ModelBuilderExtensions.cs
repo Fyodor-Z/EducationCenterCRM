@@ -84,6 +84,7 @@ namespace EducationCenterCRM.DAL.EF.Contexts
                 LinkToProfile = "https://www.linkedin.com/feed/",
                 BirthDate = new DateTime(1986, 5, 18),
                 Bio = "Some information"
+                
 
             };
             var teacher2 = new Teacher()
@@ -140,21 +141,24 @@ namespace EducationCenterCRM.DAL.EF.Contexts
             {
                 Id = Guid.NewGuid(),
                 Title = "ASP_21-1",
-                TeacherId = teacher1.Id
+                TeacherId = teacher1.Id,
+                CourseId = course3.Id
             };
 
             var group2 = new StudentGroup()
             {
                 Id = Guid.NewGuid(),
                 Title = "ASP_21-2",
-                TeacherId = teacher2.Id
+                TeacherId = teacher2.Id,
+                CourseId = course3.Id
             };
 
             var group3 = new StudentGroup()
             {
                 Id = Guid.NewGuid(),
                 Title = "JS_21-1",
-                TeacherId = teacher3.Id
+                TeacherId = teacher3.Id,
+                CourseId = course2.Id
             };
 
             modelBuilder.Entity<StudentGroup>().HasData(group1, group2, group3);
@@ -277,12 +281,12 @@ namespace EducationCenterCRM.DAL.EF.Contexts
                 NormalizedUserName = "admin@ECCRM.com".ToUpper(),
                 Email = "admin@ECCRM.com",
                 NormalizedEmail = "admin@ECCRM.com".ToUpper(),
-                EmailConfirmed = false,
+                EmailConfirmed = true,
                 SecurityStamp = Guid.NewGuid().ToString(),
                
             };
 
-            adminUser.PasswordHash = passHasher.HashPassword(adminUser, "admin");
+            adminUser.PasswordHash = passHasher.HashPassword(adminUser, "Admin_123456");
 
             var managerUser = new IdentityUser()
             {
@@ -291,11 +295,11 @@ namespace EducationCenterCRM.DAL.EF.Contexts
                 NormalizedUserName = "manager@ECCRM.com".ToUpper(),
                 Email = "manager@ECCRM.com",
                 NormalizedEmail = "manager@ECCRM.com".ToUpper(),
-                EmailConfirmed = false,
+                EmailConfirmed = true,
                 SecurityStamp = Guid.NewGuid().ToString()
             };
 
-            managerUser.PasswordHash = passHasher.HashPassword(managerUser, "manager");
+            managerUser.PasswordHash = passHasher.HashPassword(managerUser, "Manager_123456");
 
             modelBuilder.Entity<IdentityUser>().HasData(adminUser, managerUser);
         }

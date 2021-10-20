@@ -23,14 +23,27 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Title)
         </dd>
-        <dd class="col-sm-2">
+        <dt class="col-sm-2">
             Teacher
-        </dd>
-
+        </dt>
         <dd class="col-sm-10">
             @if (Model.TeacherId != null)
             {
                 <a asp-controller="Teachers" asp-action="Details" asp-route-id="@Model.TeacherId">@Model.Teacher.FullName</a>
+            }
+            else
+            {
+                @("not defined")
+            }
+        </dd>
+
+        <dt class="col-sm-2">
+            Course
+        </dt>
+        <dd class="col-sm-10">
+            @if (Model.CourseId != null)
+            {
+                <a asp-controller="Courses" asp-action="Details" asp-route-id="@Model.CourseId">@Model.Course.Title</a>
             }
             else
             {
