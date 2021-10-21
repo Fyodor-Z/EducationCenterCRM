@@ -7,7 +7,8 @@
 <h1>@ViewData["Title"]</h1>
 
 <p>
-    <a asp-action="Create">Create request</a>
+    <a asp-controller="Requests" asp-action="Create">Add request to course</a>
+    <a asp-action="Create">Create course</a>
 </p>
 <table class="table">
     <thead>
@@ -27,8 +28,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.Price)
             </th>
-            <th></th>
-        </tr>
+           </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)

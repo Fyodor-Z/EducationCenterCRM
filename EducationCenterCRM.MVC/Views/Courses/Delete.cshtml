@@ -1,0 +1,72 @@
+﻿@model EducationCenterCRM.MVC.Models.CourseModel
+@{
+    ViewData["Title"] = "Delete course " + @Model.Title;
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>@ViewData["Title"]</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Program)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Program)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DurationWeeks)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DurationWeeks)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+
+        <dt class="col-sm-2">
+            Topic
+        </dt>
+        <dd class="col-sm-10">
+            @if (Model.TopicId != null)
+            {
+                @Model.Topic.Title
+            }
+            else
+            {
+                @("not defined")
+            }
+        </dd>
+    </dl>
+
+
+
+    <form asp-action="Delete" asp-controller="Courses" asp-route-id="@Model.Id">
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

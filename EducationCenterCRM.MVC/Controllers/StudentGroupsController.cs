@@ -29,14 +29,14 @@ namespace EducationCenterCRM.MVC.Controllers
             var studentGroups = await _studentGroupService.GetAllAsync();
             return View(_mapper.Map<IEnumerable<StudentGroupModel>>(studentGroups));
         }
-
-
+        
         public IActionResult Details(Guid id)
         {
             var studentGroup = _studentGroupService.GetById(id);
             ViewBag.Students = studentGroup.Students;
             return View(_mapper.Map<StudentGroupModel>(studentGroup));
         }
+
         [HttpGet]
         [Authorize(Roles = "admin, manager")]
         public IActionResult Edit(Guid id)
