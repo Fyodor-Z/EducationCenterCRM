@@ -7,19 +7,19 @@
 <h1>Groups</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Create new group</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Id)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Title)
             </th>
             <th>
                 Teacher
+            </th>
+            <th>
+                Course
             </th>
 
             <th></th>
@@ -29,16 +29,25 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Id)
-                </td>
-                <td>
+               <td>
                     @Html.DisplayFor(modelItem => item.Title)
                 </td>
                 <td>
                     @if (item.TeacherId != null)
                     {
-                    <a asp-controller="Teachers" asp-action="Details" asp-route-id="@item.TeacherId">@item.Teacher.FullName</a>
+                        <a asp-controller="Teachers" asp-action="Details" asp-route-id="@item.TeacherId">@item.Teacher.FullName</a>
+                    }
+                    else
+                    {
+                        @("not defined")
+                    }
+                   
+                </td>
+                
+                <td>
+                    @if (item.CourseId != null)
+                    {
+                        <a asp-controller="Courses" asp-action="Details" asp-route-id="@item.CourseId">@item.Course.Title</a>
                     }
                     else
                     {

@@ -1,13 +1,80 @@
 ﻿using System;
+using System.Collections.Generic;
 using EducationCenterCRM.BLL.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Http;
 
 namespace EducationCenterCRM.DAL.EF.Contexts
 {
     public static class ModelBuilderExtensions
+
     {
         public static void Seed(this ModelBuilder modelBuilder)
         {
+            var topic1 = new Topic()
+            {
+                Id = Guid.NewGuid(),
+                Title = ".Net",
+                Description = ".Net (ASP.NET, Unity)"
+            };
+            var topic2 = new Topic()
+            {
+                Id = Guid.NewGuid(),
+                Title = "Frontend",
+                Description = "JS, HTML, CSS"
+            };
+
+            modelBuilder.Entity<Topic>().HasData(topic1, topic2);
+
+            var course1 = new Course()
+            {
+                Id = Guid.NewGuid(),
+                Title = "Introduction to C#",
+                Description = "Introduction to C#",
+                Program = "1. Getting Started",
+                TopicId = topic1.Id,
+                Price = 1250,
+                DurationWeeks = 12
+            };
+
+            var course2 = new Course()
+            {
+                Id = Guid.NewGuid(),
+                Title = "Introduction to Web",
+                Description = "Introduction to Java",
+                Program = "1. Getting Started",
+                TopicId = topic2.Id,
+                Price = 1550,
+                DurationWeeks = 4
+            };
+
+            var course3 = new Course()
+            {
+                Id = Guid.NewGuid(),
+                Title = "ASP.NET",
+                Description = "Web with ASP.NET",
+                Program = "1. Controllers and MVC 2. WebAPI 3.Angular",
+                TopicId = topic1.Id,
+                Price = 1350,
+                DurationWeeks = 16
+            };
+
+            var course4 = new Course()
+            {
+                Id = Guid.NewGuid(),
+                Title = "Unity",
+                Description = "Unity Game Development",
+                Program = "1. What is Unity",
+                TopicId = topic1.Id,
+                Price = 1850,
+                DurationWeeks = 16
+            };
+
+
+            modelBuilder.Entity<Course>().HasData(course1, course2, course3, course4);
+
+            //init data teachers
             var teacher1 = new Teacher()
             {
                 Id = Guid.NewGuid(),
@@ -17,6 +84,7 @@ namespace EducationCenterCRM.DAL.EF.Contexts
                 LinkToProfile = "https://www.linkedin.com/feed/",
                 BirthDate = new DateTime(1986, 5, 18),
                 Bio = "Some information"
+                
 
             };
             var teacher2 = new Teacher()
@@ -40,30 +108,62 @@ namespace EducationCenterCRM.DAL.EF.Contexts
                 Bio = "Some other information"
             };
 
-            modelBuilder.Entity<Teacher>().HasData(teacher1, teacher2, teacher3);
+            var teachers = new List<Teacher>() { teacher1, teacher2, teacher3 };
+
+            foreach (var teacher in teachers)
+            {
+                teacher.Email = teacher.FirstName + "_" + teacher.LastName + "@gmail.com";
+                Random random = new Random();
+                string code = string.Empty;
+                var codeOption = random.Next(4);
+                switch (codeOption)
+                {
+                    case 0:
+                        code = "(25)";
+                        break;
+                    case 1:
+                        code = "(29)";
+                        break;
+                    case 2:
+                        code = "(33)";
+                        break;
+                    case 3:
+                        code = "(44)";
+                        break;
+                }
+
+                teacher.Phone = "+375" + code + random.Next(1000000, 9999999).ToString();
+            }
+
+            modelBuilder.Entity<Teacher>().HasData(teachers);
 
             var group1 = new StudentGroup()
             {
                 Id = Guid.NewGuid(),
                 Title = "ASP_21-1",
-                TeacherId = teacher1.Id
+                TeacherId = teacher1.Id,
+                CourseId = course3.Id
             };
 
             var group2 = new StudentGroup()
             {
                 Id = Guid.NewGuid(),
                 Title = "ASP_21-2",
-                TeacherId = teacher2.Id
+                TeacherId = teacher2.Id,
+                CourseId = course3.Id
             };
 
             var group3 = new StudentGroup()
             {
                 Id = Guid.NewGuid(),
                 Title = "JS_21-1",
-                TeacherId = teacher3.Id
+                TeacherId = teacher3.Id,
+                CourseId = course2.Id
             };
 
             modelBuilder.Entity<StudentGroup>().HasData(group1, group2, group3);
+
+            //init data students
 
             var student1 = new Student()
             {
@@ -82,8 +182,8 @@ namespace EducationCenterCRM.DAL.EF.Contexts
                 FirstName = "Petr",
                 LastName = "Vasiliev",
                 Gender = Gender.Male,
-                BirthDate = new DateTime(1998,6, 15),
-                StartDate = new DateTime(2021,7, 3),
+                BirthDate = new DateTime(1998, 6, 15),
+                StartDate = new DateTime(2021, 7, 3),
                 StudentGroupId = group1.Id
             };
 
@@ -126,22 +226,82 @@ namespace EducationCenterCRM.DAL.EF.Contexts
                 FirstName = "Elvira",
                 LastName = "Zaytseva",
                 Gender = Gender.Male,
-                BirthDate = new DateTime(1995,1, 5),
+                BirthDate = new DateTime(1995, 1, 5),
                 StartDate = new DateTime(2021, 9, 3),
                 StudentGroupId = group3.Id
             };
-            
-            modelBuilder.Entity<Student>().HasData(student1, student2, student3, student4, student5, student6);
 
-            //var adminRole = new Role { Id = Guid.NewGuid(), Name = "Admin" };
-            //var managerRole = new Role { Id = Guid.NewGuid(), Name = "Manager" };
-            //var studentRole = new Role { Id = Guid.NewGuid(), Name = "Student" };
-            //var teacherRole = new Role { Id = Guid.NewGuid(), Name = "Teacher" };
+            var student7 = new Student()
+            {
+                Id = Guid.NewGuid(),
+                FirstName = "Alexander",
+                LastName = "Ptichkin",
+                Gender = Gender.Male,
+                BirthDate = new DateTime(1991, 04, 16),
+                StartDate = new DateTime(2021, 9, 3),
+                StudentGroupId = group3.Id
+            };
 
-            //modelBuilder.Entity<Role>().HasData(new Role[] { adminRole, managerRole, studentRole, teacherRole });
-            
-            //var admin = new User({Id =  new Guid(), Email = "admin@gmail.com", RoleId = adminRole.Id});
+            var students = new List<Student>() { student1, student2, student3, student4, student5, student6, student7 };
 
+            foreach (var student in students)
+            {
+                student.Email = student.FirstName + "_" + student.LastName + "@gmail.com";
+                Random random = new Random();
+                string code = string.Empty;
+                var codeOption = random.Next(4);
+                switch (codeOption)
+                {
+                    case 0:
+                        code = "(25)";
+                        break;
+                    case 1:
+                        code = "(29)";
+                        break;
+                    case 2:
+                        code = "(33)";
+                        break;
+                    case 3:
+                        code = "(44)";
+                        break;
+                }
+
+                student.Phone = "+375" + code + random.Next(1000000, 9999999).ToString();
+            }
+
+
+            modelBuilder.Entity<Student>().HasData(students);
+
+            var passHasher = new PasswordHasher<IdentityUser>();
+
+            var adminUser = new IdentityUser()
+            {
+                Id = Guid.NewGuid().ToString(),
+                UserName = "admin@ECCRM.com",
+                NormalizedUserName = "admin@ECCRM.com".ToUpper(),
+                Email = "admin@ECCRM.com",
+                NormalizedEmail = "admin@ECCRM.com".ToUpper(),
+                EmailConfirmed = true,
+                SecurityStamp = Guid.NewGuid().ToString(),
+               
+            };
+
+            adminUser.PasswordHash = passHasher.HashPassword(adminUser, "Admin_123456");
+
+            var managerUser = new IdentityUser()
+            {
+                Id = Guid.NewGuid().ToString(),
+                UserName = "manager@ECCRM.com",
+                NormalizedUserName = "manager@ECCRM.com".ToUpper(),
+                Email = "manager@ECCRM.com",
+                NormalizedEmail = "manager@ECCRM.com".ToUpper(),
+                EmailConfirmed = true,
+                SecurityStamp = Guid.NewGuid().ToString()
+            };
+
+            managerUser.PasswordHash = passHasher.HashPassword(managerUser, "Manager_123456");
+
+            modelBuilder.Entity<IdentityUser>().HasData(adminUser, managerUser);
         }
     }
 }

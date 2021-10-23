@@ -16,6 +16,7 @@ namespace EducationCenterCRM.MVC.Models
         public DateTime StartDate { get; set; } = DateTime.Today;
         [Display (Name = "Group")]
         public virtual StudentGroupModel? StudentGroup { get; set; }
+        [Required(ErrorMessage = "Please choose group")]
         public Guid? StudentGroupId { get; set; }
     }
 }

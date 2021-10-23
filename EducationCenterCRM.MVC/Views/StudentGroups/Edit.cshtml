@@ -19,14 +19,14 @@
                 <input asp-for="Title" class="form-control" />
                 <span asp-validation-for="Title" class="text-danger"></span>
             </div>
-            
+
             <div class="form-group">
                 <label asp-for="TeacherId"></label>
                 <select class="form-control" asp-for="TeacherId">
                     <option value="">Select teacher...</option>
                     @if (ViewBag.Teachers != null)
                     {
-                        foreach (var teacher in (List<TeacherModel>) ViewBag.Teachers)
+                        foreach (var teacher in (List<TeacherModel>)ViewBag.Teachers)
                         {
                             if (teacher.Id == Model.TeacherId)
                             {
@@ -40,7 +40,28 @@
                     }
                 </select>
             </div>
-            
+
+            <div class="form-group">
+                <label asp-for="CourseId"></label>
+                <select class="form-control" asp-for="CourseId">
+                    <option value="">Select course...</option>
+                    @if (ViewBag.Courses != null)
+                    {
+                        foreach (var course in (List<CourseModel>)ViewBag.Courses)
+                        {
+                            if (course.Id == Model.CourseId)
+                            {
+                                <option value="@course.Id" selected>@course.Title</option>
+                            }
+                            else
+                            {
+                                <option value="@course.Id">@course.Title</option>
+                            }
+                        }
+                    }
+                </select>
+            </div>
+
 
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />

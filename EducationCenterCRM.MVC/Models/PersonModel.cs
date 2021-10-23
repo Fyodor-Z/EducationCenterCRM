@@ -23,6 +23,11 @@ namespace EducationCenterCRM.MVC.Models
         [Required(ErrorMessage = "Please choose gender")]
         public Gender Gender { get; set; }
 
+        [EmailAddress(ErrorMessage = "Wrong e-mail format")]
+        [Required(ErrorMessage = "Please enter e-mail")]
+        public string Email { get; set; }
+        public string Phone { get; set; }
+
         public string FullName => string.Join(" ", this.FirstName, this.LastName);
     }
 }

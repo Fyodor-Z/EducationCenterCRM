@@ -12,8 +12,11 @@ namespace EducationCenterCRM.DAL.EF.Contexts
         public DbSet<Teacher> Teachers { get; set; }
 
         public DbSet<StudentGroup> StudentGroups { get; set; }
+        public DbSet<Course> Courses { get; set; }
+        public DbSet<Topic> Topics { get; set; }
 
-        
+        public DbSet<StudentRequest> StudentRequests { get; set; }
+
         public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
         {
         }
@@ -25,9 +28,8 @@ namespace EducationCenterCRM.DAL.EF.Contexts
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=EducCentrCRMDb;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=EducCenterCRMDb;Trusted_Connection=True;");
         }
-
 
     }
 }
