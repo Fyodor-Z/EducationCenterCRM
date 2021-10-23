@@ -2,10 +2,10 @@
 @model EducationCenterCRM.MVC.Models.CourseModel
 
 @{
-    ViewData["Title"] = Model.Title + " course information";
+    ViewData["Title"] = @Model.Title + " course information";
 }
 
-<h1>ViewData["Title"]</h1>
+<h1>@ViewData["Title"]</h1>
 
 <div>
     <h4>@ViewData["Title"]</h4>
@@ -66,7 +66,7 @@
 </div>
 
 <div>
-    @Html.ActionLink("Edit group", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Delete group", "Delete", new { id = Model.Id })|
-    <a asp-action="Index">Back to groups list</a>
+    @Html.ActionLink("Edit course", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Delete course", "Delete", new { id = Model.Id })|
+    <a asp-action="Index">Back to courses list</a>
 </div>

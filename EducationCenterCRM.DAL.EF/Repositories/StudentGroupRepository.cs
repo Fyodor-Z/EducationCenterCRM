@@ -41,12 +41,12 @@ namespace EducationCenterCRM.DAL.EF.Repositories
 
         public List<StudentGroup> GetAll()
         {
-            return Context.StudentGroups.AsNoTracking().Include(s => s.Teacher).Include(s => s.Students).ToList();
+            return Context.StudentGroups.AsNoTracking().Include(s => s.Teacher).Include(s => s.Students).Include(s => s.Course).ToList();
         }
 
         public async Task<List<StudentGroup>> GetAllAsync()
         {
-            return await Context.StudentGroups.AsNoTracking().Include(s => s.Teacher).ToListAsync();
+            return await Context.StudentGroups.AsNoTracking().Include(s => s.Teacher).Include(s => s.Course).ToListAsync();
         }
 
         public StudentGroup Update(StudentGroup model)
@@ -59,7 +59,7 @@ namespace EducationCenterCRM.DAL.EF.Repositories
 
         public StudentGroup Get(Guid id)
         {
-            return Context.StudentGroups.Include(s => s.Teacher).Include(s => s.Students).FirstOrDefault(m => m.Id == id);
+            return Context.StudentGroups.Include(s => s.Teacher).Include(s => s.Students).Include(s => s.Course).FirstOrDefault(m => m.Id == id);
         }
     }
 }

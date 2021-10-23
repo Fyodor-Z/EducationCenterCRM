@@ -57,6 +57,7 @@ namespace EducationCenterCRM.MVC.Controllers
             ViewBag.Action = "Create";
             ViewBag.Title = "Create new course";
             var topics = _topicService.GetAll();
+            ViewBag.Topics = _mapper.Map<IEnumerable<TopicModel>>(topics);
             ViewBag.Teachers = _mapper.Map<IEnumerable<TopicModel>>(topics);
             return View("Edit", new CourseModel());
         }

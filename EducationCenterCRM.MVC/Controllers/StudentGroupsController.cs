@@ -16,12 +16,14 @@ namespace EducationCenterCRM.MVC.Controllers
     {
         private readonly IEntityService<StudentGroup> _studentGroupService;
         private readonly IEntityService<Teacher> _teacherService;
+        private readonly IEntityService<Course> _courseService;
         private readonly IMapper _mapper;
-        public StudentGroupsController(IEntityService<StudentGroup> studentGroupService, IEntityService<Teacher> teacherService, IMapper mapper)
+        public StudentGroupsController(IEntityService<StudentGroup> studentGroupService, IEntityService<Teacher> teacherService, IEntityService<Course> courseService, IMapper mapper)
         {
             _studentGroupService = studentGroupService;
             _mapper = mapper;
             _teacherService = teacherService;
+            _courseService = courseService;
         }
 
         public async Task<IActionResult> Index()
@@ -45,6 +47,8 @@ namespace EducationCenterCRM.MVC.Controllers
             ViewBag.Action = "Edit";
             var teachers = _teacherService.GetAll();
             ViewBag.Teachers = _mapper.Map<IEnumerable<TeacherModel>>(teachers);
+            var courses = _courseService.GetAll();
+            ViewBag.Courses = _mapper.Map<IEnumerable<CourseModel>>(courses);
             var studentGroup = _studentGroupService.GetById(id);
             return View(_mapper.Map<StudentGroupModel>(studentGroup));
         }
@@ -91,6 +95,8 @@ namespace EducationCenterCRM.MVC.Controllers
             ViewBag.Title = "Create new group";
             var teachers = _teacherService.GetAll();
             ViewBag.Teachers = _mapper.Map<IEnumerable<TeacherModel>>(teachers);
+            var courses = _courseService.GetAll();
+            ViewBag.Courses = _mapper.Map<IEnumerable<CourseModel>>(courses);
             return View("Edit", new StudentGroupModel());
         }
 
