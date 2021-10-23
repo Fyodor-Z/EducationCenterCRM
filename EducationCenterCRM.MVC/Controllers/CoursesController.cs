@@ -7,6 +7,7 @@ using AutoMapper;
 using EducationCenterCRM.BLL.Models;
 using EducationCenterCRM.BLL.Services.Interfaces;
 using EducationCenterCRM.MVC.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EducationCenterCRM.MVC.Controllers
 {
@@ -34,7 +35,7 @@ namespace EducationCenterCRM.MVC.Controllers
             var course = _courseService.GetById(id);
             return View(_mapper.Map<CourseModel>(course));
         }
-
+        [Authorize(Roles = "admin")]
         [HttpGet]
         public IActionResult Delete(Guid id)
         {
@@ -50,7 +51,7 @@ namespace EducationCenterCRM.MVC.Controllers
             var courses = _courseService.GetAll();
             return View("Index", _mapper.Map<IEnumerable<CourseModel>>(courses));
         }
-
+        [Authorize(Roles = "admin, manager")]
         [HttpGet]
         public IActionResult Create()
         {
@@ -77,7 +78,7 @@ namespace EducationCenterCRM.MVC.Controllers
                 return View("Edit");
             }
         }
-
+        [Authorize(Roles = "admin, manager")]
         [HttpGet]
         public IActionResult Edit(Guid id)
         {
