@@ -1,0 +1,57 @@
+﻿@using EducationCenterCRM.MVC.Models
+@model EducationCenterCRM.MVC.Models.LessonModel
+
+@{
+    ViewData["Title"] = ViewBag.Title;
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<h4>Lesson</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action=@ViewBag.Action asp-controller="Lessons" asp-route-id="@Model.Id">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="LessonDate" class="control-label"></label>
+                <input asp-for="LessonDate" class="form-control" />
+                <span asp-validation-for="LessonDate" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="GroupId"></label>
+                <select class="form-control" asp-for="GroupId">
+                    <option value="">Select group...</option>
+                    @if (ViewBag.Groups != null)
+                    {
+                        foreach (var group in (List<StudentGroupModel>)ViewBag.Groups)
+                        {
+                            if (group.Id == Model.GroupId)
+                            {
+                                <option value="@group.Id" selected>@group.Title</option>
+                            }
+                            else
+                            {
+                                <option value="@group.Id">@group.Title</option>
+                            }
+                        }
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

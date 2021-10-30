@@ -302,6 +302,21 @@ namespace EducationCenterCRM.DAL.EF.Contexts
             managerUser.PasswordHash = passHasher.HashPassword(managerUser, "Manager_123456");
 
             modelBuilder.Entity<IdentityUser>().HasData(adminUser, managerUser);
+
+            var lesson1 = new Lesson()
+            {
+                Id = Guid.NewGuid(),
+                GroupId = group1.Id,
+                LessonDate = DateTime.Today
+            };
+
+            var lesson2 = new Lesson()
+            {
+                Id = Guid.NewGuid(),
+                GroupId = group1.Id,
+                LessonDate = DateTime.Today
+            };
+            modelBuilder.Entity<Lesson>().HasData(lesson1, lesson2);
         }
     }
 }

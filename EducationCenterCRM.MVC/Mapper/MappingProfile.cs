@@ -27,6 +27,8 @@ namespace EducationCenterCRM.MVC.Mapper
                 .ReverseMap();
             CreateMap<StudentRequest, StudentRequestModel > ()
                 .ReverseMap();
+            CreateMap<Lesson, LessonModel>()
+                .ReverseMap();
         }
     }
 }

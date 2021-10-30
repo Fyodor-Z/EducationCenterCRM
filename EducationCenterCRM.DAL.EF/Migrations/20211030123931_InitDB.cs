@@ -243,6 +243,25 @@ namespace EducationCenterCRM.DAL.EF.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Lessons",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    LessonDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    GroupId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Lessons", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Lessons_StudentGroups_GroupId",
+                        column: x => x.GroupId,
+                        principalTable: "StudentGroups",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Students",
                 columns: table => new
                 {
@@ -302,8 +321,8 @@ namespace EducationCenterCRM.DAL.EF.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "e3102172-85e8-448a-ae92-a5d770e54383", 0, "b3bb0b38-b45e-4ebc-95b6-8343b16fdc58", "admin@ECCRM.com", true, false, null, "ADMIN@ECCRM.COM", "ADMIN@ECCRM.COM", "AQAAAAEAACcQAAAAEHDCT+eQ0NQv25m0y+3etwMkeMXIDV4AXB7yrYpKiOfK+Ds0cxesV3jOUJijD513mw==", null, false, "03978beb-cc6b-4680-a7ea-1bac2b03626b", false, "admin@ECCRM.com" },
-                    { "4cae4499-ebc6-49f9-89a7-a31b4feb8d90", 0, "553b9391-c40b-4ac0-b65d-dc5c5221b3f6", "manager@ECCRM.com", true, false, null, "MANAGER@ECCRM.COM", "MANAGER@ECCRM.COM", "AQAAAAEAACcQAAAAEIzYQCvUz5zbDxkpgVsPQ/N1tV3Xv4eiUWVpAyjlIv7rCWQ/hSugnL0xKcOgkidu6w==", null, false, "448a6f59-0d38-4e5b-861b-9b853c46ce25", false, "manager@ECCRM.com" }
+                    { "658a5f9b-3e8b-420d-89f9-e8a52a296a6e", 0, "ad7f6350-7182-4598-8e8d-6289a1fbf176", "admin@ECCRM.com", true, false, null, "ADMIN@ECCRM.COM", "ADMIN@ECCRM.COM", "AQAAAAEAACcQAAAAEOa3f7I+Kzu/BvjewZAlfx6s4QHt47Ffp/um4hjDqGlJ6XgduXalisbRBNRzfA1+FA==", null, false, "e4a43563-2f74-45ff-a4a4-89530e91fbcc", false, "admin@ECCRM.com" },
+                    { "cfc305e5-1b6e-488d-a884-40a718d736a9", 0, "2f4d673a-a75a-4922-8ddd-3fd5a642f158", "manager@ECCRM.com", true, false, null, "MANAGER@ECCRM.COM", "MANAGER@ECCRM.COM", "AQAAAAEAACcQAAAAEHkIidbcoYFR8NW9UyLuAyzs7XHMgAprHFKLITU2WvRt5N6P95hCkawj4PQnLS8XgA==", null, false, "5cb6cc0b-ac83-4e13-ac63-045300933811", false, "manager@ECCRM.com" }
                 });
 
             migrationBuilder.InsertData(
@@ -311,9 +330,9 @@ namespace EducationCenterCRM.DAL.EF.Migrations
                 columns: new[] { "Id", "Bio", "BirthDate", "Email", "FirstName", "Gender", "LastName", "LinkToProfile", "Phone" },
                 values: new object[,]
                 {
-                    { new Guid("7985804b-98e1-4731-ae78-4b4d4d1967e8"), "Some information", new DateTime(1986, 5, 18, 0, 0, 0, 0, DateTimeKind.Unspecified), "Petr_Reshetnikov@gmail.com", "Petr", 0, "Reshetnikov", "https://www.linkedin.com/feed/", "+375(29)8744226" },
-                    { new Guid("4a91636d-cef0-4090-9a87-e921cbfe9372"), "Some other information", new DateTime(1989, 1, 23, 0, 0, 0, 0, DateTimeKind.Unspecified), "Mikhail_Andreev@gmail.com", "Mikhail", 0, "Andreev", "https://www.linkedin.com/feed/", "+375(33)9866154" },
-                    { new Guid("90cd0681-8441-48c0-aecd-3f662d19cdb6"), "Some other information", new DateTime(1989, 1, 23, 0, 0, 0, 0, DateTimeKind.Unspecified), "Natalia_Usovich@gmail.com", "Natalia", 1, "Usovich", "https://www.linkedin.com/feed/", "+375(33)2766601" }
+                    { new Guid("73c7a0c5-7785-42af-8c3a-f58475fd85e1"), "Some information", new DateTime(1986, 5, 18, 0, 0, 0, 0, DateTimeKind.Unspecified), "Petr_Reshetnikov@gmail.com", "Petr", 0, "Reshetnikov", "https://www.linkedin.com/feed/", "+375(29)4027292" },
+                    { new Guid("ca93aacb-9533-490c-ba53-226092e0d1b4"), "Some other information", new DateTime(1989, 1, 23, 0, 0, 0, 0, DateTimeKind.Unspecified), "Mikhail_Andreev@gmail.com", "Mikhail", 0, "Andreev", "https://www.linkedin.com/feed/", "+375(33)7317808" },
+                    { new Guid("c9f5c69b-9ed5-41e0-8578-07b016894a23"), "Some other information", new DateTime(1989, 1, 23, 0, 0, 0, 0, DateTimeKind.Unspecified), "Natalia_Usovich@gmail.com", "Natalia", 1, "Usovich", "https://www.linkedin.com/feed/", "+375(25)7049960" }
                 });
 
             migrationBuilder.InsertData(
@@ -321,8 +340,8 @@ namespace EducationCenterCRM.DAL.EF.Migrations
                 columns: new[] { "Id", "Description", "ParentId", "ParentId1", "Title" },
                 values: new object[,]
                 {
-                    { new Guid("63c05a95-2406-4ff2-ac47-da0d5e626974"), ".Net (ASP.NET, Unity)", null, null, ".Net" },
-                    { new Guid("bf39c845-451a-4dfd-b0e8-fe2600979783"), "JS, HTML, CSS", null, null, "Frontend" }
+                    { new Guid("06cfe75e-d092-43f4-a252-0b63d899bb18"), ".Net (ASP.NET, Unity)", null, null, ".Net" },
+                    { new Guid("31c2bade-2054-4367-aab6-b4892781609c"), "JS, HTML, CSS", null, null, "Frontend" }
                 });
 
             migrationBuilder.InsertData(
@@ -330,39 +349,48 @@ namespace EducationCenterCRM.DAL.EF.Migrations
                 columns: new[] { "Id", "Description", "DurationWeeks", "Price", "Program", "Title", "TopicId" },
                 values: new object[,]
                 {
-                    { new Guid("6afe1900-400f-4f31-aaef-8be81dec93ec"), "Introduction to C#", 12, 1250m, "1. Getting Started", "Introduction to C#", new Guid("63c05a95-2406-4ff2-ac47-da0d5e626974") },
-                    { new Guid("0b8a1f78-0f1d-4de8-a296-a5621c0df940"), "Web with ASP.NET", 16, 1350m, "1. Controllers and MVC 2. WebAPI 3.Angular", "ASP.NET", new Guid("63c05a95-2406-4ff2-ac47-da0d5e626974") },
-                    { new Guid("5fc01797-3ba0-4eb0-ac6c-2e3e8b2a8603"), "Unity Game Development", 16, 1850m, "1. What is Unity", "Unity", new Guid("63c05a95-2406-4ff2-ac47-da0d5e626974") },
-                    { new Guid("5f08621d-c9db-41de-a342-d542fdac3c25"), "Introduction to Java", 4, 1550m, "1. Getting Started", "Introduction to Web", new Guid("bf39c845-451a-4dfd-b0e8-fe2600979783") }
+                    { new Guid("000585dc-4b5b-4aee-ade5-3c7b4adf22c1"), "Introduction to C#", 12, 1250m, "1. Getting Started", "Introduction to C#", new Guid("06cfe75e-d092-43f4-a252-0b63d899bb18") },
+                    { new Guid("cb0f1104-63da-47c8-a92b-3c7030cd557c"), "Web with ASP.NET", 16, 1350m, "1. Controllers and MVC 2. WebAPI 3.Angular", "ASP.NET", new Guid("06cfe75e-d092-43f4-a252-0b63d899bb18") },
+                    { new Guid("f303f9fe-8653-4e7b-a760-2c46e9d83670"), "Unity Game Development", 16, 1850m, "1. What is Unity", "Unity", new Guid("06cfe75e-d092-43f4-a252-0b63d899bb18") },
+                    { new Guid("2688e0ca-e37d-4584-8e41-039bfefab4f5"), "Introduction to Java", 4, 1550m, "1. Getting Started", "Introduction to Web", new Guid("31c2bade-2054-4367-aab6-b4892781609c") }
                 });
 
             migrationBuilder.InsertData(
                 table: "StudentGroups",
                 columns: new[] { "Id", "CourseId", "Status", "TeacherId", "Title" },
-                values: new object[] { new Guid("e1e7f21d-07df-4122-8ba2-7259530014a1"), new Guid("0b8a1f78-0f1d-4de8-a296-a5621c0df940"), 0, new Guid("7985804b-98e1-4731-ae78-4b4d4d1967e8"), "ASP_21-1" });
+                values: new object[] { new Guid("0885e0bb-4f66-4335-8962-526d779bf409"), new Guid("cb0f1104-63da-47c8-a92b-3c7030cd557c"), 0, new Guid("73c7a0c5-7785-42af-8c3a-f58475fd85e1"), "ASP_21-1" });
 
             migrationBuilder.InsertData(
                 table: "StudentGroups",
                 columns: new[] { "Id", "CourseId", "Status", "TeacherId", "Title" },
-                values: new object[] { new Guid("e3726445-a4e7-4e4e-a11d-3ef70f3a88a6"), new Guid("0b8a1f78-0f1d-4de8-a296-a5621c0df940"), 0, new Guid("4a91636d-cef0-4090-9a87-e921cbfe9372"), "ASP_21-2" });
+                values: new object[] { new Guid("2ce55402-f386-48a2-827c-fa21bfc20131"), new Guid("cb0f1104-63da-47c8-a92b-3c7030cd557c"), 0, new Guid("ca93aacb-9533-490c-ba53-226092e0d1b4"), "ASP_21-2" });
 
             migrationBuilder.InsertData(
                 table: "StudentGroups",
                 columns: new[] { "Id", "CourseId", "Status", "TeacherId", "Title" },
-                values: new object[] { new Guid("7c71bb98-abe0-42e1-a36d-de0c9207ceb3"), new Guid("5f08621d-c9db-41de-a342-d542fdac3c25"), 0, new Guid("90cd0681-8441-48c0-aecd-3f662d19cdb6"), "JS_21-1" });
+                values: new object[] { new Guid("819703e2-b431-407e-98d9-a2e7b9d5871e"), new Guid("2688e0ca-e37d-4584-8e41-039bfefab4f5"), 0, new Guid("c9f5c69b-9ed5-41e0-8578-07b016894a23"), "JS_21-1" });
+
+            migrationBuilder.InsertData(
+                table: "Lessons",
+                columns: new[] { "Id", "GroupId", "LessonDate" },
+                values: new object[,]
+                {
+                    { new Guid("e1697bb8-03cc-4dc8-a11c-a610e9a7d29b"), new Guid("0885e0bb-4f66-4335-8962-526d779bf409"), new DateTime(2021, 10, 30, 0, 0, 0, 0, DateTimeKind.Local) },
+                    { new Guid("5fd903f2-9b15-44c6-9ffa-3feb59d056d9"), new Guid("0885e0bb-4f66-4335-8962-526d779bf409"), new DateTime(2021, 10, 30, 0, 0, 0, 0, DateTimeKind.Local) }
+                });
 
             migrationBuilder.InsertData(
                 table: "Students",
                 columns: new[] { "Id", "BirthDate", "Email", "FirstName", "Gender", "LastName", "Phone", "StartDate", "StudentGroupId" },
                 values: new object[,]
                 {
-                    { new Guid("6361ee62-9814-462f-a564-6bb85cb7ed39"), new DateTime(1999, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), "Vasilii_Petrov@gmail.com", "Vasilii", 0, "Petrov", "+375(44)3827882", new DateTime(2021, 7, 3, 0, 0, 0, 0, DateTimeKind.Unspecified), new Guid("e1e7f21d-07df-4122-8ba2-7259530014a1") },
-                    { new Guid("6bb4af6d-07a6-4c18-ab00-a6eace2a5710"), new DateTime(1998, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), "Petr_Vasiliev@gmail.com", "Petr", 0, "Vasiliev", "+375(44)7255171", new DateTime(2021, 7, 3, 0, 0, 0, 0, DateTimeKind.Unspecified), new Guid("e1e7f21d-07df-4122-8ba2-7259530014a1") },
-                    { new Guid("0d9f5cc1-ad5a-42a4-a8be-abf10f66ad33"), new DateTime(1989, 10, 6, 0, 0, 0, 0, DateTimeKind.Unspecified), "Ivan_Bezfamilnyi@gmail.com", "Ivan", 0, "Bezfamilnyi", "+375(25)6131742", new DateTime(2021, 7, 7, 0, 0, 0, 0, DateTimeKind.Unspecified), new Guid("e3726445-a4e7-4e4e-a11d-3ef70f3a88a6") },
-                    { new Guid("1259dc9d-a646-48bd-a574-85862825dd5d"), new DateTime(1989, 11, 8, 0, 0, 0, 0, DateTimeKind.Unspecified), "Mariya_Sidorova@gmail.com", "Mariya", 1, "Sidorova", "+375(33)9889303", new DateTime(2021, 7, 7, 0, 0, 0, 0, DateTimeKind.Unspecified), new Guid("e3726445-a4e7-4e4e-a11d-3ef70f3a88a6") },
-                    { new Guid("7a808135-f36c-4b18-926c-be7a2d80f395"), new DateTime(1989, 12, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), "Vitali_Lukyanov@gmail.com", "Vitali", 0, "Lukyanov", "+375(33)9404154", new DateTime(2021, 9, 3, 0, 0, 0, 0, DateTimeKind.Unspecified), new Guid("7c71bb98-abe0-42e1-a36d-de0c9207ceb3") },
-                    { new Guid("6e7dd2f5-e7ad-4a46-8c67-2c9bbaff0dae"), new DateTime(1995, 1, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), "Elvira_Zaytseva@gmail.com", "Elvira", 0, "Zaytseva", "+375(33)9043868", new DateTime(2021, 9, 3, 0, 0, 0, 0, DateTimeKind.Unspecified), new Guid("7c71bb98-abe0-42e1-a36d-de0c9207ceb3") },
-                    { new Guid("7ee607ee-0f30-42b8-ba6a-46528047998e"), new DateTime(1991, 4, 16, 0, 0, 0, 0, DateTimeKind.Unspecified), "Alexander_Ptichkin@gmail.com", "Alexander", 0, "Ptichkin", "+375(25)4461701", new DateTime(2021, 9, 3, 0, 0, 0, 0, DateTimeKind.Unspecified), new Guid("7c71bb98-abe0-42e1-a36d-de0c9207ceb3") }
+                    { new Guid("f4d21a1d-1934-4305-906b-e1b59379855a"), new DateTime(1999, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), "Vasilii_Petrov@gmail.com", "Vasilii", 0, "Petrov", "+375(25)3678953", new DateTime(2021, 7, 3, 0, 0, 0, 0, DateTimeKind.Unspecified), new Guid("0885e0bb-4f66-4335-8962-526d779bf409") },
+                    { new Guid("a5b03a6a-185a-4d9d-a452-a3f209b22135"), new DateTime(1998, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), "Petr_Vasiliev@gmail.com", "Petr", 0, "Vasiliev", "+375(25)8150500", new DateTime(2021, 7, 3, 0, 0, 0, 0, DateTimeKind.Unspecified), new Guid("0885e0bb-4f66-4335-8962-526d779bf409") },
+                    { new Guid("61fb133a-0b95-4eec-954a-de24443cf73c"), new DateTime(1989, 10, 6, 0, 0, 0, 0, DateTimeKind.Unspecified), "Ivan_Bezfamilnyi@gmail.com", "Ivan", 0, "Bezfamilnyi", "+375(44)7896153", new DateTime(2021, 7, 7, 0, 0, 0, 0, DateTimeKind.Unspecified), new Guid("2ce55402-f386-48a2-827c-fa21bfc20131") },
+                    { new Guid("d75f5c55-27e5-4d21-b951-17f4e3ba7d60"), new DateTime(1989, 11, 8, 0, 0, 0, 0, DateTimeKind.Unspecified), "Mariya_Sidorova@gmail.com", "Mariya", 1, "Sidorova", "+375(25)2974619", new DateTime(2021, 7, 7, 0, 0, 0, 0, DateTimeKind.Unspecified), new Guid("2ce55402-f386-48a2-827c-fa21bfc20131") },
+                    { new Guid("fe7d3066-578c-4346-98a3-793cc03073d1"), new DateTime(1989, 12, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), "Vitali_Lukyanov@gmail.com", "Vitali", 0, "Lukyanov", "+375(25)8052227", new DateTime(2021, 9, 3, 0, 0, 0, 0, DateTimeKind.Unspecified), new Guid("819703e2-b431-407e-98d9-a2e7b9d5871e") },
+                    { new Guid("722a562f-09e3-4a9d-86ac-61860ca88664"), new DateTime(1995, 1, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), "Elvira_Zaytseva@gmail.com", "Elvira", 0, "Zaytseva", "+375(44)5458078", new DateTime(2021, 9, 3, 0, 0, 0, 0, DateTimeKind.Unspecified), new Guid("819703e2-b431-407e-98d9-a2e7b9d5871e") },
+                    { new Guid("99b52711-6f4e-40a9-bd54-de94e4f0a19d"), new DateTime(1991, 4, 16, 0, 0, 0, 0, DateTimeKind.Unspecified), "Alexander_Ptichkin@gmail.com", "Alexander", 0, "Ptichkin", "+375(25)4326986", new DateTime(2021, 9, 3, 0, 0, 0, 0, DateTimeKind.Unspecified), new Guid("819703e2-b431-407e-98d9-a2e7b9d5871e") }
                 });
 
             migrationBuilder.CreateIndex(
@@ -408,6 +436,11 @@ namespace EducationCenterCRM.DAL.EF.Migrations
                 name: "IX_Courses_TopicId",
                 table: "Courses",
                 column: "TopicId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Lessons_GroupId",
+                table: "Lessons",
+                column: "GroupId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_StudentGroups_CourseId",
@@ -456,6 +489,9 @@ namespace EducationCenterCRM.DAL.EF.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "Lessons");
 
             migrationBuilder.DropTable(
                 name: "StudentRequests");
