@@ -19,12 +19,12 @@ namespace EducationCenterCRM.DAL.EF.Repositories
 
         public List<Lesson> GetAll()
         {
-            return Context.Lessons.AsNoTracking().Include(s => s.Group).ToList();
+            return Context.Lessons.AsNoTracking().Include(s => s.Group).Include(s => s.Marks).ThenInclude(s => s.Student).ToList();
         }
 
         public async Task<List<Lesson>> GetAllAsync()
         {
-            return await Context.Lessons.AsNoTracking().Include(s => s.Group).ToListAsync();
+            return await Context.Lessons.AsNoTracking().Include(s => s.Group).Include(s => s.Marks).ThenInclude(s => s.Student).ToListAsync();
         }
 
         public Lesson Create(Lesson course)
@@ -55,7 +55,7 @@ namespace EducationCenterCRM.DAL.EF.Repositories
 
         public Lesson Get(Guid id)
         {
-            return Context.Lessons.Include(s => s.Group).FirstOrDefault(m => m.Id == id);
+            return Context.Lessons.Include(s => s.Group).Include(l => l.Marks).ThenInclude(s => s.Student).FirstOrDefault(m => m.Id == id);
         }
     }
 }

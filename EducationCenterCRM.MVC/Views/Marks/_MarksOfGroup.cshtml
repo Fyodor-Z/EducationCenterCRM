@@ -1,0 +1,66 @@
+﻿@using EducationCenterCRM.MVC.Models
+@model EducationCenterCRM.MVC.Models.StudentGroupModel
+
+
+<table class="table">
+    <thead>
+        <tr>
+
+            <th>
+                Student
+            </th>
+
+            @foreach (var lesson in Model.Lessons.OrderBy(l => l.LessonDate))
+            {
+                <th>
+                    <a asp-controller="Lessons" asp-action="Details" asp-route-id="@lesson.Id">@lesson.LessonDate.Date.ToShortDateString()</a>
+                </th>
+            }
+            <th>
+                Average
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var student in Model.Students)
+        {
+            <tr>
+                <td>
+                    <a asp-controller="Students" asp-action="Details" asp-route-id="@student.Id">@student.FullName</a>
+                </td>
+                @foreach (var lesson in Model.Lessons.OrderBy(l => l.LessonDate))
+                {
+                    var studentScoreForLesson = -1;
+                    @foreach (var mark in student.Marks)
+                    {
+                        if (mark.LessonId == lesson.Id)
+                        {
+                            studentScoreForLesson = @mark.Score;
+                            break;
+                        }
+                    }
+                    if (studentScoreForLesson != -1)
+                    {
+                        <td>
+                            @studentScoreForLesson
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+
+                        </td>
+                    }
+                }
+
+                <td>
+                    @student.AverageScore
+                </td>
+
+            </tr>
+        }
+
+    </tbody>
+</table>
+

@@ -307,16 +307,63 @@ namespace EducationCenterCRM.DAL.EF.Contexts
             {
                 Id = Guid.NewGuid(),
                 GroupId = group1.Id,
-                LessonDate = DateTime.Today
+                LessonDate = DateTime.Today.AddDays(-2)
             };
 
             var lesson2 = new Lesson()
             {
                 Id = Guid.NewGuid(),
                 GroupId = group1.Id,
-                LessonDate = DateTime.Today
+                LessonDate = DateTime.Today.AddDays(-3)
             };
-            modelBuilder.Entity<Lesson>().HasData(lesson1, lesson2);
+
+            var lesson3 = new Lesson()
+            {
+                Id = Guid.NewGuid(),
+                GroupId = group1.Id,
+                LessonDate = DateTime.Today.AddDays(-5)
+            };
+
+            modelBuilder.Entity<Lesson>().HasData(lesson1, lesson2, lesson3);
+
+            var mark1 = new Mark()
+            {
+                Id = Guid.NewGuid(),
+                LessonId = lesson1.Id,
+                StudentId = student1.Id,
+                Score = 8
+            };
+            var mark2 = new Mark()
+            {
+                Id = Guid.NewGuid(),
+                LessonId = lesson1.Id,
+                StudentId = student2.Id,
+                Score = 7
+            };
+            var mark3 = new Mark()
+            {
+                Id = Guid.NewGuid(),
+                LessonId = lesson2.Id,
+                StudentId = student1.Id,
+                Score = 9
+            };
+            var mark4 = new Mark()
+            {
+                Id = Guid.NewGuid(),
+                LessonId = lesson2.Id,
+                StudentId = student2.Id,
+                Score = 7
+            };
+
+            var mark5 = new Mark()
+            {
+                Id = Guid.NewGuid(),
+                LessonId = lesson3.Id,
+                StudentId = student2.Id,
+                Score = 7
+            };
+
+            modelBuilder.Entity<Mark>().HasData(mark1, mark2, mark3, mark4, mark5);
         }
     }
 }

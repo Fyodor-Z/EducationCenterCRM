@@ -17,6 +17,7 @@ namespace EducationCenterCRM.MVC.Models
         public Guid GroupId { get; set; }
 
         public StudentGroupModel Group { get; set; }
+        public virtual IEnumerable<MarkModel> Marks { get; set; }
 
     }
 }

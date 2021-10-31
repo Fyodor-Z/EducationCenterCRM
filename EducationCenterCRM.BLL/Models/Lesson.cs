@@ -11,6 +11,7 @@ namespace EducationCenterCRM.BLL.Models
         public Guid GroupId { get; set; }
 
         public virtual StudentGroup Group { get; set; }
+        public virtual IEnumerable<Mark> Marks { get; set; }
 
     }
 }

@@ -16,6 +16,7 @@ namespace EducationCenterCRM.BLL.Models
         public GroupStatus Status { get; set; }
 
         public virtual IEnumerable<Student> Students { get; set; }
+        public virtual IEnumerable<Lesson> Lessons { get; set; }
 
     }
 

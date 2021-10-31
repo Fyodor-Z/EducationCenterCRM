@@ -116,6 +116,12 @@ namespace EducationCenterCRM.MVC.Controllers
             }
         }
 
+        public IActionResult ShowGroupMarks(Guid id)
+        {
+            var studentGroup = _studentGroupService.GetById(id);
+            return View(_mapper.Map<StudentGroupModel>(studentGroup));
+        }
+
 
     }
 }

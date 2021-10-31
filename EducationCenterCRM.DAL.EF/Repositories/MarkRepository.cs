@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace EducationCenterCRM.DAL.EF.Repositories
 {
-    class MarkRepository: IRepository<Mark>
+    public class MarkRepository: IRepository<Mark>
     {
         private ApplicationContext Context { get; set; }
         public MarkRepository(ApplicationContext context)

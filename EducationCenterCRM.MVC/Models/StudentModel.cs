@@ -18,5 +18,22 @@ namespace EducationCenterCRM.MVC.Models
         public virtual StudentGroupModel? StudentGroup { get; set; }
         [Required(ErrorMessage = "Please choose group")]
         public Guid? StudentGroupId { get; set; }
+        public virtual IEnumerable<Mark> Marks { get; set; }
+
+        public double AverageScore
+        {
+            get
+            {
+                if (Marks.Count() != 0)
+                {
+                    return Marks.Select(m => m.Score).Average();
+                }
+                else
+                {
+                    return 0;
+                }
+               
+            }
+        }
     }
 }

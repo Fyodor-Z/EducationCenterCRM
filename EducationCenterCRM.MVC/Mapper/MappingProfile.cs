@@ -29,6 +29,8 @@ namespace EducationCenterCRM.MVC.Mapper
                 .ReverseMap();
             CreateMap<Lesson, LessonModel>()
                 .ReverseMap();
+            CreateMap<Mark, MarkModel>()
+                .ReverseMap();
         }
     }
 }
