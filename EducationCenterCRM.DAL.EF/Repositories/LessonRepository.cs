@@ -55,7 +55,7 @@ namespace EducationCenterCRM.DAL.EF.Repositories
 
         public Lesson Get(Guid id)
         {
-            return Context.Lessons.Include(s => s.Group).Include(l => l.Marks).ThenInclude(s => s.Student).FirstOrDefault(m => m.Id == id);
+            return Context.Lessons.Include(l => l.Group).ThenInclude(g =>g.Students).Include(l => l.Marks).ThenInclude(s => s.Student).FirstOrDefault(m => m.Id == id);
         }
     }
 }

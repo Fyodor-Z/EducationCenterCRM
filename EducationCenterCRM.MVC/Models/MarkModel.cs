@@ -12,6 +12,7 @@ namespace EducationCenterCRM.MVC.Models
     {
         public Guid LessonId { get; set; }
         public LessonModel Lesson { get; set; }
+        [Required(ErrorMessage = "Please choose student")]
         public Guid StudentId { get; set; }
         public StudentModel Student { get; set; }
         [Range(1, 10, ErrorMessage = "Score has to be from 1 to 10")]
