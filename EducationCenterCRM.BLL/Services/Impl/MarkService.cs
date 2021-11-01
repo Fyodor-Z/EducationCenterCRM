@@ -34,16 +34,16 @@ namespace EducationCenterCRM.BLL.Services.Impl
             return _repository.Get(id);
         }
 
-        public Mark Create(Mark group)
+        public Mark Create(Mark mark)
         {
-            _repository.Create(group);
-            return group;
+            _repository.Create(mark);
+            return mark;
         }
 
-        public Mark Update(Mark group)
+        public Mark Update(Mark mark)
         {
-            _repository.Update(group);
-            return group;
+            _repository.Update(mark);
+            return mark;
         }
 
         public void Delete(Guid id)

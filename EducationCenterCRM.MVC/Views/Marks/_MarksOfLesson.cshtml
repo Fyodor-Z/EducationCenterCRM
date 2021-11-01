@@ -26,14 +26,12 @@
                 </td>
                
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Edit", "EditScore", "Marks", new { id = item.Id }) |
                     @Html.ActionLink("Delete", "Delete", new { id = item.Id })
                 </td>
             </tr>
         }
-        <tr>
-            <th><div class="text-info">Total: @Model.Count()</div></th>
-        </tr>
+
     </tbody>
 </table>
 

@@ -53,9 +53,17 @@ namespace EducationCenterCRM.DAL.EF.Repositories
             return Get(id);
         }
 
+        //public Mark UpdateScore(Mark model)
+        //{
+        //    Context.Entry(model).Property("Score").CurrentValue = model.Score;
+        //    Context.SaveChanges();
+        //    var id = model.Id;
+        //    return Get(id);
+        //}
+
         public Mark Get(Guid id)
         {
-            return Context.Marks.Include(s => s.Student).Include(s => s.Lesson).FirstOrDefault(m => m.Id == id);
+            return Context.Marks.Include(s => s.Student).Include(s => s.Lesson).ThenInclude(s => s.Group).FirstOrDefault(m => m.Id == id);
         }
     }
 }

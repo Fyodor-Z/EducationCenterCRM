@@ -17,7 +17,7 @@ namespace EducationCenterCRM.MVC.Controllers
         private readonly IEntityService<Lesson> _lessonService;
         private readonly IEntityService<StudentGroup> _groupService;
         private readonly IMapper _mapper;
-        public MarksController(IEntityService<Lesson> lessonService, IEntityService<StudentGroup> groupService, IEntityService<Mark> markService,IMapper mapper)
+        public MarksController(IEntityService<Lesson> lessonService, IEntityService<StudentGroup> groupService, IEntityService<Mark> markService, IMapper mapper)
         {
             _markService = markService;
             _lessonService = lessonService;
@@ -44,7 +44,7 @@ namespace EducationCenterCRM.MVC.Controllers
             {
                 return View("ErrorMarks", markModel);
             }
-            
+
         }
         [HttpPost]
         public IActionResult AddMarkToLesson(MarkModel markModel)
@@ -52,6 +52,7 @@ namespace EducationCenterCRM.MVC.Controllers
             if (ModelState.IsValid)
             {
                 var mark = _markService.Create(_mapper.Map<Mark>(markModel));
+                //RedirectToAction("Edit", "Lessons", new { id = mark.LessonId });
                 var lesson = mark.Lesson;
                 return View("~/Views/Lessons/Edit.cshtml", _mapper.Map<LessonModel>(lesson));
             }
@@ -59,6 +60,30 @@ namespace EducationCenterCRM.MVC.Controllers
             {
                 return View();
             }
+        }
+
+        [HttpGet]
+        public IActionResult EditScore(Guid id)
+        {
+            var mark = _markService.GetById(id);
+            return View(_mapper.Map<MarkModel>(mark));
+        }
+
+        [HttpPost]
+        public IActionResult EditScore(MarkModel markModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var mark = _markService.Update(_mapper.Map<Mark>(markModel));
+                //RedirectToAction("Edit", "Lessons", new {id = mark.LessonId});
+                var lesson = _lessonService.GetById(mark.LessonId);
+                return View("~/Views/Lessons/Edit.cshtml", _mapper.Map<LessonModel>(lesson));
+            }
+            else
+            {
+                return View();
+            }
+
         }
     }
 }
