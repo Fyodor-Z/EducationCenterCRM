@@ -32,11 +32,12 @@
     <div class="col-md-4">
         <form asp-action=AddMarkToLesson>
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="LessonId" class="form-control" />
 
             <div class="form-group">
                 <label asp-for="Student"></label>
                 <select class="form-control" asp-for="StudentId">
-                    <option value="">Select student...</option>
+                    <option value="">Select student, who doesn't have mark...</option>
                     @{
                         if (ViewBag.Students != null && ViewBag.Students.Count > 0)
                         {

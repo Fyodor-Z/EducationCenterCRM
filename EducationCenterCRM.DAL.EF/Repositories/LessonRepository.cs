@@ -27,11 +27,11 @@ namespace EducationCenterCRM.DAL.EF.Repositories
             return await Context.Lessons.AsNoTracking().Include(s => s.Group).Include(s => s.Marks).ThenInclude(s => s.Student).ToListAsync();
         }
 
-        public Lesson Create(Lesson course)
+        public Lesson Create(Lesson lesson)
         {
-            Context.Lessons.Add(course);
+            Context.Lessons.Add(lesson);
             Context.SaveChanges();
-            var id = course.Id;
+            var id = lesson.Id;
             return Get(id);
         }
 

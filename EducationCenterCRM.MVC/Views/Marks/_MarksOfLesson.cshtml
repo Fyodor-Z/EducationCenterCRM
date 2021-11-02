@@ -4,7 +4,7 @@
 <table class="table">
     <thead>
         <tr>
-         
+
             <th>
                 Student
             </th>
@@ -15,20 +15,29 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+        @if (Model != null && Model.Any())
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <a asp-controller="Students" asp-action="Details" asp-route-id="@item.StudentId">@item.Student.FullName</a>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Score)
+                    </td>
+
+                    <td>
+                        @Html.ActionLink("Edit", "EditScore", "Marks", new { id = item.Id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    </td>
+                </tr>
+            }
+        }
+        else
         {
             <tr>
-              <td>
-                  <a asp-controller="Students" asp-action="Details" asp-route-id="@item.StudentId">@item.Student.FullName</a>
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Score)
-                </td>
-               
-                <td>
-                    @Html.ActionLink("Edit", "EditScore", "Marks", new { id = item.Id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                </td>
+                <td>No marks for this lesson</td>
             </tr>
         }
 

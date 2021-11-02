@@ -70,7 +70,11 @@ namespace EducationCenterCRM.MVC.Controllers
             if (ModelState.IsValid)
             {
                 var lesson = _lessonService.Create(_mapper.Map<Lesson>(lessonModel));
-                return View("Details", _mapper.Map<LessonModel>(lesson));
+                ViewBag.Title = "Edit lesson";
+                ViewBag.Action = "Edit";
+                var groups = _groupService.GetAll();
+                ViewBag.Groups = _mapper.Map<IEnumerable<StudentGroupModel>>(groups);
+                return View("Edit", _mapper.Map<LessonModel>(lesson));
             }
             else
             {

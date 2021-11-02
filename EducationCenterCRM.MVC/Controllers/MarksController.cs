@@ -85,5 +85,22 @@ namespace EducationCenterCRM.MVC.Controllers
             }
 
         }
+
+        [HttpGet]
+        public IActionResult Delete(Guid id)
+        {
+            var mark = _markService.GetById(id);
+            return View(_mapper.Map<MarkModel>(mark));
+        }
+
+        [HttpPost]
+        [ActionName("Delete")]
+        public IActionResult ConfirmDelete(Guid id)
+        {
+            var mark = _markService.GetById(id);
+            var lesson = _lessonService.GetById(mark.LessonId);
+            _markService.Delete(id);
+            return View("~/Views/Lessons/Edit.cshtml", _mapper.Map<LessonModel>(lesson));
+        }
     }
 }
