@@ -53,7 +53,7 @@ namespace EducationCenterCRM.MVC.Controllers
             {
                 var mark = _markService.Create(_mapper.Map<Mark>(markModel));
                 //RedirectToAction("Edit", "Lessons", new { id = mark.LessonId });
-                var lesson = mark.Lesson;
+                var lesson = _lessonService.GetById(mark.LessonId);
                 return View("~/Views/Lessons/Edit.cshtml", _mapper.Map<LessonModel>(lesson));
             }
             else
