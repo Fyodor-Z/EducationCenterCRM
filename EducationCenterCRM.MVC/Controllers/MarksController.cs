@@ -52,10 +52,7 @@ namespace EducationCenterCRM.MVC.Controllers
             if (ModelState.IsValid)
             {
                 var mark = _markService.Create(_mapper.Map<Mark>(markModel));
-                //RedirectToAction("Edit", "Lessons", new { id = mark.LessonId });
-                var lesson = _lessonService.GetById(mark.LessonId);
-                return RedirectToAction("Edit", "Lessons", new {id = lesson.Id});
-                //return View("~/Views/Lessons/Edit.cshtml", _mapper.Map<LessonModel>(lesson));
+                return RedirectToAction("Edit", "Lessons", new { id = mark.LessonId });
             }
             else
             {
@@ -76,10 +73,7 @@ namespace EducationCenterCRM.MVC.Controllers
             if (ModelState.IsValid)
             {
                 var mark = _markService.Update(_mapper.Map<Mark>(markModel));
-                //RedirectToAction("Edit", "Lessons", new {id = mark.LessonId});
-                var lesson = _lessonService.GetById(mark.LessonId);
-                return RedirectToAction("Edit", "Lessons", new { id = lesson.Id });
-                //return View("~/Views/Lessons/Edit.cshtml", _mapper.Map<LessonModel>(lesson));
+                return RedirectToAction("Edit", "Lessons", new { id = mark.LessonId });
             }
             else
             {
@@ -100,10 +94,9 @@ namespace EducationCenterCRM.MVC.Controllers
         public IActionResult ConfirmDelete(Guid id)
         {
             var mark = _markService.GetById(id);
-            var lesson = _lessonService.GetById(mark.LessonId);
+            var lessonId = mark.LessonId;
             _markService.Delete(id);
-            return RedirectToAction("Edit", "Lessons", new { id = lesson.Id });
-            //return View("~/Views/Lessons/Edit.cshtml", _mapper.Map<LessonModel>(lesson));
+            return RedirectToAction("Edit", "Lessons", new { id = lessonId });
         }
     }
 }
