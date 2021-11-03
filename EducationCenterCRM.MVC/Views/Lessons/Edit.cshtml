@@ -53,16 +53,19 @@
 
 <hr />
 
-<div>
-    @Html.ActionLink("Add mark to lesson", "AddMarkToLesson","Marks",new{lessonId = Model.Id})
-</div>
+@if (ViewBag.Action == "Edit")
+{
+    <div>
+        @Html.ActionLink("Add mark to lesson", "AddMarkToLesson", "Marks", new { lessonId = Model.Id })
+    </div>
 
-<hr />
-<div>
-    <h4>Marks</h4>
-    @await Html.PartialAsync("~/Views/Marks/_MarksOfLesson.cshtml", Model.Marks)
-</div>
+    <hr />
+    <div>
+        <h4>Marks</h4>
+        @await Html.PartialAsync("~/Views/Marks/_MarksOfLesson.cshtml", Model.Marks)
+    </div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
 }

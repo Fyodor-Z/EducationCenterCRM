@@ -54,7 +54,8 @@ namespace EducationCenterCRM.MVC.Controllers
                 var mark = _markService.Create(_mapper.Map<Mark>(markModel));
                 //RedirectToAction("Edit", "Lessons", new { id = mark.LessonId });
                 var lesson = _lessonService.GetById(mark.LessonId);
-                return View("~/Views/Lessons/Edit.cshtml", _mapper.Map<LessonModel>(lesson));
+                return RedirectToAction("Edit", "Lessons", new {id = lesson.Id});
+                //return View("~/Views/Lessons/Edit.cshtml", _mapper.Map<LessonModel>(lesson));
             }
             else
             {
@@ -77,7 +78,8 @@ namespace EducationCenterCRM.MVC.Controllers
                 var mark = _markService.Update(_mapper.Map<Mark>(markModel));
                 //RedirectToAction("Edit", "Lessons", new {id = mark.LessonId});
                 var lesson = _lessonService.GetById(mark.LessonId);
-                return View("~/Views/Lessons/Edit.cshtml", _mapper.Map<LessonModel>(lesson));
+                return RedirectToAction("Edit", "Lessons", new { id = lesson.Id });
+                //return View("~/Views/Lessons/Edit.cshtml", _mapper.Map<LessonModel>(lesson));
             }
             else
             {
@@ -100,7 +102,8 @@ namespace EducationCenterCRM.MVC.Controllers
             var mark = _markService.GetById(id);
             var lesson = _lessonService.GetById(mark.LessonId);
             _markService.Delete(id);
-            return View("~/Views/Lessons/Edit.cshtml", _mapper.Map<LessonModel>(lesson));
+            return RedirectToAction("Edit", "Lessons", new { id = lesson.Id });
+            //return View("~/Views/Lessons/Edit.cshtml", _mapper.Map<LessonModel>(lesson));
         }
     }
 }
