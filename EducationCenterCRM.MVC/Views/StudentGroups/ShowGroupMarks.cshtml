@@ -55,7 +55,7 @@
 </div>
 
 <div>
-    <a asp-action="Details" asp-route-id ="@Model.Id">Back to group</a>
+    <a asp-action="Details" asp-route-id="@Model.Id">Back to group</a>
 </div>
 <hr />
 <div>
@@ -63,5 +63,7 @@
 
     @await Html.PartialAsync("~/Views/Marks/_MarksOfGroup.cshtml", Model)
 </div>
+
+<a asp-action="ExportGroupMarks" asp-route-id="@Model.Id" class="btn btn-info">Download as XLS</a>
 
 

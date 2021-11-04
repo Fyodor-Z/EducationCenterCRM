@@ -41,7 +41,7 @@ namespace EducationCenterCRM.MVC
             services.AddScoped<IRepository<Student>, StudentRepository>();
             services.AddScoped<IEntityService<Teacher>, TeacherService>();
             services.AddScoped<IRepository<Teacher>, BaseRepository<Teacher>>();
-            services.AddScoped<IEntityService<StudentGroup>, StudentGroupService>();
+            services.AddScoped<IStudentGroupService, StudentGroupService>();
             services.AddScoped<IRepository<StudentGroup>, StudentGroupRepository>();
             services.AddScoped<IEntityService<Course>, CourseService>();
             services.AddScoped<IRepository<Course>, CourseRepository>();

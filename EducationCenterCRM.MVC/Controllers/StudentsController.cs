@@ -18,8 +18,8 @@ namespace EducationCenterCRM.MVC.Controllers
     {
         private readonly IEntityService<Student> _studentsService;
         private readonly IMapper _mapper;
-        private readonly IEntityService<StudentGroup> _studentGroupService;
-        public StudentsController(IEntityService<Student> studentService, IMapper mapper, IEntityService<StudentGroup> studentGroupService)
+        private readonly IStudentGroupService _studentGroupService;
+        public StudentsController(IEntityService<Student> studentService, IMapper mapper, IStudentGroupService studentGroupService)
         {
             _studentsService = studentService;
             _mapper = mapper;

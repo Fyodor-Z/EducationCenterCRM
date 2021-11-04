@@ -14,9 +14,9 @@ namespace EducationCenterCRM.MVC.Controllers
     public class LessonsController : Controller
     {
         private readonly IEntityService<Lesson> _lessonService;
-        private readonly IEntityService<StudentGroup> _groupService;
+        private readonly IStudentGroupService _groupService;
         private readonly IMapper _mapper;
-        public LessonsController(IEntityService<Lesson> lessonService, IEntityService<StudentGroup> groupService, IMapper mapper)
+        public LessonsController(IEntityService<Lesson> lessonService, IStudentGroupService groupService, IMapper mapper)
         {
             _lessonService = lessonService;
             _groupService = groupService;

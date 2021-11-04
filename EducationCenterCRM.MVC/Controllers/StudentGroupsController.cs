@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 using AutoMapper;
 using EducationCenterCRM.BLL.Models;
@@ -8,17 +9,18 @@ using EducationCenterCRM.BLL.Services;
 using EducationCenterCRM.BLL.Services.Interfaces;
 using EducationCenterCRM.MVC.Models;
 using Microsoft.AspNetCore.Authorization;
+using ClosedXML.Excel;
 
 namespace EducationCenterCRM.MVC.Controllers
 {
     [Authorize]
     public class StudentGroupsController : Controller
     {
-        private readonly IEntityService<StudentGroup> _studentGroupService;
+        private readonly IStudentGroupService _studentGroupService;
         private readonly IEntityService<Teacher> _teacherService;
         private readonly IEntityService<Course> _courseService;
         private readonly IMapper _mapper;
-        public StudentGroupsController(IEntityService<StudentGroup> studentGroupService, IEntityService<Teacher> teacherService, IEntityService<Course> courseService, IMapper mapper)
+        public StudentGroupsController(IStudentGroupService studentGroupService, IEntityService<Teacher> teacherService, IEntityService<Course> courseService, IMapper mapper)
         {
             _studentGroupService = studentGroupService;
             _mapper = mapper;
@@ -31,7 +33,7 @@ namespace EducationCenterCRM.MVC.Controllers
             var studentGroups = await _studentGroupService.GetAllAsync();
             return View(_mapper.Map<IEnumerable<StudentGroupModel>>(studentGroups));
         }
-        
+
         public IActionResult Details(Guid id)
         {
             var studentGroup = _studentGroupService.GetById(id);
@@ -58,7 +60,7 @@ namespace EducationCenterCRM.MVC.Controllers
         {
             ViewBag.Title = "Edit group";
             ViewBag.Action = "Edit";
-            
+
             if (ModelState.IsValid)
             {
                 var group = _studentGroupService.Update(_mapper.Map<StudentGroup>(groupModel));
@@ -121,7 +123,21 @@ namespace EducationCenterCRM.MVC.Controllers
             var studentGroup = _studentGroupService.GetById(id);
             return View(_mapper.Map<StudentGroupModel>(studentGroup));
         }
+        public IActionResult ExportGroupMarks(Guid id)
+        {
+            var content = _studentGroupService.ExportGroupMarks(id, out string fileName);
 
-
+            return File(
+                content,
+                "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                fileName);
+        }
     }
+
 }
+    
+
+
+
+
+
