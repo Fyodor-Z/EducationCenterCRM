@@ -1,0 +1,13 @@
+﻿@using EducationCenterCRM.MVC.Models
+@model EducationCenterCRM.MVC.Models.MarkModel
+@{
+    ViewData["Title"] = "Add mark";
+}
+
+<h1>@ViewData["Title"] </h1>
+<h2 style="color: red">
+    All student have already got their marks!
+</h2>
+<div>
+    <a asp-controller="Lessons" asp-action="Edit" asp-route-id="@Model.LessonId">Back to lesson</a>
+</div>

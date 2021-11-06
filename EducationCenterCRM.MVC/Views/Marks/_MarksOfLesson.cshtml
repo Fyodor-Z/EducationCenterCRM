@@ -1,0 +1,46 @@
+﻿@model IEnumerable<EducationCenterCRM.MVC.Models.MarkModel>
+
+
+<table class="table">
+    <thead>
+        <tr>
+
+            <th>
+                Student
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Score)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <a asp-controller="Students" asp-action="Details" asp-route-id="@item.StudentId">@item.Student.FullName</a>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Score)
+                    </td>
+
+                    <td>
+                        @Html.ActionLink("Edit", "EditScore", "Marks", new { id = item.Id }) |
+                        @Html.ActionLink("Delete", "Delete", "Marks", new { id = item.Id })
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td>No marks for this lesson</td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+

@@ -41,12 +41,17 @@ namespace EducationCenterCRM.MVC
             services.AddScoped<IRepository<Student>, StudentRepository>();
             services.AddScoped<IEntityService<Teacher>, TeacherService>();
             services.AddScoped<IRepository<Teacher>, BaseRepository<Teacher>>();
-            services.AddScoped<IEntityService<StudentGroup>, StudentGroupService>();
+            services.AddScoped<IStudentGroupService, StudentGroupService>();
             services.AddScoped<IRepository<StudentGroup>, StudentGroupRepository>();
             services.AddScoped<IEntityService<Course>, CourseService>();
             services.AddScoped<IRepository<Course>, CourseRepository>();
             services.AddScoped<IRepository<Topic>, BaseRepository<Topic>>();
             services.AddScoped<IEntityService<Topic>, EntityService<Topic>>();
+            services.AddScoped<IEntityService<Lesson>, LessonService>();
+            services.AddScoped<IRepository<Lesson>, LessonRepository>();
+            services.AddScoped<IEntityService<Mark>, MarkService>();
+            services.AddScoped<IRepository<Mark>, MarkRepository>();
+
             services.AddControllersWithViews();
 
             // Auto Mapper Configurations

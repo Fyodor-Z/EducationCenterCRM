@@ -1,0 +1,58 @@
+﻿@using EducationCenterCRM.MVC.Models
+@model EducationCenterCRM.MVC.Models.MarkModel
+
+@{
+    ViewData["Title"] = "Delete mark";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div>
+    <h4>Lesson</h4>
+</div>
+
+<dt class="col-sm-2">
+    @Html.DisplayNameFor(model => model.Lesson.LessonDate)
+</dt>
+<dd class="col-sm-10">
+    @Html.DisplayFor(model => model.Lesson.LessonDate)
+</dd>
+
+<dt class="col-sm-2">
+    @Html.DisplayNameFor(model => model.Lesson.Group)
+</dt>
+<dd class="col-sm-10">
+    @Html.DisplayFor(model => model.Lesson.Group.Title)
+</dd>
+
+<hr>
+<div>
+    <h4>Student</h4>
+</div>
+
+<dt class="col-sm-2">
+    @Html.DisplayNameFor(model => model.Student)
+</dt>
+<dd class="col-sm-10">
+    @Html.DisplayFor(model => model.Student.FullName)
+</dd>
+
+<hr>
+
+<dt class="col-sm-2">
+    @Html.DisplayNameFor(model => model.Score)
+</dt>
+<dd class="col-sm-10">
+    @Html.DisplayFor(model => model.Score)
+</dd>
+
+
+<form asp-action="Delete" asp-controller="Marks" asp-route-id="@Model.Id">
+    <input type="submit" value="Delete" class="btn btn-danger" /> |
+    <a asp-controller="Lessons" asp-action="Edit" asp-route-id="@Model.LessonId">Back to lesson</a>
+</form>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -17,6 +17,10 @@ namespace EducationCenterCRM.DAL.EF.Contexts
 
         public DbSet<StudentRequest> StudentRequests { get; set; }
 
+        public DbSet<Lesson> Lessons { get; set; }
+
+        public DbSet<Mark> Marks { get; set; }
+
         public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
         {
         }

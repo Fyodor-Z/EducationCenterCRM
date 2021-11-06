@@ -59,7 +59,7 @@ namespace EducationCenterCRM.DAL.EF.Repositories
 
         public StudentGroup Get(Guid id)
         {
-            return Context.StudentGroups.Include(s => s.Teacher).Include(s => s.Students).Include(s => s.Course).FirstOrDefault(m => m.Id == id);
+            return Context.StudentGroups.Include(s => s.Teacher).Include(s => s.Students).ThenInclude(s=> s.Marks).Include(s => s.Course).Include(g => g.Lessons).FirstOrDefault(m => m.Id == id);
         }
     }
 }

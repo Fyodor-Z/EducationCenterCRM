@@ -2,7 +2,7 @@
 @model EducationCenterCRM.MVC.Models.StudentGroupModel
 
 @{
-    ViewData["Title"] = Model.Title + " group information";
+    ViewData["Title"] = Model.Title + " group score sheet";
 }
 
 <h1>@ViewData["Title"]</h1>
@@ -55,21 +55,15 @@
 </div>
 
 <div>
-    @Html.ActionLink("Edit group", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Delete group", "Delete", new { id = Model.Id })|
-    <a asp-action="Index">Back to groups list</a>
+    <a asp-action="Details" asp-route-id="@Model.Id">Back to group</a>
 </div>
 <hr />
 <div>
-    <a asp-action="ShowGroupMarks"  asp-route-id="@Model.Id" class="btn btn-info">Show score sheet for the group</a>
+    <h4> @Model.Title group marks</h4>
+
+    @await Html.PartialAsync("~/Views/Marks/_MarksOfGroup.cshtml", Model)
 </div>
 
-<hr />
-<div>
-    <h4> @Model.Title group students</h4>
-
-    @await Html.PartialAsync("~/Views/Students/_StudentsList.cshtml", Model.Students)
-</div>
-
+<a asp-action="ExportGroupMarks" asp-route-id="@Model.Id" class="btn btn-info">Download as XLS</a>
 
 
