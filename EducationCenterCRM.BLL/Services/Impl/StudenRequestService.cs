@@ -8,7 +8,7 @@ using EducationCenterCRM.DAL;
 
 namespace EducationCenterCRM.BLL.Services.Impl
 {
-    public class StudentRequestService: IStudentRequestService
+    public class StudentRequestService : IStudentRequestService
     {
         private readonly IRepository<StudentRequest> _repository;
 
@@ -45,6 +45,21 @@ namespace EducationCenterCRM.BLL.Services.Impl
         public void Delete(Guid id)
         {
             _repository.Delete(id);
+        }
+
+        public StudentRequest ChangeStatus(Guid id)
+        {
+            var studentRequest = _repository.Get(id);
+            if (studentRequest.Status == RequestStatus.Processed)
+            {
+                studentRequest.Status = RequestStatus.Unprocessed;
+            }
+            else
+            {
+                studentRequest.Status = RequestStatus.Processed;
+            }
+
+            return _repository.Update(studentRequest);
         }
     }
 }

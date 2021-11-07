@@ -22,13 +22,12 @@ namespace EducationCenterCRM.MVC.Controllers
             _courseService = courseService;
             _mapper = mapper;
         }
-
-
-        //public async Task<IActionResult> Index()
-        //{
-        //    var studentRequests = await _studentRequestService.GetAllAsync();
-        //    return View(_mapper.Map<IEnumerable<StudentRequestModel>>(studentRequests));
-        //}
+        public async Task<IActionResult> Index()
+        {
+            var studentRequests = await _studentRequestService.GetAllAsync();
+            studentRequests = studentRequests.OrderByDescending(s => s.Created);
+            return View(_mapper.Map<IEnumerable<StudentRequestModel>>(studentRequests));
+        }
 
         [Authorize(Roles = "admin, manager")]
         public IActionResult Details(Guid id)
@@ -37,7 +36,7 @@ namespace EducationCenterCRM.MVC.Controllers
             return View(_mapper.Map<StudentRequestModel>(studentRequest));
         }
 
-        
+
         [HttpGet]
         public IActionResult Create()
         {
@@ -60,7 +59,11 @@ namespace EducationCenterCRM.MVC.Controllers
             }
         }
 
-
+        public IActionResult ChangeStatus(Guid id)
+        {
+            var studentRequest = _studentRequestService.ChangeStatus(id);
+            return RedirectToAction("Details", new { id = studentRequest.Id });
+        }
     }
 }
 

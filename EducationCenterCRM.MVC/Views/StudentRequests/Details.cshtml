@@ -60,13 +60,14 @@
 <div>
     @if (Model.Status == RequestStatus.Processed)
     {
-        Html.ActionLink("Mark as unprocessed | ", "ChangeStatus", new {id = Model.Id});
-
+        <a asp-action="ChangeStatus" asp-route-id="@Model.Id">Mark as unprocessed | </a>
     }
     else
     {
-        Html.ActionLink("Mark as processed | ", "ChangeStatus", new {id = Model.Id});
+        <a asp-action="ChangeStatus" asp-route-id="@Model.Id">Mark as processed | </a>
     }
-   
     <a asp-action="Index">Back to List</a>
+</div>
+<div>
+    <a asp-action="CreateFromRequest" asp-controller="Students" asp-route-id="@Model.Id" class="btn btn-success">Create student from request</a>
 </div>

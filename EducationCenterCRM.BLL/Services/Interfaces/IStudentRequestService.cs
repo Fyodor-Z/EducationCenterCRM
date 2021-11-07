@@ -8,6 +8,6 @@ namespace EducationCenterCRM.BLL.Services.Interfaces
 {
     public interface IStudentRequestService : IEntityService<StudentRequest>
     {
-        
+        StudentRequest ChangeStatus(Guid id);
     }
 }
