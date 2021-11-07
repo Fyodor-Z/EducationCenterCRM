@@ -30,13 +30,14 @@ namespace EducationCenterCRM.MVC.Controllers
         //    return View(_mapper.Map<IEnumerable<StudentRequestModel>>(studentRequests));
         //}
 
+        [Authorize(Roles = "admin, manager")]
         public IActionResult Details(Guid id)
         {
             var studentRequest = _studentRequestService.GetById(id);
             return View(_mapper.Map<StudentRequestModel>(studentRequest));
         }
 
-        [Authorize(Roles = "admin, manager")]
+        
         [HttpGet]
         public IActionResult Create()
         {
