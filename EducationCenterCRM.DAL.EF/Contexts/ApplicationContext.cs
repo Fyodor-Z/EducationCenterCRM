@@ -27,12 +27,18 @@ namespace EducationCenterCRM.DAL.EF.Contexts
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Student>()
+                .HasOne(s => s.StudentGroup)
+                .WithMany(s => s.Students)
+                .OnDelete(DeleteBehavior.SetNull);
+
             modelBuilder.Seed();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=EducCenterCRMDb;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=EducCenterCRMDb1;Trusted_Connection=True;");
         }
 
     }
