@@ -19,11 +19,13 @@ namespace EducationCenterCRM.MVC.Controllers
         private readonly IEntityService<Student> _studentsService;
         private readonly IMapper _mapper;
         private readonly IStudentGroupService _studentGroupService;
-        public StudentsController(IEntityService<Student> studentService, IMapper mapper, IStudentGroupService studentGroupService)
+        private readonly IStudentRequestService _studentRequestService;
+        public StudentsController(IEntityService<Student> studentService, IMapper mapper, IStudentGroupService studentGroupService, IStudentRequestService studentRequestService)
         {
             _studentsService = studentService;
             _mapper = mapper;
             _studentGroupService = studentGroupService;
+            _studentRequestService = studentRequestService;
         }
         
         public async Task<IActionResult> Index()
@@ -84,6 +86,7 @@ namespace EducationCenterCRM.MVC.Controllers
             return View("Index", _mapper.Map<IEnumerable<StudentModel>>(students));
         }
 
+        [Authorize(Roles = "admin, manager")]
         [HttpGet]
         public IActionResult Create()
         {
@@ -95,7 +98,6 @@ namespace EducationCenterCRM.MVC.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "admin, manager")]
         public IActionResult Create(StudentModel studentModel)
         {
             ViewBag.Title = "Create new student";
@@ -111,6 +113,31 @@ namespace EducationCenterCRM.MVC.Controllers
             }
         }
 
+
+        [Authorize(Roles = "admin, manager")]
+        [HttpGet]
+        public IActionResult CreateFromRequest(Guid id)
+        {
+            var studentRequest = _studentRequestService.GetById(id);
+            
+            ViewBag.Action = "Create";
+            ViewBag.Title = "Create new student from request";
+            
+            var studentModel = new StudentModel()
+            {
+                Id = Guid.Empty,
+                FirstName = studentRequest.FirstName,
+                LastName = studentRequest.LastName,
+                Email = studentRequest.Email,
+                Phone = studentRequest.Phone
+            };
+
+            var groups = _studentGroupService.GetAll()
+                .Where(s => s.CourseId == studentRequest.CourseId)
+                .OrderBy(g => g.Title);
+            ViewBag.Groups = _mapper.Map<IEnumerable<StudentGroupModel>>(groups);
+            return View("Edit", studentModel);
+        }
 
     }
 }

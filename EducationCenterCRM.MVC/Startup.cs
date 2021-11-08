@@ -51,6 +51,8 @@ namespace EducationCenterCRM.MVC
             services.AddScoped<IRepository<Lesson>, LessonRepository>();
             services.AddScoped<IEntityService<Mark>, MarkService>();
             services.AddScoped<IRepository<Mark>, MarkRepository>();
+            services.AddScoped<IRepository<StudentRequest>, StudentRequestRepository>();
+            services.AddScoped<IStudentRequestService, StudentRequestService>();
 
             services.AddControllersWithViews();
 

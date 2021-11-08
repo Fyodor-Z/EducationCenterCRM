@@ -2,7 +2,7 @@
 {
     public enum RequestStatus
     {
-        Open,
-        Closed
+        Processed,
+        Unprocessed
     }
 }

@@ -4,7 +4,7 @@
     ViewData["Title"] = "Details of teacher " + Model.FullName;
 }
 
-<h1>Details</h1>
+<h1>@ViewData["Title"]</h1>
 
 <div>
     <h4>Teacher</h4>
@@ -23,6 +23,21 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.LastName)
         </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Phone)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Phone)
+        </dd>
+
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.BirthDate)
         </dt>
@@ -45,7 +60,7 @@
             Link to profile
         </dt>
         <dd class="col-sm-10">
-           <a href = "@Model.LinkToProfile"> @Model.LinkToProfile </a>
+            <a href="@Model.LinkToProfile"> @Model.LinkToProfile </a>
         </dd>
     </dl>
 </div>
