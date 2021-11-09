@@ -47,7 +47,7 @@
 @if (Model.HasPreviousPage)
 {
     <a asp-action="ShowGroupMarksPage"
-       asp-route-id="Model.Id"
+       asp-route-id="@Model.Id"
        asp-route-pageNumber="@(Model.PageNumber - 1)"
        class="btn btn-outline-dark">
         Previous lessons
@@ -56,7 +56,7 @@
 @if (Model.HasNextPage)
 {
     <a asp-action="ShowGroupMarksPage"
-       asp-route-id="Model.Id"
+       asp-route-id="@Model.Id"
        asp-route-pageNumber="@(Model.PageNumber + 1)"
        class="btn btn-outline-dark">
         Next lessons

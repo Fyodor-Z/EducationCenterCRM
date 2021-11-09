@@ -15,7 +15,7 @@ namespace EducationCenterCRM.MVC.Models.PageModels
             Lessons = lessons.OrderBy(l => l.LessonDate).Skip(pageSize*(pageNumber - 1)).Take(pageSize);
             Students = students;
             PageNumber = pageNumber;
-            TotalPages = (int)Math.Ceiling(Lessons.Count() / (double)pageSize);
+            TotalPages = (int)Math.Ceiling(lessons.Count() / (double)pageSize);
             Course = course;
         }
 
