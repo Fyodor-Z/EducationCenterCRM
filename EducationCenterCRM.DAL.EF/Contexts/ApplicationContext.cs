@@ -33,6 +33,11 @@ namespace EducationCenterCRM.DAL.EF.Contexts
                 .WithMany(s => s.Students)
                 .OnDelete(DeleteBehavior.SetNull);
 
+            modelBuilder.Entity<StudentGroup>()
+                .HasOne(t => t.Teacher)
+                .WithMany(t => t.StudentGroups)
+                .OnDelete(DeleteBehavior.SetNull);
+
             modelBuilder.Seed();
         }
     }

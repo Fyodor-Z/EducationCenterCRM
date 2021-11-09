@@ -10,6 +10,7 @@ using EducationCenterCRM.BLL.Services.Interfaces;
 using EducationCenterCRM.MVC.Models;
 using Microsoft.AspNetCore.Authorization;
 using ClosedXML.Excel;
+using EducationCenterCRM.MVC.Models.PageModels;
 
 namespace EducationCenterCRM.MVC.Controllers
 {
@@ -123,6 +124,22 @@ namespace EducationCenterCRM.MVC.Controllers
             var studentGroup = _studentGroupService.GetById(id);
             return View(_mapper.Map<StudentGroupModel>(studentGroup));
         }
+
+        public IActionResult ShowGroupMarksPage(Guid id, int pageNumber)
+        {
+            var studentGroup = _studentGroupService.GetById(id);
+            var pageViewGroupMarks = new PageViewGroupMarks(
+                studentGroup.Id,
+                studentGroup.Title,
+                _mapper.Map<IEnumerable<StudentModel>>(studentGroup.Students),
+                _mapper.Map<IEnumerable<LessonModel>>(studentGroup.Lessons),
+                studentGroup.Course.Title,
+                pageNumber,
+                3
+                );
+            return View("ShowGroupMarksPage", pageViewGroupMarks);
+        }
+
         public IActionResult ExportGroupMarks(Guid id)
         {
             var content = _studentGroupService.ExportGroupMarks(id, out string fileName);

@@ -9,5 +9,7 @@ namespace EducationCenterCRM.MVC.Models
     {
         public string? Bio { get; set; }
         public string LinkToProfile { get; set; }
+
+        public virtual IEnumerable<StudentGroupModel> StudentGroups { get; set; }
     }
 }
