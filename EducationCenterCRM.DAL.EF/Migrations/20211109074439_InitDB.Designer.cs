@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EducationCenterCRM.DAL.EF.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20211107213540_InitDB")]
+    [Migration("20211109074439_InitDB")]
     partial class InitDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -54,43 +54,43 @@ namespace EducationCenterCRM.DAL.EF.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("3bb64004-434d-4c7e-9c38-b747f49b5907"),
+                            Id = new Guid("04ea2320-2395-4487-a11d-61d3051b6acc"),
                             Description = "Introduction to C#",
                             DurationWeeks = 12,
                             Price = 1250m,
                             Program = "1. Getting Started",
                             Title = "Introduction to C#",
-                            TopicId = new Guid("11a8e567-a308-4553-9f4c-ffa77a1dccf2")
+                            TopicId = new Guid("d8dc60ff-93e5-4a3d-91db-ccbd1ccd185d")
                         },
                         new
                         {
-                            Id = new Guid("3a5ea877-217d-4f74-892a-5cc669fe4b05"),
+                            Id = new Guid("ddbc4e78-cae4-4972-9a34-0610b5270d9f"),
                             Description = "Introduction to Java",
                             DurationWeeks = 4,
                             Price = 1550m,
                             Program = "1. Getting Started",
                             Title = "Introduction to Web",
-                            TopicId = new Guid("8fb9864b-f51d-4218-9884-25d792a8a898")
+                            TopicId = new Guid("0e56cf50-8779-4d7c-8c9d-1ad679cb69ab")
                         },
                         new
                         {
-                            Id = new Guid("184ff06a-7656-47a8-95ce-64a33f6e59d1"),
+                            Id = new Guid("8dee92fd-f398-47e7-973b-27a2ad335de4"),
                             Description = "Web with ASP.NET",
                             DurationWeeks = 16,
                             Price = 1350m,
                             Program = "1. Controllers and MVC 2. WebAPI 3.Angular",
                             Title = "ASP.NET",
-                            TopicId = new Guid("11a8e567-a308-4553-9f4c-ffa77a1dccf2")
+                            TopicId = new Guid("d8dc60ff-93e5-4a3d-91db-ccbd1ccd185d")
                         },
                         new
                         {
-                            Id = new Guid("b8a323e7-8002-4a81-a4ad-6321ff3b6c8c"),
+                            Id = new Guid("c17214e2-de9c-4593-a9eb-8fc1a6546e18"),
                             Description = "Unity Game Development",
                             DurationWeeks = 16,
                             Price = 1850m,
                             Program = "1. What is Unity",
                             Title = "Unity",
-                            TopicId = new Guid("11a8e567-a308-4553-9f4c-ffa77a1dccf2")
+                            TopicId = new Guid("d8dc60ff-93e5-4a3d-91db-ccbd1ccd185d")
                         });
                 });
 
@@ -115,21 +115,21 @@ namespace EducationCenterCRM.DAL.EF.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("bc1764d5-4803-4302-bdcc-845d1206ed73"),
-                            GroupId = new Guid("278a61b6-c7e1-43f2-9177-8c78ae92c3e4"),
+                            Id = new Guid("695c2ba3-a861-4ab9-881f-2015a65b22a8"),
+                            GroupId = new Guid("d2ccdcf0-e5ed-4553-a27e-98c44db2e484"),
+                            LessonDate = new DateTime(2021, 11, 7, 0, 0, 0, 0, DateTimeKind.Local)
+                        },
+                        new
+                        {
+                            Id = new Guid("6989fb53-b9dc-4002-99f0-7fc6656540cc"),
+                            GroupId = new Guid("d2ccdcf0-e5ed-4553-a27e-98c44db2e484"),
                             LessonDate = new DateTime(2021, 11, 6, 0, 0, 0, 0, DateTimeKind.Local)
                         },
                         new
                         {
-                            Id = new Guid("9f03d7b6-ec13-4f65-9bea-af4ece24d7b3"),
-                            GroupId = new Guid("278a61b6-c7e1-43f2-9177-8c78ae92c3e4"),
-                            LessonDate = new DateTime(2021, 11, 5, 0, 0, 0, 0, DateTimeKind.Local)
-                        },
-                        new
-                        {
-                            Id = new Guid("6fe85cd5-0f64-4a6d-97fe-992ddcbc140e"),
-                            GroupId = new Guid("278a61b6-c7e1-43f2-9177-8c78ae92c3e4"),
-                            LessonDate = new DateTime(2021, 11, 3, 0, 0, 0, 0, DateTimeKind.Local)
+                            Id = new Guid("f3af6458-393f-446b-8cc0-40552c720abb"),
+                            GroupId = new Guid("d2ccdcf0-e5ed-4553-a27e-98c44db2e484"),
+                            LessonDate = new DateTime(2021, 11, 4, 0, 0, 0, 0, DateTimeKind.Local)
                         });
                 });
 
@@ -159,38 +159,38 @@ namespace EducationCenterCRM.DAL.EF.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("4f2e9b1f-1ff9-43e1-be4c-8c50cfa2c8b9"),
-                            LessonId = new Guid("bc1764d5-4803-4302-bdcc-845d1206ed73"),
+                            Id = new Guid("b4af8666-554e-403a-aa07-8f5094cb89a9"),
+                            LessonId = new Guid("695c2ba3-a861-4ab9-881f-2015a65b22a8"),
                             Score = 8,
-                            StudentId = new Guid("e817d036-86a2-406e-ac21-34f188ab888d")
+                            StudentId = new Guid("81f43ec3-a554-4edb-8c8a-6c5439eb8859")
                         },
                         new
                         {
-                            Id = new Guid("0b0b40e9-b6a3-44c9-a004-de9f4ffaae1b"),
-                            LessonId = new Guid("bc1764d5-4803-4302-bdcc-845d1206ed73"),
+                            Id = new Guid("3970274e-4740-436b-bc63-46c64892ebfb"),
+                            LessonId = new Guid("695c2ba3-a861-4ab9-881f-2015a65b22a8"),
                             Score = 7,
-                            StudentId = new Guid("f86fcbe5-ea94-4b6d-a83a-bfd2b3669453")
+                            StudentId = new Guid("d4a8d82d-15d3-4f84-b7a2-55ade17baeb8")
                         },
                         new
                         {
-                            Id = new Guid("52ebfc6b-8080-49f8-b1d1-ded77eeae55e"),
-                            LessonId = new Guid("9f03d7b6-ec13-4f65-9bea-af4ece24d7b3"),
+                            Id = new Guid("fb17d5ae-6e44-4488-80cc-5b0997f1e469"),
+                            LessonId = new Guid("6989fb53-b9dc-4002-99f0-7fc6656540cc"),
                             Score = 9,
-                            StudentId = new Guid("e817d036-86a2-406e-ac21-34f188ab888d")
+                            StudentId = new Guid("81f43ec3-a554-4edb-8c8a-6c5439eb8859")
                         },
                         new
                         {
-                            Id = new Guid("9f0dcc20-b848-44b1-b207-ad50f91480d8"),
-                            LessonId = new Guid("9f03d7b6-ec13-4f65-9bea-af4ece24d7b3"),
+                            Id = new Guid("ae3c6f45-692f-4f34-a756-e95be929b5a2"),
+                            LessonId = new Guid("6989fb53-b9dc-4002-99f0-7fc6656540cc"),
                             Score = 7,
-                            StudentId = new Guid("f86fcbe5-ea94-4b6d-a83a-bfd2b3669453")
+                            StudentId = new Guid("d4a8d82d-15d3-4f84-b7a2-55ade17baeb8")
                         },
                         new
                         {
-                            Id = new Guid("ea2ea6aa-066c-4195-95e9-890aff580290"),
-                            LessonId = new Guid("6fe85cd5-0f64-4a6d-97fe-992ddcbc140e"),
+                            Id = new Guid("acc1fa98-251b-439a-b39a-42b4446eb6c8"),
+                            LessonId = new Guid("f3af6458-393f-446b-8cc0-40552c720abb"),
                             Score = 7,
-                            StudentId = new Guid("f86fcbe5-ea94-4b6d-a83a-bfd2b3669453")
+                            StudentId = new Guid("d4a8d82d-15d3-4f84-b7a2-55ade17baeb8")
                         });
                 });
 
@@ -233,87 +233,87 @@ namespace EducationCenterCRM.DAL.EF.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("e817d036-86a2-406e-ac21-34f188ab888d"),
+                            Id = new Guid("81f43ec3-a554-4edb-8c8a-6c5439eb8859"),
                             BirthDate = new DateTime(1999, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "Vasilii_Petrov@gmail.com",
                             FirstName = "Vasilii",
                             Gender = 0,
                             LastName = "Petrov",
-                            Phone = "+375(29)9522838",
+                            Phone = "+375(25)9504069",
                             StartDate = new DateTime(2021, 7, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            StudentGroupId = new Guid("278a61b6-c7e1-43f2-9177-8c78ae92c3e4")
+                            StudentGroupId = new Guid("d2ccdcf0-e5ed-4553-a27e-98c44db2e484")
                         },
                         new
                         {
-                            Id = new Guid("f86fcbe5-ea94-4b6d-a83a-bfd2b3669453"),
+                            Id = new Guid("d4a8d82d-15d3-4f84-b7a2-55ade17baeb8"),
                             BirthDate = new DateTime(1998, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "Petr_Vasiliev@gmail.com",
                             FirstName = "Petr",
                             Gender = 0,
                             LastName = "Vasiliev",
-                            Phone = "+375(44)9996424",
+                            Phone = "+375(25)2950895",
                             StartDate = new DateTime(2021, 7, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            StudentGroupId = new Guid("278a61b6-c7e1-43f2-9177-8c78ae92c3e4")
+                            StudentGroupId = new Guid("d2ccdcf0-e5ed-4553-a27e-98c44db2e484")
                         },
                         new
                         {
-                            Id = new Guid("51e3b74d-33af-4359-82c6-569d2accfe4f"),
+                            Id = new Guid("e9d326e0-15e8-4277-9421-1b9b9c71dd9f"),
                             BirthDate = new DateTime(1989, 10, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "Ivan_Bezfamilnyi@gmail.com",
                             FirstName = "Ivan",
                             Gender = 0,
                             LastName = "Bezfamilnyi",
-                            Phone = "+375(29)4643947",
+                            Phone = "+375(29)1313524",
                             StartDate = new DateTime(2021, 7, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            StudentGroupId = new Guid("feee4be9-0eb1-49e4-aab2-35bf3aafa6fb")
+                            StudentGroupId = new Guid("4a893adf-e49e-4c1b-b34b-b3b807c3f39e")
                         },
                         new
                         {
-                            Id = new Guid("d4596823-8a46-4608-96af-3efab3bc0dbb"),
+                            Id = new Guid("60890e1f-6350-4e3c-a835-9307eba9eb0f"),
                             BirthDate = new DateTime(1989, 11, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "Mariya_Sidorova@gmail.com",
                             FirstName = "Mariya",
                             Gender = 1,
                             LastName = "Sidorova",
-                            Phone = "+375(29)8978666",
+                            Phone = "+375(44)9548769",
                             StartDate = new DateTime(2021, 7, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            StudentGroupId = new Guid("feee4be9-0eb1-49e4-aab2-35bf3aafa6fb")
+                            StudentGroupId = new Guid("4a893adf-e49e-4c1b-b34b-b3b807c3f39e")
                         },
                         new
                         {
-                            Id = new Guid("8e275e5c-243c-4fb3-a480-214594dbcf57"),
+                            Id = new Guid("5a70d8fe-b6c7-435e-9b83-3fb0cf7c5413"),
                             BirthDate = new DateTime(1989, 12, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "Vitali_Lukyanov@gmail.com",
                             FirstName = "Vitali",
                             Gender = 0,
                             LastName = "Lukyanov",
-                            Phone = "+375(33)9166154",
+                            Phone = "+375(29)9344140",
                             StartDate = new DateTime(2021, 9, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            StudentGroupId = new Guid("ad78301b-639e-423b-b5ff-3ae107662278")
+                            StudentGroupId = new Guid("66a74878-3dfd-4609-9b51-9918fc144d7c")
                         },
                         new
                         {
-                            Id = new Guid("0f868c0a-fc84-4dda-bacd-40316aadb904"),
+                            Id = new Guid("7a4f79e6-7bca-4af9-be3c-9ad19fb36fcb"),
                             BirthDate = new DateTime(1995, 1, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "Elvira_Zaytseva@gmail.com",
                             FirstName = "Elvira",
                             Gender = 0,
                             LastName = "Zaytseva",
-                            Phone = "+375(33)3946461",
+                            Phone = "+375(29)6739587",
                             StartDate = new DateTime(2021, 9, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            StudentGroupId = new Guid("ad78301b-639e-423b-b5ff-3ae107662278")
+                            StudentGroupId = new Guid("66a74878-3dfd-4609-9b51-9918fc144d7c")
                         },
                         new
                         {
-                            Id = new Guid("f49cc417-500d-4f51-9d35-fa7863e2951c"),
+                            Id = new Guid("1d2b801f-a6e5-45b8-9758-0f4573878c9a"),
                             BirthDate = new DateTime(1991, 4, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "Alexander_Ptichkin@gmail.com",
                             FirstName = "Alexander",
                             Gender = 0,
                             LastName = "Ptichkin",
-                            Phone = "+375(44)6742521",
+                            Phone = "+375(29)5459005",
                             StartDate = new DateTime(2021, 9, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            StudentGroupId = new Guid("ad78301b-639e-423b-b5ff-3ae107662278")
+                            StudentGroupId = new Guid("66a74878-3dfd-4609-9b51-9918fc144d7c")
                         });
                 });
 
@@ -346,26 +346,26 @@ namespace EducationCenterCRM.DAL.EF.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("278a61b6-c7e1-43f2-9177-8c78ae92c3e4"),
-                            CourseId = new Guid("184ff06a-7656-47a8-95ce-64a33f6e59d1"),
+                            Id = new Guid("d2ccdcf0-e5ed-4553-a27e-98c44db2e484"),
+                            CourseId = new Guid("8dee92fd-f398-47e7-973b-27a2ad335de4"),
                             Status = 0,
-                            TeacherId = new Guid("7941ba4e-2726-4ef9-a47d-fe11175298bf"),
+                            TeacherId = new Guid("2bfa5c8f-d60b-47a9-a76e-d42d2dc12317"),
                             Title = "ASP_21-1"
                         },
                         new
                         {
-                            Id = new Guid("feee4be9-0eb1-49e4-aab2-35bf3aafa6fb"),
-                            CourseId = new Guid("184ff06a-7656-47a8-95ce-64a33f6e59d1"),
+                            Id = new Guid("4a893adf-e49e-4c1b-b34b-b3b807c3f39e"),
+                            CourseId = new Guid("8dee92fd-f398-47e7-973b-27a2ad335de4"),
                             Status = 0,
-                            TeacherId = new Guid("2bdec0ad-12bd-4833-bc88-1c3d110f6cdf"),
+                            TeacherId = new Guid("f61a84e1-972f-45cf-aabb-77e3b3f0039e"),
                             Title = "ASP_21-2"
                         },
                         new
                         {
-                            Id = new Guid("ad78301b-639e-423b-b5ff-3ae107662278"),
-                            CourseId = new Guid("3a5ea877-217d-4f74-892a-5cc669fe4b05"),
+                            Id = new Guid("66a74878-3dfd-4609-9b51-9918fc144d7c"),
+                            CourseId = new Guid("ddbc4e78-cae4-4972-9a34-0610b5270d9f"),
                             Status = 0,
-                            TeacherId = new Guid("4983ccd4-3cdb-4285-9d29-8532afe4a3d5"),
+                            TeacherId = new Guid("d2a7286e-37a1-4f8a-a442-954d76a502cd"),
                             Title = "JS_21-1"
                         });
                 });
@@ -444,7 +444,7 @@ namespace EducationCenterCRM.DAL.EF.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("7941ba4e-2726-4ef9-a47d-fe11175298bf"),
+                            Id = new Guid("2bfa5c8f-d60b-47a9-a76e-d42d2dc12317"),
                             Bio = "Some information",
                             BirthDate = new DateTime(1986, 5, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "Petr_Reshetnikov@gmail.com",
@@ -452,11 +452,11 @@ namespace EducationCenterCRM.DAL.EF.Migrations
                             Gender = 0,
                             LastName = "Reshetnikov",
                             LinkToProfile = "https://www.linkedin.com/feed/",
-                            Phone = "+375(25)3927600"
+                            Phone = "+375(25)2418967"
                         },
                         new
                         {
-                            Id = new Guid("2bdec0ad-12bd-4833-bc88-1c3d110f6cdf"),
+                            Id = new Guid("f61a84e1-972f-45cf-aabb-77e3b3f0039e"),
                             Bio = "Some other information",
                             BirthDate = new DateTime(1989, 1, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "Mikhail_Andreev@gmail.com",
@@ -464,11 +464,11 @@ namespace EducationCenterCRM.DAL.EF.Migrations
                             Gender = 0,
                             LastName = "Andreev",
                             LinkToProfile = "https://www.linkedin.com/feed/",
-                            Phone = "+375(44)2794440"
+                            Phone = "+375(29)5553023"
                         },
                         new
                         {
-                            Id = new Guid("4983ccd4-3cdb-4285-9d29-8532afe4a3d5"),
+                            Id = new Guid("d2a7286e-37a1-4f8a-a442-954d76a502cd"),
                             Bio = "Some other information",
                             BirthDate = new DateTime(1989, 1, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "Natalia_Usovich@gmail.com",
@@ -476,7 +476,7 @@ namespace EducationCenterCRM.DAL.EF.Migrations
                             Gender = 1,
                             LastName = "Usovich",
                             LinkToProfile = "https://www.linkedin.com/feed/",
-                            Phone = "+375(33)6654976"
+                            Phone = "+375(29)4994125"
                         });
                 });
 
@@ -507,13 +507,13 @@ namespace EducationCenterCRM.DAL.EF.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("11a8e567-a308-4553-9f4c-ffa77a1dccf2"),
+                            Id = new Guid("d8dc60ff-93e5-4a3d-91db-ccbd1ccd185d"),
                             Description = ".Net (ASP.NET, Unity)",
                             Title = ".Net"
                         },
                         new
                         {
-                            Id = new Guid("8fb9864b-f51d-4218-9884-25d792a8a898"),
+                            Id = new Guid("0e56cf50-8779-4d7c-8c9d-1ad679cb69ab"),
                             Description = "JS, HTML, CSS",
                             Title = "Frontend"
                         });
@@ -637,33 +637,33 @@ namespace EducationCenterCRM.DAL.EF.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "dcfb967f-20f0-4e53-9367-3c2a63af61a4",
+                            Id = "6642f120-6040-4b76-a35c-88fe1a0b194d",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "61b3008c-023e-4b7f-9346-cfecda392374",
+                            ConcurrencyStamp = "40cac5d6-ad86-4d85-8130-337180947867",
                             Email = "admin@ECCRM.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@ECCRM.COM",
                             NormalizedUserName = "ADMIN@ECCRM.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEFhWG/wjiHUolnm++6zZ7ZI5miSf9WCrsxJrcupIT7hTrJwApKrEpzysDlSa1UVQ2A==",
+                            PasswordHash = "AQAAAAEAACcQAAAAECq4NSvXMLdOd9h2PZaczKtLtrPYbOT17wOK0rEL6S2krykR/i0qVmTz+UsDTQj0Jg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "eaf06bd4-198f-490c-a0fc-94dc171277b8",
+                            SecurityStamp = "249078d7-32c7-4c68-8b4b-3cf7d2129bc5",
                             TwoFactorEnabled = false,
                             UserName = "admin@ECCRM.com"
                         },
                         new
                         {
-                            Id = "5e2ffcc6-e42e-40db-a77c-44fa83c22825",
+                            Id = "15db2f41-9825-4206-9539-77f37b0633c6",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "97f1e431-eae7-42ce-8458-955de4c5c3ce",
+                            ConcurrencyStamp = "eac1f838-f860-4180-b5c0-4534072789e6",
                             Email = "manager@ECCRM.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "MANAGER@ECCRM.COM",
                             NormalizedUserName = "MANAGER@ECCRM.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEPwJUAYigDptW8rAhTucT7zFoH0bFwInI8tgdCBnTSQDWWhwjU7bTlAuXVKlUbV1dg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEOnQAxM+ui/znpS+ShIbHSMk9lQHkQ/KmpSQdKqFkrpY7riqx9zLikzz/hPdN8SiRg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "d6240ad9-f8ea-4420-9b7b-b603208eb17f",
+                            SecurityStamp = "54bec720-31c4-45a2-98dd-2f94cc87ff32",
                             TwoFactorEnabled = false,
                             UserName = "manager@ECCRM.com"
                         });
@@ -794,7 +794,8 @@ namespace EducationCenterCRM.DAL.EF.Migrations
                 {
                     b.HasOne("EducationCenterCRM.BLL.Models.StudentGroup", "StudentGroup")
                         .WithMany("Students")
-                        .HasForeignKey("StudentGroupId");
+                        .HasForeignKey("StudentGroupId")
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.Navigation("StudentGroup");
                 });

@@ -35,11 +35,5 @@ namespace EducationCenterCRM.DAL.EF.Contexts
 
             modelBuilder.Seed();
         }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=EducCenterCRMDb1;Trusted_Connection=True;");
-        }
-
     }
 }
