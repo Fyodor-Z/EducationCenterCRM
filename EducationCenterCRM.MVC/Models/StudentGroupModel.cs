@@ -14,7 +14,7 @@ namespace EducationCenterCRM.MVC.Models
         public Guid? TeacherId { get; set; }
         public TeacherModel? Teacher { get; set; }
         public virtual IEnumerable<StudentModel> Students { get; set; }
-        public virtual IEnumerable<Lesson> Lessons { get; set; }
+        public virtual IEnumerable<LessonModel> Lessons { get; set; }
 
         public Guid CourseId {get; set; }
 

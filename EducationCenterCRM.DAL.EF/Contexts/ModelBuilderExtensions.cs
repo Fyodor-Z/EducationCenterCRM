@@ -242,7 +242,29 @@ namespace EducationCenterCRM.DAL.EF.Contexts
                 StudentGroupId = group3.Id
             };
 
-            var students = new List<Student>() { student1, student2, student3, student4, student5, student6, student7 };
+            var student8 = new Student()
+            {
+                Id = Guid.NewGuid(),
+                FirstName = "Anton",
+                LastName = "Yermolaichik",
+                Gender = Gender.Male,
+                BirthDate = new DateTime(1998, 6, 15),
+                StartDate = new DateTime(2021, 7, 3),
+                StudentGroupId = group1.Id
+            };
+
+            var student9 = new Student()
+            {
+                Id = Guid.NewGuid(),
+                FirstName = "Alexnader",
+                LastName = "Filipovets",
+                Gender = Gender.Male,
+                BirthDate = new DateTime(1998, 6, 15),
+                StartDate = new DateTime(2021, 7, 3),
+                StudentGroupId = group1.Id
+            };
+
+            var students = new List<Student>() { student1, student2, student3, student4, student5, student6, student7, student8, student9 };
 
             foreach (var student in students)
             {
@@ -351,7 +373,35 @@ namespace EducationCenterCRM.DAL.EF.Contexts
                 LessonDate = DateTime.Today.AddDays(-5)
             };
 
-            modelBuilder.Entity<Lesson>().HasData(lesson1, lesson2, lesson3);
+            var lesson4 = new Lesson()
+            {
+                Id = Guid.NewGuid(),
+                GroupId = group1.Id,
+                LessonDate = DateTime.Today.AddDays(-7)
+            };
+
+            var lesson5 = new Lesson()
+            {
+                Id = Guid.NewGuid(),
+                GroupId = group1.Id,
+                LessonDate = DateTime.Today.AddDays(-9)
+            };
+
+            var lesson6 = new Lesson()
+            {
+                Id = Guid.NewGuid(),
+                GroupId = group1.Id,
+                LessonDate = DateTime.Today.AddDays(-11)
+            };
+
+            var lesson7 = new Lesson()
+            {
+                Id = Guid.NewGuid(),
+                GroupId = group1.Id,
+                LessonDate = DateTime.Today.AddDays(-13)
+            };
+
+            modelBuilder.Entity<Lesson>().HasData(lesson1, lesson2, lesson3, lesson4, lesson5, lesson6, lesson7);
 
             var mark1 = new Mark()
             {
@@ -390,7 +440,135 @@ namespace EducationCenterCRM.DAL.EF.Contexts
                 Score = 7
             };
 
-            modelBuilder.Entity<Mark>().HasData(mark1, mark2, mark3, mark4, mark5);
+            //lesson 4
+            var mark6 = new Mark()
+            {
+                Id = Guid.NewGuid(),
+                LessonId = lesson4.Id,
+                StudentId = student1.Id,
+                Score = 7
+            };
+
+            var mark7 = new Mark()
+            {
+                Id = Guid.NewGuid(),
+                LessonId = lesson4.Id,
+                StudentId = student2.Id,
+                Score = 9
+            };
+
+            var mark8 = new Mark()
+            {
+                Id = Guid.NewGuid(),
+                LessonId = lesson4.Id,
+                StudentId = student8.Id,
+                Score = 7
+            };
+
+            var mark9 = new Mark()
+            {
+                Id = Guid.NewGuid(),
+                LessonId = lesson4.Id,
+                StudentId = student9.Id,
+                Score = 8
+            };
+
+            //lesson 5
+
+            var mark10 = new Mark()
+            {
+                Id = Guid.NewGuid(),
+                LessonId = lesson5.Id,
+                StudentId = student1.Id,
+                Score = 8
+            };
+
+            var mark11 = new Mark()
+            {
+                Id = Guid.NewGuid(),
+                LessonId = lesson5.Id,
+                StudentId = student2.Id,
+                Score = 9
+            };
+
+            var mark12 = new Mark()
+            {
+                Id = Guid.NewGuid(),
+                LessonId = lesson5.Id,
+                StudentId = student8.Id,
+                Score = 8
+            };
+
+            var mark13 = new Mark()
+            {
+                Id = Guid.NewGuid(),
+                LessonId = lesson5.Id,
+                StudentId = student9.Id,
+                Score = 7
+            };
+
+            //lesson 6
+
+            var mark14 = new Mark()
+            {
+                Id = Guid.NewGuid(),
+                LessonId = lesson6.Id,
+                StudentId = student1.Id,
+                Score = 8
+            };
+
+            var mark15 = new Mark()
+            {
+                Id = Guid.NewGuid(),
+                LessonId = lesson6.Id,
+                StudentId = student2.Id,
+                Score = 8
+            };
+
+            var mark16 = new Mark()
+            {
+                Id = Guid.NewGuid(),
+                LessonId = lesson6.Id,
+                StudentId = student8.Id,
+                Score = 8
+            };
+
+            var mark17 = new Mark()
+            {
+                Id = Guid.NewGuid(),
+                LessonId = lesson6.Id,
+                StudentId = student9.Id,
+                Score = 6
+            };
+
+            //lesson 7
+
+            var mark18 = new Mark()
+            {
+                Id = Guid.NewGuid(),
+                LessonId = lesson7.Id,
+                StudentId = student1.Id,
+                Score = 8
+            };
+
+            var mark19 = new Mark()
+            {
+                Id = Guid.NewGuid(),
+                LessonId = lesson6.Id,
+                StudentId = student8.Id,
+                Score = 8
+            };
+
+            var mark20 = new Mark()
+            {
+                Id = Guid.NewGuid(),
+                LessonId = lesson6.Id,
+                StudentId = student9.Id,
+                Score = 6
+            };
+
+            modelBuilder.Entity<Mark>().HasData(mark1, mark2, mark3, mark4, mark5, mark6, mark7, mark8, mark9, mark10, mark11, mark12,
+                mark13, mark14, mark15, mark16, mark17, mark18, mark19, mark20);
         }
     }
 }

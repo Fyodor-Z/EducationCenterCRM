@@ -60,8 +60,12 @@
     <a asp-action="Index">Back to groups list</a>
 </div>
 <hr />
-<div>
+@*<div>
     <a asp-action="ShowGroupMarks"  asp-route-id="@Model.Id" class="btn btn-info">Show score sheet for the group</a>
+</div>
+<hr/>*@
+<div>
+    <a asp-action="ShowGroupMarksPage" asp-route-id="@Model.Id" asp-route-pageNumber="1" class="btn btn-info">Show score sheet for the group</a>
 </div>
 
 <hr />
