@@ -22,6 +22,8 @@ namespace EducationCenterCRM.MVC.Controllers
             _courseService = courseService;
             _mapper = mapper;
         }
+
+        [Authorize(Roles = "admin, manager")]
         public async Task<IActionResult> Index()
         {
             var studentRequests = await _studentRequestService.GetAllAsync();
@@ -36,7 +38,7 @@ namespace EducationCenterCRM.MVC.Controllers
             return View(_mapper.Map<StudentRequestModel>(studentRequest));
         }
 
-
+        [Authorize(Roles = "manager")]
         [HttpGet]
         public IActionResult Create()
         {
@@ -59,6 +61,7 @@ namespace EducationCenterCRM.MVC.Controllers
             }
         }
 
+        [Authorize(Roles = "manager")]
         public IActionResult ChangeStatus(Guid id)
         {
             var studentRequest = _studentRequestService.ChangeStatus(id);

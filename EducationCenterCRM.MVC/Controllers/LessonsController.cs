@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace EducationCenterCRM.MVC.Controllers
 {
+    [Authorize]
     public class LessonsController : Controller
     {
         private readonly IEntityService<Lesson> _lessonService;
@@ -35,7 +36,7 @@ namespace EducationCenterCRM.MVC.Controllers
             var lesson = _lessonService.GetById(id);
             return View(_mapper.Map<LessonModel>(lesson));
         }
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin, teacher")]
         [HttpGet]
         public IActionResult Delete(Guid id)
         {
@@ -51,7 +52,7 @@ namespace EducationCenterCRM.MVC.Controllers
             var lessons = _lessonService.GetAll();
             return View("Index", _mapper.Map<IEnumerable<LessonModel>>(lessons));
         }
-        [Authorize(Roles = "admin, manager")]
+        [Authorize(Roles = "teacher")]
         [HttpGet]
         public IActionResult Create()
         {
@@ -81,7 +82,7 @@ namespace EducationCenterCRM.MVC.Controllers
                 return View("Edit");
             }
         }
-        [Authorize(Roles = "admin, manager")]
+        [Authorize(Roles = "teacher")]
         [HttpGet]
         public IActionResult Edit(Guid id)
         {
