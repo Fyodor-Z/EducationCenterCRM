@@ -8,6 +8,7 @@ using EducationCenterCRM.BLL.Models;
 using EducationCenterCRM.BLL.Services.Impl;
 using EducationCenterCRM.BLL.Services.Interfaces;
 using EducationCenterCRM.MVC.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EducationCenterCRM.MVC.Controllers
 {
@@ -25,6 +26,7 @@ namespace EducationCenterCRM.MVC.Controllers
             _mapper = mapper;
         }
 
+        [Authorize(Roles = "teacher")]
         [HttpGet]
         public IActionResult AddMarkToLesson(Guid lessonId)
         {
@@ -60,6 +62,7 @@ namespace EducationCenterCRM.MVC.Controllers
             }
         }
 
+        [Authorize(Roles = "teacher")]
         [HttpGet]
         public IActionResult EditScore(Guid id)
         {
@@ -82,6 +85,7 @@ namespace EducationCenterCRM.MVC.Controllers
 
         }
 
+        [Authorize(Roles = "teacher")]
         [HttpGet]
         public IActionResult Delete(Guid id)
         {

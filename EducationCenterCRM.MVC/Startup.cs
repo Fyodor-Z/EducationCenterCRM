@@ -118,7 +118,7 @@ namespace EducationCenterCRM.MVC
         {
             var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
 
-            var roles = new[] { "admin", "manager", "student", "teacher" };
+            var roles = new[] { "admin", "manager", "teacher" };
 
 
             foreach (var roleName in roles)
@@ -142,6 +142,19 @@ namespace EducationCenterCRM.MVC
             if (managerUser != null)
             {
                 await userManager.AddToRoleAsync(managerUser, "MANAGER");
+            }
+            
+            var teacherService = serviceProvider.GetRequiredService<IEntityService<Teacher>>();
+            var teachers = await teacherService.GetAllAsync();
+
+            foreach (var teacher in teachers)
+            {
+                var email = teacher.Email;
+                var teacherUser = await userManager.FindByEmailAsync(email);
+                if (teacherUser != null)
+                {
+                    await userManager.AddToRoleAsync(teacherUser, "TEACHER");
+                }
             }
             
         }
