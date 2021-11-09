@@ -8,10 +8,12 @@ using EducationCenterCRM.DAL.BaseModel;
 
 namespace EducationCenterCRM.MVC.Models
 {
-    public class StudentRequestModel: BaseModel
-   {
-       [Required(ErrorMessage = "Please enter name")]
+    public class StudentRequestModel : BaseModel
+    {
+        [Display(Name = "First name")]
+        [Required(ErrorMessage = "Please enter name")]
         public string FirstName { get; set; }
+        [Display(Name = "Last name")]
         [Required(ErrorMessage = "Please enter last name")]
         public string LastName { get; set; }
         [Required(ErrorMessage = "Please select course")]

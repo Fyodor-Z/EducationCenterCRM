@@ -11,8 +11,10 @@ namespace EducationCenterCRM.MVC.Models
 {
     public abstract class PersonModel: BaseModel
     {
+        [Display(Name = "First name")]
         [Required(ErrorMessage = "Please enter name")]
         public string FirstName { get; set; }
+        [Display(Name = "Last name")]
         [Required(ErrorMessage = "Please enter last name")]
         public string LastName { get; set; }
         [Required(ErrorMessage = "Please choose birth date")]
@@ -27,7 +29,7 @@ namespace EducationCenterCRM.MVC.Models
         [Required(ErrorMessage = "Please enter e-mail")]
         public string Email { get; set; }
         public string Phone { get; set; }
-
+        [Display(Name = "Name")]
         public string FullName => string.Join(" ", this.FirstName, this.LastName);
     }
 }
