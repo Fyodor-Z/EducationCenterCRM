@@ -84,7 +84,7 @@ namespace EducationCenterCRM.DAL.EF.Contexts
                 LinkToProfile = "https://www.linkedin.com/feed/",
                 BirthDate = new DateTime(1986, 5, 18),
                 Bio = "Some information"
-                
+
 
             };
             var teacher2 = new Teacher()
@@ -283,7 +283,7 @@ namespace EducationCenterCRM.DAL.EF.Contexts
                 NormalizedEmail = "admin@ECCRM.com".ToUpper(),
                 EmailConfirmed = true,
                 SecurityStamp = Guid.NewGuid().ToString(),
-               
+
             };
 
             adminUser.PasswordHash = passHasher.HashPassword(adminUser, "Admin_123456");
@@ -301,7 +301,34 @@ namespace EducationCenterCRM.DAL.EF.Contexts
 
             managerUser.PasswordHash = passHasher.HashPassword(managerUser, "Manager_123456");
 
+            var teacherUsers = new List<IdentityUser>();
+            foreach (var teacher in teachers)
+            {
+                var email = teacher.Email;
+                if (!string.IsNullOrEmpty(email))
+                {
+                    var teacherUser = new IdentityUser()
+                    {
+                        Id = Guid.NewGuid().ToString(),
+                        UserName = email,
+                        NormalizedUserName = email.ToUpper(),
+                        Email = email,
+                        NormalizedEmail = email.ToUpper(),
+                        EmailConfirmed = true,
+                        SecurityStamp = Guid.NewGuid().ToString()
+                    };
+                    var password = teacher.FirstName + teacher.LastName;
+                    teacherUser.PasswordHash = passHasher.HashPassword(teacherUser, password);
+                    teacherUsers.Add(teacherUser);
+                }
+            }
+
             modelBuilder.Entity<IdentityUser>().HasData(adminUser, managerUser);
+
+            if (teacherUsers.Count > 0)
+            {
+                modelBuilder.Entity<IdentityUser>().HasData(teacherUsers);
+            }
 
             var lesson1 = new Lesson()
             {
