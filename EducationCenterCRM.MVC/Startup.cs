@@ -108,7 +108,7 @@ namespace EducationCenterCRM.MVC
                 endpoints.MapRazorPages();
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Courses}/{action=Index}/{id?}");
 
             });
             CreateRoles(serviceProvider, securityOptions).Wait();
