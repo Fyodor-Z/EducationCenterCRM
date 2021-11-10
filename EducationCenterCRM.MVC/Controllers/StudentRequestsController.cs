@@ -38,7 +38,6 @@ namespace EducationCenterCRM.MVC.Controllers
             return View(_mapper.Map<StudentRequestModel>(studentRequest));
         }
 
-        [Authorize(Roles = "manager")]
         [HttpGet]
         public IActionResult Create()
         {
